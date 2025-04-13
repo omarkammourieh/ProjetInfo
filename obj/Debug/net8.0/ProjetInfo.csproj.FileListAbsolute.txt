@@ -171,3 +171,4 @@ C:\Users\DELL\source\repos\ProjetInfo\obj\Debug\net8.0\ProjetInfo.pdb
 C:\Users\DELL\source\repos\ProjetInfo\obj\Debug\net8.0\ProjetInfo.genruntimeconfig.cache
 C:\Users\DELL\source\repos\ProjetInfo\obj\Debug\net8.0\ref\ProjetInfo.dll
 C:\Users\DELL\source\repos\ProjetInfo\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\DELL\source\repos\ProjetInfo\obj\Debug\net8.0\ProjetInfo.sourcelink.json

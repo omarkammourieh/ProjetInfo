@@ -1,73 +1,179 @@
-/* General Page Styling */
-body {
-    font-family: Arial, sans-serif;
+/* ================= Global Reset & Base Styles ================= */
+* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    background-color: #f8f9fa;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #3a7bd5, #00d2ff);
     color: #333;
+    min-height: 100vh;
+    line-height: 1.6;
+    overflow-x: hidden;
 }
 
-/* Navigation Bar */
-nav {
-    background-color: #007bff;
-    padding: 10px;
-    text-align: center;
+/* ================= Navigation Bar ================= */
+.navbar {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px 0;
+    position: fixed;
+    top: 0;
+    z-index: 100;
 }
 
-    nav a {
-        color: white;
+.nav-links {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    align-items: center;
+}
+
+    .nav-links li a {
+        color: #fff;
         text-decoration: none;
-        padding: 10px 20px;
-        font-size: 18px;
+        font-size: 1rem;
+        font-weight: 600;
+        transition: color 0.3s ease;
+        padding: 6px 12px;
     }
 
-        nav a:hover {
-            background-color: #0056b3;
+        .nav-links li a:hover,
+        .nav-links li a.active {
+            color: #ffc107;
         }
 
-/* Main Content */
-.main {
-    padding: 20px;
-    max-width: 800px;
-    margin: auto;
-    background: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    position: relative; /* Add relative positioning */
-    top: 30px; /* Move form towards the top */
-}
+        /* Specific styling for the Sign Up button in the nav bar */
+        .nav-links li a.signup-btn {
+            background: #ffc107;
+            color: #000;
+            border-radius: 6px;
+            padding: 8px 16px;
+            transition: background 0.3s ease;
+        }
 
-/* Form Styling */
-form {
+            .nav-links li a.signup-btn:hover {
+                background: #e0a800;
+            }
+
+/* ================= Hero Section ================= */
+.hero {
+    width: 100%;
+    min-height: 100vh;
+    padding-top: 60px; /* space for navbar */
     display: flex;
-    flex-direction: column;
-    gap: 15px;  /* Increased gap between elements */
-    padding: 20px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: url('/images/banner.jpg') center/cover no-repeat;
+    position: relative;
 }
 
-input, button {
-    padding: 10px;
-    font-size: 16px;
-}
-
-button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
-    button:hover {
-        background-color: #0056b3;
+    .hero::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.3);
+        z-index: 1;
     }
 
-/* Footer */
-footer {
+.hero-content {
+    position: relative;
+    max-width: 700px;
+    color: #fff;
+    padding: 20px;
+    z-index: 2;
+}
+
+    .hero-content h1 {
+        font-size: 3rem;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+    }
+
+    .hero-content p {
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+    }
+
+.cta-btn {
+    display: inline-block;
+    padding: 14px 30px;
+    background: #ffc107;
+    color: #000;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 10px;
+    transition: background 0.3s ease;
+}
+
+    .cta-btn:hover {
+        background: #e0a800;
+    }
+
+/* ================= Info Sections ================= */
+.info-section {
+    padding: 60px 20px;
     text-align: center;
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+    background: #f9f9f9;
+}
+
+    .info-section h2 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+        color: #007aff;
+    }
+
+    .info-section p {
+        font-size: 1.1rem;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+/* ================= Footer ================= */
+footer {
+    background: #000;
+    color: #fff;
+    padding: 20px 10px;
+    text-align: center;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.social-links a {
+    color: #fff;
+    margin: 0 10px;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+    .social-links a:hover {
+        color: #ffc107;
+    }
+
+/* ================= Responsive Adjustments ================= */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .cta-btn {
+        padding: 12px 24px;
+        font-size: 1rem;
+    }
+
+    .nav-links {
+        gap: 15px;
+    }
 }

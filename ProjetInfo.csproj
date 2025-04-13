@@ -23,4 +23,14 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\images\banner.jpg" />
+    <None Include="wwwroot\images\istockphoto-518657226-612x612.jpg" />
+    <None Include="wwwroot\images\old.jpg" />
+  </ItemGroup>
+
 </Project>

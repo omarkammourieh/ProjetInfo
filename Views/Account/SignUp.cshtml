@@ -1,251 +1,105 @@
 ﻿@{
     Layout = null;
-    ViewData["Title"] = "BookRide";
+    ViewData["Title"] = "Sign Up - QuickCab";
 }
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Book a Ride</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- External Styles -->
-    <link rel="stylesheet" href="/css/BookRide.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-
-    <!-- Leaflet CSS for the Map -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>Sign Up | QuickCab</title>
+    <link rel="stylesheet" type="text/css" href="/css/SignUp.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet" />
 </head>
 <body>
-    <div class="ride-container">
-        <h1>Book Your Ride</h1>
-        <!-- Ride Booking Form -->
-        <form id="rideForm">
-            <div class="input-group">
-                <label for="pickup">Pickup Location</label>
-                <input type="text" id="pickup" placeholder="Click on map for pickup" readonly required>
-            </div>
-            <div class="input-group">
-                <label for="dropoff">Drop-off Location</label>
-                <input type="text" id="dropoff" placeholder="Click on map for drop-off" readonly required>
-            </div>
-            <button type="submit" class="book-btn">Book Ride</button>
-        </form>
-
-        <!-- Map Container -->
-        <div id="map"></div>
-
-        <!-- Ride Status Display -->
-        <div id="status" class="ride-status"></div>
-
-        <!-- Driver Info Card -->
-        <div id="driverInfo" class="driver-card" style="display: none;"></div>
-
-        <!-- Rating Section: New, Professional Star Rating -->
-        <div id="ratingSection" class="rating-container" style="display: none;">
-            <h3>Rate Your Driver</h3>
-            <!-- New star rating form from CodePen style -->
-            <form class="rating">
-                <div class="rating__stars">
-                    <!-- Inputs in natural order (1 to 5). We will rely on the custom JS for animations. -->
-                    <input id="rating-1" class="rating__input rating__input-1" type="radio" name="rating" value="1">
-                    <input id="rating-2" class="rating__input rating__input-2" type="radio" name="rating" value="2">
-                    <input id="rating-3" class="rating__input rating__input-3" type="radio" name="rating" value="3">
-                    <input id="rating-4" class="rating__input rating__input-4" type="radio" name="rating" value="4">
-                    <input id="rating-5" class="rating__input rating__input-5" type="radio" name="rating" value="5">
-                    <label class="rating__label rating__label--delay1" for="rating-1">
-                        <svg class="rating__star" width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
-                            <!-- Insert your SVG content for star 1 here -->
-                            <polygon points="16,2 20,12 31,12 22,19 25,30 16,24 7,30 10,19 1,12 12,12" fill="#000" />
-                        </svg>
-                        <span class="rating__sr">1 star—Terrible</span>
-                    </label>
-                    <label class="rating__label rating__label--delay2" for="rating-2">
-                        <svg class="rating__star" width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
-                            <!-- Insert your SVG content for star 2 here -->
-                            <polygon points="16,2 20,12 31,12 22,19 25,30 16,24 7,30 10,19 1,12 12,12" fill="#000" />
-                        </svg>
-                        <span class="rating__sr">2 stars—Bad</span>
-                    </label>
-                    <label class="rating__label rating__label--delay3" for="rating-3">
-                        <svg class="rating__star" width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
-                            <!-- Insert your SVG content for star 3 here -->
-                            <polygon points="16,2 20,12 31,12 22,19 25,30 16,24 7,30 10,19 1,12 12,12" fill="#000" />
-                        </svg>
-                        <span class="rating__sr">3 stars—OK</span>
-                    </label>
-                    <label class="rating__label rating__label--delay4" for="rating-4">
-                        <svg class="rating__star" width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
-                            <!-- Insert your SVG content for star 4 here -->
-                            <polygon points="16,2 20,12 31,12 22,19 25,30 16,24 7,30 10,19 1,12 12,12" fill="#000" />
-                        </svg>
-                        <span class="rating__sr">4 stars—Good</span>
-                    </label>
-                    <label class="rating__label rating__label--delay5" for="rating-5">
-                        <svg class="rating__star" width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
-                            <!-- Insert your SVG content for star 5 here -->
-                            <polygon points="16,2 20,12 31,12 22,19 25,30 16,24 7,30 10,19 1,12 12,12" fill="#000" />
-                        </svg>
-                        <span class="rating__sr">5 stars—Excellent</span>
-                    </label>
-                    <!-- Display elements for screen readers -->
-                    <p class="rating__display" data-rating="1" hidden>Terrible</p>
-                    <p class="rating__display" data-rating="2" hidden>Bad</p>
-                    <p class="rating__display" data-rating="3" hidden>OK</p>
-                    <p class="rating__display" data-rating="4" hidden>Good</p>
-                    <p class="rating__display" data-rating="5" hidden>Excellent</p>
+    <div class="main">
+        <!-- Sign Up Container -->
+        <div class="container a-container" id="a-container">
+            <form id="a-form" class="form" method="post" action="/Account/SignUp">
+                <h2 class="form_title title">Create Account</h2>
+                <div class="form__icons">
+                    <img class="form__icon" src="/images/icon-facebook.svg" alt="" />
+                    <img class="form__icon" src="/images/icon-google.svg" alt="" />
+                    <img class="form__icon" src="/images/icon-twitter.svg" alt="" />
                 </div>
+                <span class="form__span">or use email for registration</span>
+                <input class="form__input" type="text" placeholder="Name" name="FullName" required />
+                <input class="form__input" type="email" placeholder="Email" name="Email" required />
+                <input class="form__input" type="number" placeholder="Phone" name="PhoneNumber" required />
+                <input class="form__input" type="password" placeholder="Password" name="Password" required />
+                <button class="form__button button submit" type="submit">SIGN UP</button>
             </form>
-            <button id="submitRating">Submit Rating</button>
+        </div>
+
+        <!-- Sign In Container -->
+        <div class="container b-container" id="b-container">
+            <form id="b-form" class="form" method="post" action="/Account/SignIn">
+                <h2 class="form_title title">Sign in to Website</h2>
+                <div class="form__icons">
+                    <img class="form__icon" src="/images/icon-facebook.svg" alt="" />
+                    <img class="form__icon" src="/images/icon-google.svg" alt="" />
+                    <img class="form__icon" src="/images/icon-twitter.svg" alt="" />
+                </div>
+                <span class="form__span">or use your email account</span>
+                <input class="form__input" type="email" placeholder="Email" name="Email" required />
+                <input class="form__input" type="password" placeholder="Password" name="Password" required />
+                <a class="form__link" href="#">Forgot your password?</a>
+                <button class="form__button button submit" type="submit">SIGN IN</button>
+            </form>
+        </div>
+
+        <!-- Switch Animation -->
+        <div class="switch" id="switch-cnt">
+            <div class="switch__circle"></div>
+            <div class="switch__circle switch__circle--t"></div>
+
+            <div class="switch__container" id="switch-c1">
+                <h2 class="switch__title title">Welcome Back!</h2>
+                <p class="switch__description description">To keep connected with us please login with your personal info</p>
+                <button class="switch__button button switch-btn" type="button">SIGN IN</button>
+            </div>
+            <div class="switch__container is-hidden" id="switch-c2">
+                <h2 class="switch__title title">Hello Friend!</h2>
+                <p class="switch__description description">Enter your personal details and start journey with us</p>
+                <button class="switch__button button switch-btn" type="button">SIGN UP</button>
+            </div>
         </div>
     </div>
 
-    <!-- Leaflet JS -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <!-- JavaScript -->
     <script>
-        let pickupMarker = null;
-        let dropoffMarker = null;
-        let pickupSelected = false;
-        let currentDriverId = null;
+        let switchCtn = document.querySelector("#switch-cnt");
+        let switchC1 = document.querySelector("#switch-c1");
+        let switchC2 = document.querySelector("#switch-c2");
+        let switchCircle = document.querySelectorAll(".switch__circle");
+        let switchBtn = document.querySelectorAll(".switch-btn");
+        let aContainer = document.querySelector("#a-container");
+        let bContainer = document.querySelector("#b-container");
 
-        // Initialize map centered on Beirut
-        const map = L.map('map').setView([33.8938, 35.5018], 13);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-          attribution: '&copy; OpenStreetMap contributors'
-        }).addTo(map);
+        let changeForm = () => {
+            switchCtn.classList.add("is-gx");
+            setTimeout(() => {
+                switchCtn.classList.remove("is-gx");
+            }, 1500);
 
-        // Map click handler: first click sets pickup, second sets drop-off
-        map.on('click', function (e) {
-          if (!pickupSelected) {
-            if (pickupMarker) pickupMarker.remove();
-            pickupMarker = L.marker(e.latlng).addTo(map).bindPopup("Pickup").openPopup();
-            document.getElementById("pickup").value = `${e.latlng.lat.toFixed(5)}, ${e.latlng.lng.toFixed(5)}`;
-            pickupSelected = true;
-          } else {
-            if (dropoffMarker) dropoffMarker.remove();
-            dropoffMarker = L.marker(e.latlng).addTo(map).bindPopup("Drop-off").openPopup();
-            document.getElementById("dropoff").value = `${e.latlng.lat.toFixed(5)}, ${e.latlng.lng.toFixed(5)}`;
-            pickupSelected = false;
-          }
-        });
+            switchCtn.classList.toggle("is-txr");
+            switchCircle[0].classList.toggle("is-txr");
+            switchCircle[1].classList.toggle("is-txr");
 
-        // Ride booking handler
-        document.getElementById("rideForm").addEventListener("submit", function (e) {
-          e.preventDefault();
-          const pickup = document.getElementById("pickup").value;
-          const dropoff = document.getElementById("dropoff").value;
-          const statusDiv = document.getElementById("status");
+            switchC1.classList.toggle("is-hidden");
+            switchC2.classList.toggle("is-hidden");
+            aContainer.classList.toggle("is-txl");
+            bContainer.classList.toggle("is-txl");
+            bContainer.classList.toggle("is-z200");
+        };
 
-          if (!pickup || !dropoff) {
-            alert("Please select both pickup and drop-off locations on the map.");
-            return;
-          }
-
-          statusDiv.innerText = "🚕 Ride Status: Requested";
-
-          fetch("/Ride/BookRide", {
-            method: "POST",
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: new URLSearchParams({ pickup: pickup, dropoff: dropoff })
-          })
-          .then(res => res.json())
-          .then(data => {
-            alert(data.message);
-            const driver = data.driver;
-            currentDriverId = driver.id;
-            document.getElementById("driverInfo").innerHTML = `
-              <h3>Your Driver</h3>
-              <p><strong>Name:</strong> ${driver.name}</p>
-              <p><strong>Phone:</strong> ${driver.phone}</p>
-              <p><strong>Rating:</strong> ⭐ ${driver.rating}</p>
-              <p><strong>Vehicle:</strong> ${driver.vehicle}</p>
-              <p><strong>Plate:</strong> ${driver.plate}</p>
-            `;
-            document.getElementById("driverInfo").style.display = "block";
-          })
-          .catch(err => console.error("Error:", err));
-
-          setTimeout(() => { statusDiv.innerText = "🚗 Ride Status: On the way"; }, 2000);
-          setTimeout(() => {
-            statusDiv.innerText = "✅ Ride Status: Completed";
-            document.getElementById("ratingSection").style.display = "block";
-          }, 6000);
-        });
-
-        // Initialize the star rating class from your CodePen snippet
-        window.addEventListener("DOMContentLoaded", () => {
-          const starRating = new StarRating("form.rating");
-        });
-
-        class StarRating {
-          constructor(qs) {
-            this.ratings = [
-              {id: 1, name: "Terrible"},
-              {id: 2, name: "Bad"},
-              {id: 3, name: "OK"},
-              {id: 4, name: "Good"},
-              {id: 5, name: "Excellent"}
-            ];
-            this.rating = null;
-            this.el = document.querySelector(qs);
-            this.init();
-          }
-          init() {
-            this.el?.addEventListener("change", this.updateRating.bind(this));
-            try {
-              this.el?.reset();
-            } catch (err) {
-              console.error("Element isn’t a form:", err);
+        window.addEventListener("load", () => {
+            for (let i = 0; i < switchBtn.length; i++) {
+                switchBtn[i].addEventListener("click", function (e) {
+                    e.preventDefault(); // only for switching, not for form submission
+                    changeForm();
+                });
             }
-          }
-          updateRating(e) {
-            Array.from(this.el.querySelectorAll(`[for*="rating"]`)).forEach(el => {
-              el.className = "rating__label";
-            });
-            const ratingObject = this.ratings.find(r => r.id === +e.target.value);
-            const prevRatingID = this.rating?.id || 0;
-            let delay = 0;
-            this.rating = ratingObject;
-            this.ratings.forEach(rating => {
-              const { id } = rating;
-              const ratingLabel = this.el.querySelector(`[for="rating-${id}"]`);
-              if (ratingLabel && id > prevRatingID + 1 && id <= this.rating.id) {
-                ++delay;
-                ratingLabel.classList.add(`rating__label--delay${delay}`);
-              }
-              const ratingTextEl = this.el.querySelector(`[data-rating="${id}"]`);
-              if (ratingTextEl) {
-                if (this.rating.id !== id)
-                  ratingTextEl.setAttribute("hidden", true);
-                else
-                  ratingTextEl.removeAttribute("hidden");
-              }
-            });
-          }
-        }
-
-        // Handle star rating submission
-        document.getElementById("submitRating").addEventListener("click", function () {
-          const selectedRating = document.querySelector('input[name="rating"]:checked');
-          if (!selectedRating || !currentDriverId) {
-            alert("Please select a rating.");
-            return;
-          }
-          const rating = selectedRating.value;
-          fetch("/Ride/Rate", {
-            method: "POST",
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: new URLSearchParams({
-              driverId: currentDriverId,
-              rating: rating,
-              comment: ""
-            })
-          })
-          .then(res => res.text())
-          .then(msg => {
-            alert("Thanks for your rating! 🙏");
-            document.getElementById("ratingSection").style.display = "none";
-          });
         });
     </script>
 </body>

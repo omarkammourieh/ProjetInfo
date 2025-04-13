@@ -1,7 +1,11 @@
+wwwroot\css\AboutUs.css
 wwwroot\css\BookRide.css
 wwwroot\css\SignUp.css
 wwwroot\css\site.css
 wwwroot\favicon.ico
+wwwroot\images\banner.jpg
+wwwroot\images\istockphoto-518657226-612x612.jpg
+wwwroot\images\old.jpg
 wwwroot\js\SignIn.js
 wwwroot\js\site.js
 wwwroot\lib\bootstrap\dist\css\bootstrap.css

@@ -14,7 +14,7 @@ namespace ProjetInfo.Controllers
     public class AccountController : Controller
     {
         private readonly RideShareDbContext _context;
-        private readonly string _jwtKey = "this_is_a_very_secret_key_123"; // TODO: move to appsettings.json
+        private readonly string _jwtKey = "this_is_a_very_secure_and_long_jwt_key_123456";
 
         public AccountController(RideShareDbContext context)
         {
@@ -46,7 +46,8 @@ namespace ProjetInfo.Controllers
                     _context.Users.Add(user);
                     _context.SaveChanges();
 
-                    return RedirectToAction("SignUp");
+                    // ✅ Redirect to Book Ride page after successful signup
+                    return RedirectToAction("BookRide", "Ride");
                 }
 
                 return View(user);
@@ -57,6 +58,7 @@ namespace ProjetInfo.Controllers
                 return View(user);
             }
         }
+
 
         // GET: SignIn page
         public IActionResult SignIn()
@@ -134,5 +136,10 @@ namespace ProjetInfo.Controllers
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
+        public IActionResult AboutUs()
+        {
+            return View();
+        }
+
     }
 }

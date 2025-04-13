@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\ProjetInfo.q9eulrsov8.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\DELL\\source\\repos\\ProjetInfo\\wwwroot\\css\\AboutUs.css",
+      "PackagePath": "staticwebassets\\css\\AboutUs.css"
+    },
+    {
       "Id": "C:\\Users\\DELL\\source\\repos\\ProjetInfo\\wwwroot\\css\\BookRide.css",
       "PackagePath": "staticwebassets\\css\\BookRide.css"
     },
@@ -19,6 +23,18 @@
     {
       "Id": "C:\\Users\\DELL\\source\\repos\\ProjetInfo\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Users\\DELL\\source\\repos\\ProjetInfo\\wwwroot\\images\\banner.jpg",
+      "PackagePath": "staticwebassets\\images\\banner.jpg"
+    },
+    {
+      "Id": "C:\\Users\\DELL\\source\\repos\\ProjetInfo\\wwwroot\\images\\istockphoto-518657226-612x612.jpg",
+      "PackagePath": "staticwebassets\\images\\istockphoto-518657226-612x612.jpg"
+    },
+    {
+      "Id": "C:\\Users\\DELL\\source\\repos\\ProjetInfo\\wwwroot\\images\\old.jpg",
+      "PackagePath": "staticwebassets\\images\\old.jpg"
     },
     {
       "Id": "C:\\Users\\DELL\\source\\repos\\ProjetInfo\\wwwroot\\js\\SignIn.js",
