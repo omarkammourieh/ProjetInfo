@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjetInfo.Data;
 
@@ -11,9 +12,11 @@ using ProjetInfo.Data;
 namespace ProjetInfo.Migrations
 {
     [DbContext(typeof(RideShareDbContext))]
-    partial class RideShareDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250414182452_AddLongAndLat")]
+    partial class AddLongAndLat
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

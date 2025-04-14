@@ -4,6 +4,7 @@ wwwroot\css\SignUp.css
 wwwroot\css\site.css
 wwwroot\favicon.ico
 wwwroot\images\banner.jpg
+wwwroot\images\car--v1.jpg
 wwwroot\images\istockphoto-518657226-612x612.jpg
 wwwroot\images\old.jpg
 wwwroot\js\SignIn.js

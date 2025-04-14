@@ -8,19 +8,14 @@
     <meta charset="UTF-8">
     <title>Book a Ride</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Styles -->
     <link rel="stylesheet" href="/css/BookRide.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-
-    <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 </head>
 <body>
     <div class="ride-container">
         <h1>Book Your Ride</h1>
 
-        <!-- Ride Form -->
         <form id="rideForm">
             <div class="input-group">
                 <label for="pickup">Pickup Location</label>
@@ -33,16 +28,10 @@
             <button type="submit" class="book-btn">Book Ride</button>
         </form>
 
-        <!-- Map -->
-        <div id="map" style="height: 300px; margin-top: 20px; border-radius: 10px;"></div>
-
-        <!-- Ride Status -->
+        <div id="map" style="height: 400px; margin-top: 20px; border-radius: 10px;"></div>
         <div id="status" class="ride-status"></div>
-
-        <!-- Driver Card -->
         <div id="driverInfo" class="driver-card" style="display: none;"></div>
 
-        <!-- Rating Section -->
         <div id="ratingSection" style="display: none;">
             <h3>Rate Your Driver</h3>
             <select id="driverRating">
@@ -57,61 +46,56 @@
         </div>
     </div>
 
-    <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
-        let pickupMarker = null;
-        let dropoffMarker = null;
-        let pickupSelected = false;
-        let currentDriverId = null;
+        const map = L.map('map', {
+            maxBounds: [[32.0, 34.2], [34.7, 36.2]],  // Lebanon bounds
+            maxZoom: 18,
+            minZoom: 7
+        }).setView([33.8938, 35.5018], 13);  // Beirut
 
-        const map = L.map('map').setView([33.8938, 35.5018], 13); // Beirut
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; OpenStreetMap contributors'
         }).addTo(map);
+
+        let pickupMarker = null;
+        let dropoffMarker = null;
+        let driverMarker = null;
+        let pickupSelected = false;
+        let currentDriverId = null;
 
         map.on('click', function (e) {
             if (!pickupSelected) {
                 if (pickupMarker) pickupMarker.remove();
                 pickupMarker = L.marker(e.latlng).addTo(map).bindPopup("Pickup").openPopup();
-                document.getElementById("pickup").value = `${e.latlng.lat}, ${e.latlng.lng}`;
+                document.getElementById("pickup").value = `${e.latlng.lat},${e.latlng.lng}`;
                 pickupSelected = true;
             } else {
                 if (dropoffMarker) dropoffMarker.remove();
                 dropoffMarker = L.marker(e.latlng).addTo(map).bindPopup("Drop-off").openPopup();
-                document.getElementById("dropoff").value = `${e.latlng.lat}, ${e.latlng.lng}`;
+                document.getElementById("dropoff").value = `${e.latlng.lat},${e.latlng.lng}`;
                 pickupSelected = false;
             }
         });
 
         document.getElementById("rideForm").addEventListener("submit", function (e) {
             e.preventDefault();
-
             const pickup = document.getElementById("pickup").value;
             const dropoff = document.getElementById("dropoff").value;
-            const statusDiv = document.getElementById("status");
+            if (!pickup || !dropoff) return alert("Please select both pickup and drop-off locations.");
 
-            if (!pickup || !dropoff) {
-                alert("Please select both pickup and drop-off locations on the map.");
-                return;
-            }
+            const [pickupLat, pickupLng] = pickup.split(',').map(parseFloat);
+            const [dropLat, dropLng] = dropoff.split(',').map(parseFloat);
 
-            statusDiv.innerText = "🚕 Ride Status: Requested";
+            document.getElementById("status").innerText = "🚕 Ride Status: Requested";
 
             fetch("/Ride/BookRide", {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/x-www-form-urlencoded"
-                },
-                body: new URLSearchParams({
-                    pickup: pickup,
-                    dropoff: dropoff
-                })
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: new URLSearchParams({ pickup, dropoff })
             })
             .then(res => res.json())
             .then(data => {
-                alert(data.message);
-
                 const driver = data.driver;
                 currentDriverId = driver.id;
 
@@ -119,48 +103,80 @@
                     <h3>Your Driver</h3>
                     <p><strong>Name:</strong> ${driver.name}</p>
                     <p><strong>Phone:</strong> ${driver.phone}</p>
-                    <p><strong>Rating:</strong> ⭐ ${driver.rating}</p>
                     <p><strong>Vehicle:</strong> ${driver.vehicle}</p>
                     <p><strong>Plate:</strong> ${driver.plate}</p>
+                    <p><strong>Rating:</strong> ⭐ ${driver.rating}</p>
                 `;
                 document.getElementById("driverInfo").style.display = "block";
-            })
-            .catch(err => console.error("Error:", err));
 
-            // Ride status transitions
-            setTimeout(() => {
-                statusDiv.innerText = "🚗 Ride Status: On the way";
-            }, 2000);
+                // Add driver marker
+                driverMarker = L.marker([pickupLat, pickupLng], {
+                    icon: L.icon({
+                        iconUrl: '/images/car--v1.jpg',
+                        iconSize: [30, 30]
+                    })
+                }).addTo(map);
 
-            setTimeout(() => {
-                statusDiv.innerText = "✅ Ride Status: Completed";
-                document.getElementById("ratingSection").style.display = "block";
-            }, 6000);
+                // Animate driver along road path
+                getRouteAndAnimate([pickupLng, pickupLat], [dropoffLng, dropLat]);
+            });
         });
 
-        // Submit driver rating
+        function getRouteAndAnimate(start, end) {
+            const apiKey = "5b3ce3597851110001cf6248e5f6b5d63671480382283caa6f27cb8c";
+
+            fetch(`https://api.openrouteservice.org/v2/directions/driving-car`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": apiKey
+                },
+                body: JSON.stringify({
+                    coordinates: [start, end]
+                })
+            })
+            .then(res => res.json())
+            .then(data => {
+                const coords = data.features[0].geometry.coordinates;
+                const latLngs = coords.map(c => [c[1], c[0]]);
+                animateDriverOnPath(latLngs);
+            })
+            .catch(() => {
+                alert("Route failed to load. Check API key.");
+            });
+        }
+
+        function animateDriverOnPath(path) {
+            let index = 0;
+            const interval = setInterval(() => {
+                if (index >= path.length) {
+                    clearInterval(interval);
+                    document.getElementById("status").innerText = "✅ Ride Status: Completed";
+                    document.getElementById("ratingSection").style.display = "block";
+                    return;
+                }
+                driverMarker.setLatLng(path[index]);
+                document.getElementById("status").innerText = "🚗 Ride Status: On the way";
+                index++;
+            }, 150);
+        }
+
         document.getElementById("submitRating").addEventListener("click", function () {
             const rating = document.getElementById("driverRating").value;
-
-            if (!rating || !currentDriverId) {
-                alert("Please select a rating.");
-                return;
-            }
+            if (!rating || !currentDriverId) return alert("Please rate your driver.");
 
             fetch("/Ride/Rate", {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/x-www-form-urlencoded"
-                },
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
                 body: new URLSearchParams({
                     driverId: currentDriverId,
-                    rating: rating,
+                    rating,
                     comment: ""
                 })
             })
             .then(res => res.text())
-            .then(msg => {
-                alert("Thanks for your rating! 🙏");
+            .then(() => {
+                alert("Thank you for your feedback!");
                 document.getElementById("ratingSection").style.display = "none";
             });
         });

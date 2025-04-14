@@ -87,6 +87,15 @@ namespace ProjetInfo.Controllers
             });
         }
 
+        [HttpGet]
+        public IActionResult GetDriverLocation(int driverId)
+        {
+            var driver = _context.Drivers.FirstOrDefault(d => d.DriverID == driverId);
+            if (driver == null) return NotFound();
+
+            return Json(new { lat = driver.Latitude, lng = driver.Longitude });
+        }
+
 
         [HttpPost]
         public IActionResult RateDriver(int driverId, int rating)

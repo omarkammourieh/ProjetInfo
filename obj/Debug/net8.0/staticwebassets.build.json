@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "QkYszyP9LvAth7l0x9DJk271/QANTEj7NjfMp8hM+qE=",
+  "Hash": "G2x96prs3mOTvCwUgSd5OyF0V7amTWEP0R+bcuB1R4k=",
   "Source": "ProjetInfo",
   "BasePath": "_content/ProjetInfo",
   "Mode": "Default",
@@ -115,8 +115,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "kksoaa2xhn",
-      "Integrity": "pLhtFWfbt2l+8vamyl4xDyMmjt0n5DOy5sWCc4G5itg=",
+      "Fingerprint": "umfxpxknfp",
+      "Integrity": "Zqof72m/PP5IH25X9eDMoc7ZEclmsiG57ThsuxmktGw=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\SignUp.css"
@@ -183,6 +183,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\banner.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\DELL\\source\\repos\\ProjetInfo\\wwwroot\\images\\car--v1.jpg",
+      "SourceId": "ProjetInfo",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\DELL\\source\\repos\\ProjetInfo\\wwwroot\\",
+      "BasePath": "_content/ProjetInfo",
+      "RelativePath": "images/car--v1#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "4tpqlcbr1s",
+      "Integrity": "2KVLP/utolGV/7QapIRRqPOsvEvPH8ruRfcOzE3I+Xo=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\car--v1.jpg"
     },
     {
       "Identity": "C:\\Users\\DELL\\source\\repos\\ProjetInfo\\wwwroot\\images\\istockphoto-518657226-612x612.jpg",
@@ -1642,7 +1663,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "5000"
+          "Value": "5341"
         },
         {
           "Name": "Content-Type",
@@ -1650,11 +1671,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"pLhtFWfbt2l+8vamyl4xDyMmjt0n5DOy5sWCc4G5itg=\""
+          "Value": "\"Zqof72m/PP5IH25X9eDMoc7ZEclmsiG57ThsuxmktGw=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 13 Apr 2025 14:15:26 GMT"
+          "Value": "Mon, 14 Apr 2025 18:24:34 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1664,12 +1685,12 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-pLhtFWfbt2l+8vamyl4xDyMmjt0n5DOy5sWCc4G5itg="
+          "Value": "sha256-Zqof72m/PP5IH25X9eDMoc7ZEclmsiG57ThsuxmktGw="
         }
       ]
     },
     {
-      "Route": "css/SignUp.kksoaa2xhn.css",
+      "Route": "css/SignUp.umfxpxknfp.css",
       "AssetFile": "C:\\Users\\DELL\\source\\repos\\ProjetInfo\\wwwroot\\css\\SignUp.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -1679,7 +1700,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "5000"
+          "Value": "5341"
         },
         {
           "Name": "Content-Type",
@@ -1687,11 +1708,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"pLhtFWfbt2l+8vamyl4xDyMmjt0n5DOy5sWCc4G5itg=\""
+          "Value": "\"Zqof72m/PP5IH25X9eDMoc7ZEclmsiG57ThsuxmktGw=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 13 Apr 2025 14:15:26 GMT"
+          "Value": "Mon, 14 Apr 2025 18:24:34 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1701,7 +1722,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "kksoaa2xhn"
+          "Value": "umfxpxknfp"
         },
         {
           "Name": "label",
@@ -1709,7 +1730,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-pLhtFWfbt2l+8vamyl4xDyMmjt0n5DOy5sWCc4G5itg="
+          "Value": "sha256-Zqof72m/PP5IH25X9eDMoc7ZEclmsiG57ThsuxmktGw="
         }
       ]
     },
@@ -1956,6 +1977,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-MUTPiEJAg4A5nutso3IWoN1sKNv1d7XSKM9WlnzhUdA="
+        }
+      ]
+    },
+    {
+      "Route": "images/car--v1.4tpqlcbr1s.jpg",
+      "AssetFile": "C:\\Users\\DELL\\source\\repos\\ProjetInfo\\wwwroot\\images\\car--v1.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "857"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"2KVLP/utolGV/7QapIRRqPOsvEvPH8ruRfcOzE3I+Xo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 14 Apr 2025 18:54:00 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "4tpqlcbr1s"
+        },
+        {
+          "Name": "label",
+          "Value": "images/car--v1.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-2KVLP/utolGV/7QapIRRqPOsvEvPH8ruRfcOzE3I+Xo="
+        }
+      ]
+    },
+    {
+      "Route": "images/car--v1.jpg",
+      "AssetFile": "C:\\Users\\DELL\\source\\repos\\ProjetInfo\\wwwroot\\images\\car--v1.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "857"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"2KVLP/utolGV/7QapIRRqPOsvEvPH8ruRfcOzE3I+Xo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 14 Apr 2025 18:54:00 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-2KVLP/utolGV/7QapIRRqPOsvEvPH8ruRfcOzE3I+Xo="
         }
       ]
     },

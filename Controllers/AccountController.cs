@@ -29,35 +29,61 @@ namespace ProjetInfo.Controllers
 
         // POST: Handle SignUp (no hashing)
         [HttpPost]
-        public IActionResult SignUp(User user)
+        [HttpPost]
+public IActionResult SignUp(string FullName, string Email, string PhoneNumber, string Password, string Role, string? CarMake, string? CarModel, string? LicensePlate, string? LicenseNumber)
+{
+    try
+    {
+        if (_context.Users.Any(u => u.Email == Email))
         {
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    if (_context.Users.Any(u => u.Email == user.Email))
-                    {
-                        ViewData["Error"] = "Email already registered.";
-                        return View(user);
-                    }
-
-                    user.Role ??= "regular";
-
-                    _context.Users.Add(user);
-                    _context.SaveChanges();
-
-                    // ✅ Redirect to Book Ride page after successful signup
-                    return RedirectToAction("BookRide", "Ride");
-                }
-
-                return View(user);
-            }
-            catch (Exception ex)
-            {
-                ViewData["Error"] = $"An error occurred: {ex.Message}";
-                return View(user);
-            }
+            ViewData["Error"] = "Email already registered.";
+            return View();
         }
+
+        var user = new User
+        {
+            FullName = FullName,
+            Email = Email,
+            PhoneNumber = PhoneNumber,
+            Password = Password,
+            Role = Role
+        };
+
+        _context.Users.Add(user);
+        _context.SaveChanges();
+
+        if (Role == "driver")
+        {
+            var driver = new Driver
+            {
+                UserID = user.ID,
+                LicenseNumber = LicenseNumber ?? "UNKNOWN",
+                Availability = true
+            };
+
+            _context.Drivers.Add(driver);
+            _context.SaveChanges(); // To get DriverID
+
+            var vehicle = new Vehicle
+            {
+                DriverID = driver.DriverID,
+                Brand = CarMake,
+                Model = CarModel,
+                PlateNumber = LicensePlate
+            };
+
+            _context.Vehicles.Add(vehicle);
+            _context.SaveChanges();
+        }
+
+        return RedirectToAction("BookRide", "Ride");
+    }
+    catch (Exception ex)
+    {
+        ViewData["Error"] = $"Error: {ex.Message}";
+        return View();
+    }
+}
 
 
         // GET: SignIn page
@@ -68,15 +94,11 @@ namespace ProjetInfo.Controllers
 
         // POST: Handle SignIn with JWT (no hashing)
         [HttpPost]
+        [HttpPost]
         public IActionResult SignIn(string Email, string Password)
         {
             try
             {
-                // Log what's received
-                Console.WriteLine("LOGIN ATTEMPT:");
-                Console.WriteLine("Email: " + Email);
-                Console.WriteLine("Password: " + Password);
-
                 if (string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(Password))
                 {
                     return StatusCode(400, "Email or password is missing.");
@@ -84,26 +106,19 @@ namespace ProjetInfo.Controllers
 
                 var user = _context.Users.FirstOrDefault(u => u.Email == Email);
 
-                if (user == null)
+                if (user == null || user.Password != Password)
                 {
-                    Console.WriteLine("User not found.");
                     return StatusCode(401, "Invalid login.");
                 }
 
-                if (user.Password != Password)
-                {
-                    Console.WriteLine("Wrong password.");
-                    return StatusCode(401, "Invalid login.");
-                }
-
+                // Optional: generate token, store it in session if needed
                 var token = GenerateJwtToken(user);
 
-                Console.WriteLine("Login successful. Returning token.");
-                return Json(new { token });
+                // ✅ Redirect to booking page
+                return RedirectToAction("BookRide", "Ride");
             }
             catch (Exception ex)
             {
-                Console.WriteLine("🔥 CRASHED: " + ex.Message);
                 return StatusCode(500, $"🔥 Exception: {ex.Message}");
             }
         }

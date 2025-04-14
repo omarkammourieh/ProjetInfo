@@ -11,6 +11,8 @@ namespace ProjetInfo.Models
         public int UserID { get; set; } // Link to the User table (contains FullName, PhoneNumber, etc.)
         public string LicenseNumber { get; set; }
         public bool Availability { get; set; } = true;
+        public double? Latitude { get; set; }
+        public double? Longitude { get; set; }
 
         // Navigation properties
         public virtual User User { get; set; }

@@ -17,16 +17,23 @@
         <div class="container a-container" id="a-container">
             <form id="a-form" class="form" method="post" action="/Account/SignUp">
                 <h2 class="form_title title">Create Account</h2>
-                <div class="form__icons">
-                    <img class="form__icon" src="/images/icon-facebook.svg" alt="" />
-                    <img class="form__icon" src="/images/icon-google.svg" alt="" />
-                    <img class="form__icon" src="/images/icon-twitter.svg" alt="" />
-                </div>
-                <span class="form__span">or use email for registration</span>
+
+                <select class="form__input" name="Role" id="roleSelector" required>
+                    <option value="">I am a...</option>
+                    <option value="passenger">Passenger</option>
+                    <option value="driver">Driver</option>
+                </select>
+
                 <input class="form__input" type="text" placeholder="Name" name="FullName" required />
                 <input class="form__input" type="email" placeholder="Email" name="Email" required />
                 <input class="form__input" type="number" placeholder="Phone" name="PhoneNumber" required />
                 <input class="form__input" type="password" placeholder="Password" name="Password" required />
+
+                <!-- Driver fields -->
+                <div id="driverFields">
+                    <input class="form__input" type="text" placeholder="Car Model" name="CarModel" />
+                    <input class="form__input" type="text" placeholder="License Plate" name="LicensePlate" />
+                </div>
                 <button class="form__button button submit" type="submit">SIGN UP</button>
             </form>
         </div>
@@ -99,6 +106,18 @@
                     e.preventDefault(); // only for switching, not for form submission
                     changeForm();
                 });
+            }
+        });
+
+            // Show/hide driver fields
+        const roleSelector = document.getElementById("roleSelector");
+        const driverFields = document.getElementById("driverFields");
+
+        roleSelector.addEventListener("change", function () {
+            if (this.value === "driver") {
+                driverFields.style.display = "block";
+            } else {
+                driverFields.style.display = "none";
             }
         });
     </script>

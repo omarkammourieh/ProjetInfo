@@ -29,6 +29,10 @@
       "PackagePath": "staticwebassets\\images\\banner.jpg"
     },
     {
+      "Id": "C:\\Users\\DELL\\source\\repos\\ProjetInfo\\wwwroot\\images\\car--v1.jpg",
+      "PackagePath": "staticwebassets\\images\\car--v1.jpg"
+    },
+    {
       "Id": "C:\\Users\\DELL\\source\\repos\\ProjetInfo\\wwwroot\\images\\istockphoto-518657226-612x612.jpg",
       "PackagePath": "staticwebassets\\images\\istockphoto-518657226-612x612.jpg"
     },
