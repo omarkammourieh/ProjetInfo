@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "G2x96prs3mOTvCwUgSd5OyF0V7amTWEP0R+bcuB1R4k=",
+  "Hash": "QBF3ICxP6yV6LFYYXIxYRBwwzGSpvi0iakFw3hgqg6Q=",
   "Source": "ProjetInfo",
   "BasePath": "_content/ProjetInfo",
   "Mode": "Default",
@@ -73,8 +73,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "7pxzdkaiyr",
-      "Integrity": "pU0PMPOmK7OcLwnI2w2cLaIDgncfLA2GsBoxcV1yKGU=",
+      "Fingerprint": "cmcjntzyi8",
+      "Integrity": "XH4KyHkl1zfDZe6xb3ghrzwyrdwa+pCTau3pmSQZjmc=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\AboutUs.css"
@@ -1489,7 +1489,7 @@
   ],
   "Endpoints": [
     {
-      "Route": "css/AboutUs.7pxzdkaiyr.css",
+      "Route": "css/AboutUs.cmcjntzyi8.css",
       "AssetFile": "C:\\Users\\DELL\\source\\repos\\ProjetInfo\\wwwroot\\css\\AboutUs.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -1499,7 +1499,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "5075"
+          "Value": "4373"
         },
         {
           "Name": "Content-Type",
@@ -1507,11 +1507,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"pU0PMPOmK7OcLwnI2w2cLaIDgncfLA2GsBoxcV1yKGU=\""
+          "Value": "\"XH4KyHkl1zfDZe6xb3ghrzwyrdwa+pCTau3pmSQZjmc=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 13 Apr 2025 13:44:32 GMT"
+          "Value": "Thu, 17 Apr 2025 18:08:01 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1521,7 +1521,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "7pxzdkaiyr"
+          "Value": "cmcjntzyi8"
         },
         {
           "Name": "label",
@@ -1529,7 +1529,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-pU0PMPOmK7OcLwnI2w2cLaIDgncfLA2GsBoxcV1yKGU="
+          "Value": "sha256-XH4KyHkl1zfDZe6xb3ghrzwyrdwa+pCTau3pmSQZjmc="
         }
       ]
     },
@@ -1544,7 +1544,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "5075"
+          "Value": "4373"
         },
         {
           "Name": "Content-Type",
@@ -1552,11 +1552,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"pU0PMPOmK7OcLwnI2w2cLaIDgncfLA2GsBoxcV1yKGU=\""
+          "Value": "\"XH4KyHkl1zfDZe6xb3ghrzwyrdwa+pCTau3pmSQZjmc=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 13 Apr 2025 13:44:32 GMT"
+          "Value": "Thu, 17 Apr 2025 18:08:01 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1566,7 +1566,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-pU0PMPOmK7OcLwnI2w2cLaIDgncfLA2GsBoxcV1yKGU="
+          "Value": "sha256-XH4KyHkl1zfDZe6xb3ghrzwyrdwa+pCTau3pmSQZjmc="
         }
       ]
     },

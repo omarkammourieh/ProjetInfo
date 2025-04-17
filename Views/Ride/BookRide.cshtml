@@ -49,10 +49,10 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
         const map = L.map('map', {
-            maxBounds: [[32.0, 34.2], [34.7, 36.2]],  // Lebanon bounds
+            maxBounds: [[32.0, 34.2], [34.7, 36.2]],
             maxZoom: 18,
             minZoom: 7
-        }).setView([33.8938, 35.5018], 13);  // Beirut
+        }).setView([33.8938, 35.5018], 13);
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; OpenStreetMap contributors'
@@ -80,9 +80,10 @@
 
         document.getElementById("rideForm").addEventListener("submit", function (e) {
             e.preventDefault();
+
             const pickup = document.getElementById("pickup").value;
             const dropoff = document.getElementById("dropoff").value;
-            if (!pickup || !dropoff) return alert("Please select both pickup and drop-off locations.");
+            if (!pickup || !dropoff) return alert("Please select both pickup and drop-off.");
 
             const [pickupLat, pickupLng] = pickup.split(',').map(parseFloat);
             const [dropLat, dropLng] = dropoff.split(',').map(parseFloat);
@@ -109,44 +110,46 @@
                 `;
                 document.getElementById("driverInfo").style.display = "block";
 
-                // Add driver marker
+                // Add driver marker at pickup
                 driverMarker = L.marker([pickupLat, pickupLng], {
-                    icon: L.icon({
-                        iconUrl: '/images/car--v1.jpg',
-                        iconSize: [30, 30]
-                    })
+                    icon: L.icon({ iconUrl: '/images/car--v1.jpg', iconSize: [30, 30] })
                 }).addTo(map);
 
-                // Animate driver along road path
-                getRouteAndAnimate([pickupLng, pickupLat], [dropoffLng, dropLat]);
+                const startCoord = [pickupLng, pickupLat];
+                const endCoord = [dropLng, dropLat];
+                getRouteAndAnimate(startCoord, endCoord);
             });
         });
 
-        function getRouteAndAnimate(start, end) {
-            const apiKey = "5b3ce3597851110001cf6248e5f6b5d63671480382283caa6f27cb8c";
+        function getRouteAndAnimate(startCoord, endCoord) {
+            const apiKey = "5b3ce3597851110001cf6248e5f6b5d63671480382283caa6f27cb8c"; // API key
 
-            fetch(`https://api.openrouteservice.org/v2/directions/driving-car`, {
-                method: "POST",
+            fetch("https://api.openrouteservice.org/v2/directions/driving-car", {
+                method: 'POST',
                 headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": apiKey
+                    'Authorization': apiKey,
+                    'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    coordinates: [start, end]
+                    coordinates: [startCoord, endCoord]
                 })
             })
             .then(res => res.json())
             .then(data => {
-                const coords = data.features[0].geometry.coordinates;
-                const latLngs = coords.map(c => [c[1], c[0]]);
-                animateDriverOnPath(latLngs);
+                if (!data.features || !data.features[0]) {
+                    throw new Error("No route returned from API.");
+                }
+
+                const path = data.features[0].geometry.coordinates.map(c => [c[1], c[0]]);
+                animateDriver(path);
             })
-            .catch(() => {
-                alert("Route failed to load. Check API key.");
+            .catch(err => {
+                console.error("Route fetch failed:", err);
+                alert("❌ Route failed to load. Check API key or coordinates.");
             });
         }
 
-        function animateDriverOnPath(path) {
+        function animateDriver(path) {
             let index = 0;
             const interval = setInterval(() => {
                 if (index >= path.length) {
@@ -158,7 +161,7 @@
                 driverMarker.setLatLng(path[index]);
                 document.getElementById("status").innerText = "🚗 Ride Status: On the way";
                 index++;
-            }, 150);
+            }, 200);
         }
 
         document.getElementById("submitRating").addEventListener("click", function () {
@@ -176,7 +179,7 @@
             })
             .then(res => res.text())
             .then(() => {
-                alert("Thank you for your feedback!");
+                alert("Thanks for your rating!");
                 document.getElementById("ratingSection").style.display = "none";
             });
         });

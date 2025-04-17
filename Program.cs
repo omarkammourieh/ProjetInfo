@@ -14,10 +14,10 @@ namespace ProjetInfo
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // 🔐 Define secret key for JWT
+            // Define secret key for JWT
             var key = "this_is_a_very_secret_key_123"; // TODO: Move to appsettings.json in production
 
-            // 🔧 Add services
+            // Add services
             builder.Services.AddControllersWithViews();
             builder.Services.AddSession();
             builder.Services.AddHttpContextAccessor();
@@ -25,7 +25,7 @@ namespace ProjetInfo
             builder.Services.AddDbContext<RideShareDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-            // 🔐 Configure JWT authentication
+            // Configure JWT authentication
             builder.Services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -47,7 +47,7 @@ namespace ProjetInfo
 
             var app = builder.Build();
 
-            // 🌐 Middleware
+            // Middleware
             if (!app.Environment.IsDevelopment())
             {
                 app.UseExceptionHandler("/Home/Error");
@@ -59,17 +59,16 @@ namespace ProjetInfo
 
             app.UseRouting();
 
-            // 🛡 Add these in the correct order
-            app.UseAuthentication();  // 🔐 First authentication
-            app.UseAuthorization();   // 👮 Then authorization
+            // Add these in the correct order
+            app.UseAuthentication();  // First authentication
+            app.UseAuthorization();   // Then authorization
             app.UseSession();
 
-            // 🗺 Route
+            // Route
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
 
-            // 🧪 Optional: Seed the database
             using (var scope = app.Services.CreateScope())
             {
                 var dbContext = scope.ServiceProvider.GetRequiredService<RideShareDbContext>();

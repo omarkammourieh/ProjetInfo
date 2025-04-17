@@ -27,7 +27,7 @@ namespace ProjetInfo.Controllers
         [HttpPost]
         public IActionResult BookRide(string pickup, string dropoff)
         {
-            // 1. Get all available drivers that have linked user and vehicles
+            // Get all available drivers that have linked user and vehicles
             var availableDrivers = _context.Drivers
                 .Include(d => d.User)
                 .Include(d => d.Vehicles)
@@ -39,17 +39,17 @@ namespace ProjetInfo.Controllers
                 return Json(new { message = "❌ No driver available." });
             }
 
-            // 2. Pick a random driver
+            //  Pick a random driver
             var random = new Random();
             var driver = availableDrivers[random.Next(availableDrivers.Count)];
 
-            // 3. Get first vehicle of the driver
+            // Get first vehicle of the driver
             var vehicle = driver.Vehicles.FirstOrDefault();
 
-            // 4. Choose user (use actual session logic if needed)
+            // Choose user (use actual session logic if needed)
             var user = _context.Users.FirstOrDefault(u => u.Role == "regular");
 
-            // 5. Create the ride
+            // Create the ride
             var ride = new Ride
             {
                 UserID = user.ID,
@@ -63,7 +63,7 @@ namespace ProjetInfo.Controllers
             _context.Rides.Add(ride);
             _context.SaveChanges();
 
-            // 6. Calculate average rating
+            // Calculate average rating
             var ratings = _context.RideFeedbacks
                 .Where(f => f.DriverID == driver.DriverID)
                 .Select(f => f.Rating)
@@ -71,7 +71,7 @@ namespace ProjetInfo.Controllers
 
             double avgRating = ratings.Any() ? Math.Round(ratings.Average(), 1) : 0;
 
-            // 7. Return JSON response
+            // Return JSON response
             return Json(new
             {
                 message = "✅ Ride booked!",
@@ -124,7 +124,7 @@ namespace ProjetInfo.Controllers
             if (user == null)
                 return BadRequest("User not found.");
 
-            // 📝 Create new feedback entry
+            //  Create new feedback entry
             var ride = _context.Rides
             .Where(r => r.DriverID == driverId && r.UserID == user.ID)
             .OrderByDescending(r => r.StartTime)
@@ -135,7 +135,7 @@ namespace ProjetInfo.Controllers
 
             var feedback = new RideFeedback
             {
-                RideID = ride.RideID,   // ✅ This ensures the foreign key constraint is satisfied
+                RideID = ride.RideID,  
                 DriverID = driverId,
                 UserID = user.ID,
                 Rating = rating,
@@ -148,6 +148,9 @@ namespace ProjetInfo.Controllers
             return Ok("Thanks for your feedback!");
         }
 
-
+        public IActionResult AboutUs()
+        {
+            return View();
+        }
     }
 }

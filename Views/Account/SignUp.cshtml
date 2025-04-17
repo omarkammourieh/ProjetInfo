@@ -73,7 +73,6 @@
         </div>
     </div>
 
-    <!-- JavaScript -->
     <script>
         let switchCtn = document.querySelector("#switch-cnt");
         let switchC1 = document.querySelector("#switch-c1");
@@ -103,13 +102,12 @@
         window.addEventListener("load", () => {
             for (let i = 0; i < switchBtn.length; i++) {
                 switchBtn[i].addEventListener("click", function (e) {
-                    e.preventDefault(); // only for switching, not for form submission
+                    e.preventDefault();
                     changeForm();
                 });
             }
         });
 
-            // Show/hide driver fields
         const roleSelector = document.getElementById("roleSelector");
         const driverFields = document.getElementById("driverFields");
 
