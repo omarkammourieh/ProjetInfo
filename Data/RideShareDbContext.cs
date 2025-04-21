@@ -20,6 +20,7 @@ namespace ProjetInfo.Data
         public DbSet<Ride> Rides { get; set; }
         public DbSet<PaymentTransaction> PaymentTransactions { get; set; }
         public DbSet<RideFeedback> RideFeedbacks { get; set; }
+        public DbSet<Contact> Contacts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

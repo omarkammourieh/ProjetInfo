@@ -1,0 +1,15 @@
+# Ignore VS-related folders
+.vs/
+bin/
+obj/
+
+# Ignore user-specific files
+*.user
+*.suo
+
+# Ignore temporary files
+*.log
+*.tmp
+
+# Ignore sensitive configs (optional)
+appsettings.Development.json

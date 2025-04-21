@@ -1,0 +1,130 @@
+﻿@model ProjetInfo.Models.Contact
+@{
+    ViewData["Title"] = "Contact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+<style>
+    body {
+        background-color: #111;
+        color: white;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    .contact-section {
+        background: url('/images/white-dots-world-map-vector.jpg') no-repeat center center fixed;
+        background-size: cover;
+        padding: 80px 20px;
+        min-height: 100vh;
+    }
+
+
+    .contact-header {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+        .contact-header h2 {
+            font-size: 38px;
+            font-weight: bold;
+            color: white;
+        }
+
+    .contact-info {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+        .contact-info i {
+            color: #FFD700;
+            margin-right: 8px;
+        }
+
+    .contact-form {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+        max-width: 1000px;
+        margin: auto;
+    }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            max-width: 480px;
+            padding: 14px;
+            background: white;
+            color: black;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .contact-form textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        .contact-form button {
+            padding: 12px 30px;
+            background-color: #FFD700;
+            border: none;
+            font-weight: bold;
+            font-size: 16px;
+            color: black;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background 0.3s ease;
+        }
+
+            .contact-form button:hover {
+                background-color: #e6c200;
+            }
+
+    .success-msg {
+        text-align: center;
+        margin-top: 20px;
+        color: #FFD700;
+        font-weight: bold;
+    }
+
+    .contact-header h2,
+    .contact-info p {
+        color: white;
+        font-weight: bold;
+        text-shadow: 2px 2px 5px black;
+    }
+
+</style>
+
+<div class="contact-section">
+    <div class="contact-header">
+        <h2>GET IN TOUCH</h2>
+    </div>
+
+    <div class="contact-info">
+        <p><i class="fas fa-phone"></i> Phone: +961 71 123 456</p>
+        <p><i class="fas fa-envelope"></i> Email: contact@quickcab.com</p>
+        <p><i class="fas fa-map-marker-alt"></i> Address: Beirut, Lebanon</p>
+    </div>
+
+    <form class="contact-form" method="post">
+        <input asp-for="Name" placeholder="YOUR NAME *" />
+        <input asp-for="Email" placeholder="YOUR EMAIL *" />
+        <input asp-for="PhoneNumber" placeholder="YOUR PHONE *" />
+        <textarea asp-for="Message" placeholder="YOUR MESSAGE *"></textarea>
+        <button type="submit">SEND MESSAGE</button>
+    </form>
+
+    @if (ViewBag.Message != null)
+    {
+        <p class="success-msg">@ViewBag.Message</p>
+    }
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

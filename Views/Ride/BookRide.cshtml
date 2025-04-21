@@ -8,51 +8,142 @@
     <meta charset="UTF-8">
     <title>Book a Ride</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/BookRide.css">
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Poppins', sans-serif;
+            background: url('/images/white-dots-world-map-vector.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+        }
+
+        .ride-background {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 20px;
+        }
+
+        .ride-container {
+            background-color: rgba(0, 0, 0, 0.75);
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 900px;
+            width: 100%;
+            box-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
+        }
+
+        h1 {
+            color: #FFD700;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        label {
+            color: white;
+            font-weight: bold;
+            text-shadow: 1px 1px 3px black;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        input[type="text"], select {
+            width: 100%;
+            padding: 12px;
+            font-size: 15px;
+            border-radius: 6px;
+            border: none;
+        }
+
+        .book-btn, #submitRating {
+            background-color: #FFD700;
+            color: black;
+            font-weight: bold;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+            .book-btn:hover, #submitRating:hover {
+                background-color: #e6c200;
+            }
+
+        #map {
+            height: 400px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        #status {
+            margin-top: 15px;
+            font-size: 18px;
+        }
+
+        #driverInfo {
+            margin-top: 20px;
+            background-color: rgba(255,255,255,0.9);
+            color: black;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        #ratingSection {
+            margin-top: 25px;
+        }
+    </style>
 </head>
 <body>
-    <div class="ride-container">
-        <h1>Book Your Ride</h1>
+    <div class="ride-background">
+        <div class="ride-container">
+            <h1>Book Your Ride</h1>
 
-        <form id="rideForm">
-            <div class="input-group">
-                <label for="pickup">Pickup Location</label>
-                <input type="text" id="pickup" placeholder="Click on map for pickup" readonly required />
+            <form id="rideForm">
+                <div class="input-group">
+                    <label for="pickup">Pickup Location</label>
+                    <input type="text" id="pickup" placeholder="Click on map for pickup" readonly required />
+                </div>
+                <div class="input-group">
+                    <label for="dropoff">Drop-off Location</label>
+                    <input type="text" id="dropoff" placeholder="Click on map for drop-off" readonly required />
+                </div>
+                <button type="submit" class="book-btn">Book Ride</button>
+            </form>
+
+            <div id="map"></div>
+            <div id="status" class="ride-status"></div>
+            <div id="driverInfo" style="display: none;"></div>
+
+            <div id="ratingSection" style="display: none;">
+                <h3>Rate Your Driver</h3>
+                <select id="driverRating">
+                    <option value="">Select stars</option>
+                    <option value="1">⭐</option>
+                    <option value="2">⭐⭐</option>
+                    <option value="3">⭐⭐⭐</option>
+                    <option value="4">⭐⭐⭐⭐</option>
+                    <option value="5">⭐⭐⭐⭐⭐</option>
+                </select>
+                <button id="submitRating">Submit Rating</button>
             </div>
-            <div class="input-group">
-                <label for="dropoff">Drop-off Location</label>
-                <input type="text" id="dropoff" placeholder="Click on map for drop-off" readonly required />
-            </div>
-            <button type="submit" class="book-btn">Book Ride</button>
-        </form>
-
-        <div id="map" style="height: 400px; margin-top: 20px; border-radius: 10px;"></div>
-        <div id="status" class="ride-status"></div>
-        <div id="driverInfo" class="driver-card" style="display: none;"></div>
-
-        <div id="ratingSection" style="display: none;">
-            <h3>Rate Your Driver</h3>
-            <select id="driverRating">
-                <option value="">Select stars</option>
-                <option value="1">⭐</option>
-                <option value="2">⭐⭐</option>
-                <option value="3">⭐⭐⭐</option>
-                <option value="4">⭐⭐⭐⭐</option>
-                <option value="5">⭐⭐⭐⭐⭐</option>
-            </select>
-            <button id="submitRating">Submit Rating</button>
         </div>
     </div>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
-        const map = L.map('map', {
-            maxBounds: [[32.0, 34.2], [34.7, 36.2]],
-            maxZoom: 18,
-            minZoom: 7
-        }).setView([33.8938, 35.5018], 13);
+        const map = L.map('map').setView([33.8938, 35.5018], 13);
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; OpenStreetMap contributors'
@@ -110,19 +201,16 @@
                 `;
                 document.getElementById("driverInfo").style.display = "block";
 
-                // Add driver marker at pickup
                 driverMarker = L.marker([pickupLat, pickupLng], {
                     icon: L.icon({ iconUrl: '/images/car--v1.jpg', iconSize: [30, 30] })
                 }).addTo(map);
 
-                const startCoord = [pickupLng, pickupLat];
-                const endCoord = [dropLng, dropLat];
-                getRouteAndAnimate(startCoord, endCoord);
+                getRouteAndAnimate([pickupLng, pickupLat], [dropLng, dropLat]);
             });
         });
 
         function getRouteAndAnimate(startCoord, endCoord) {
-            const apiKey = "5b3ce3597851110001cf6248e5f6b5d63671480382283caa6f27cb8c"; // API key
+            const apiKey = "5b3ce3597851110001cf6248e5f6b5d63671480382283caa6f27cb8c";
 
             fetch("https://api.openrouteservice.org/v2/directions/driving-car", {
                 method: 'POST',
@@ -130,16 +218,11 @@
                     'Authorization': apiKey,
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({
-                    coordinates: [startCoord, endCoord]
-                })
+                body: JSON.stringify({ coordinates: [startCoord, endCoord] })
             })
             .then(res => res.json())
             .then(data => {
-                if (!data.features || !data.features[0]) {
-                    throw new Error("No route returned from API.");
-                }
-
+                if (!data.features || !data.features[0]) throw new Error("No route returned.");
                 const path = data.features[0].geometry.coordinates.map(c => [c[1], c[0]]);
                 animateDriver(path);
             })

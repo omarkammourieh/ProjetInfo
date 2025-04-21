@@ -7,6 +7,7 @@ wwwroot\images\banner.jpg
 wwwroot\images\car--v1.jpg
 wwwroot\images\istockphoto-518657226-612x612.jpg
 wwwroot\images\old.jpg
+wwwroot\images\white-dots-world-map-vector.jpg
 wwwroot\js\SignIn.js
 wwwroot\js\site.js
 wwwroot\lib\bootstrap\dist\css\bootstrap.css
