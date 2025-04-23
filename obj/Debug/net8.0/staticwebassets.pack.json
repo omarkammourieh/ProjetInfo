@@ -17,6 +17,10 @@
       "PackagePath": "staticwebassets\\css\\SignUp.css"
     },
     {
+      "Id": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\wwwroot\\css\\privacy.css",
+      "PackagePath": "staticwebassets\\css\\privacy.css"
+    },
+    {
       "Id": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
@@ -29,6 +33,10 @@
       "PackagePath": "staticwebassets\\images\\banner.jpg"
     },
     {
+      "Id": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\wwwroot\\images\\banner2.jpg",
+      "PackagePath": "staticwebassets\\images\\banner2.jpg"
+    },
+    {
       "Id": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\wwwroot\\images\\car--v1.jpg",
       "PackagePath": "staticwebassets\\images\\car--v1.jpg"
     },
@@ -39,6 +47,10 @@
     {
       "Id": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\wwwroot\\images\\old.jpg",
       "PackagePath": "staticwebassets\\images\\old.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\wwwroot\\images\\taxi-header.jpg",
+      "PackagePath": "staticwebassets\\images\\taxi-header.jpg"
     },
     {
       "Id": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\wwwroot\\images\\white-dots-world-map-vector.jpg",

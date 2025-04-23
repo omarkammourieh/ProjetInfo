@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "tbxDtisDfqND5TrtdQaGW+EFA7QTfjmIpm7E9G7aJcc=",
+  "Hash": "N31xuTIJ6FSV3VHqe1Cv0OmNh9XKaUboUUoOjgyUsf4=",
   "Source": "ProjetInfo",
   "BasePath": "_content/ProjetInfo",
   "Mode": "Default",
@@ -73,8 +73,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "pth2maa6b5",
-      "Integrity": "vSTLVW6enjAuGivddaMpWK8gmhSx00chmSPRQykitow=",
+      "Fingerprint": "rq08yidf9n",
+      "Integrity": "wy+LSz45f1UR706Ht5dBt9h0bxxeYuDQdeIdZjsaOGY=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\AboutUs.css"
@@ -99,6 +99,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\BookRide.css"
+    },
+    {
+      "Identity": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\wwwroot\\css\\privacy.css",
+      "SourceId": "ProjetInfo",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\wwwroot\\",
+      "BasePath": "_content/ProjetInfo",
+      "RelativePath": "css/privacy#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "armjy9xugg",
+      "Integrity": "9q8BbYMEBioQxbuOL1VJnaP0+RTMmP9JZ+A7NlQYxVQ=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\privacy.css"
     },
     {
       "Identity": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\wwwroot\\css\\SignUp.css",
@@ -185,6 +206,27 @@
       "OriginalItemSpec": "wwwroot\\images\\banner.jpg"
     },
     {
+      "Identity": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\wwwroot\\images\\banner2.jpg",
+      "SourceId": "ProjetInfo",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\wwwroot\\",
+      "BasePath": "_content/ProjetInfo",
+      "RelativePath": "images/banner2#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "odumy8p2zh",
+      "Integrity": "tCp3XiOuwCKOi44RVnbD/wmZHhD6XemG2KNX47lN3o0=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\banner2.jpg"
+    },
+    {
       "Identity": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\wwwroot\\images\\car--v1.jpg",
       "SourceId": "ProjetInfo",
       "SourceType": "Discovered",
@@ -246,6 +288,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\old.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\wwwroot\\images\\taxi-header.jpg",
+      "SourceId": "ProjetInfo",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\wwwroot\\",
+      "BasePath": "_content/ProjetInfo",
+      "RelativePath": "images/taxi-header#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "bhxa93fehp",
+      "Integrity": "ATNTJ2Ot/Gn8/Qqicxah5IftnTrn3o8hKAqDSmum088=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\taxi-header.jpg"
     },
     {
       "Identity": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\wwwroot\\images\\white-dots-world-map-vector.jpg",
@@ -1520,7 +1583,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "3325"
+          "Value": "2812"
         },
         {
           "Name": "Content-Type",
@@ -1528,11 +1591,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"vSTLVW6enjAuGivddaMpWK8gmhSx00chmSPRQykitow=\""
+          "Value": "\"wy+LSz45f1UR706Ht5dBt9h0bxxeYuDQdeIdZjsaOGY=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 19 Apr 2025 12:56:24 GMT"
+          "Value": "Wed, 23 Apr 2025 10:11:20 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1542,12 +1605,12 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-vSTLVW6enjAuGivddaMpWK8gmhSx00chmSPRQykitow="
+          "Value": "sha256-wy+LSz45f1UR706Ht5dBt9h0bxxeYuDQdeIdZjsaOGY="
         }
       ]
     },
     {
-      "Route": "css/AboutUs.pth2maa6b5.css",
+      "Route": "css/AboutUs.rq08yidf9n.css",
       "AssetFile": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\wwwroot\\css\\AboutUs.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -1557,7 +1620,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "3325"
+          "Value": "2812"
         },
         {
           "Name": "Content-Type",
@@ -1565,11 +1628,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"vSTLVW6enjAuGivddaMpWK8gmhSx00chmSPRQykitow=\""
+          "Value": "\"wy+LSz45f1UR706Ht5dBt9h0bxxeYuDQdeIdZjsaOGY=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 19 Apr 2025 12:56:24 GMT"
+          "Value": "Wed, 23 Apr 2025 10:11:20 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1579,7 +1642,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "pth2maa6b5"
+          "Value": "rq08yidf9n"
         },
         {
           "Name": "label",
@@ -1587,7 +1650,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-vSTLVW6enjAuGivddaMpWK8gmhSx00chmSPRQykitow="
+          "Value": "sha256-wy+LSz45f1UR706Ht5dBt9h0bxxeYuDQdeIdZjsaOGY="
         }
       ]
     },
@@ -1670,6 +1733,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-ENhQOGSzVfeT9xG/mstlffm1cYr0qqasU5EXnK+KoEQ="
+        }
+      ]
+    },
+    {
+      "Route": "css/privacy.armjy9xugg.css",
+      "AssetFile": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\wwwroot\\css\\privacy.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "927"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"9q8BbYMEBioQxbuOL1VJnaP0+RTMmP9JZ+A7NlQYxVQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 23 Apr 2025 10:24:30 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "armjy9xugg"
+        },
+        {
+          "Name": "label",
+          "Value": "css/privacy.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-9q8BbYMEBioQxbuOL1VJnaP0+RTMmP9JZ+A7NlQYxVQ="
+        }
+      ]
+    },
+    {
+      "Route": "css/privacy.css",
+      "AssetFile": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\wwwroot\\css\\privacy.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "927"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"9q8BbYMEBioQxbuOL1VJnaP0+RTMmP9JZ+A7NlQYxVQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 23 Apr 2025 10:24:30 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-9q8BbYMEBioQxbuOL1VJnaP0+RTMmP9JZ+A7NlQYxVQ="
         }
       ]
     },
@@ -2002,6 +2147,88 @@
       ]
     },
     {
+      "Route": "images/banner2.jpg",
+      "AssetFile": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\wwwroot\\images\\banner2.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "30735"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"tCp3XiOuwCKOi44RVnbD/wmZHhD6XemG2KNX47lN3o0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 23 Apr 2025 09:56:01 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-tCp3XiOuwCKOi44RVnbD/wmZHhD6XemG2KNX47lN3o0="
+        }
+      ]
+    },
+    {
+      "Route": "images/banner2.odumy8p2zh.jpg",
+      "AssetFile": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\wwwroot\\images\\banner2.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "30735"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"tCp3XiOuwCKOi44RVnbD/wmZHhD6XemG2KNX47lN3o0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 23 Apr 2025 09:56:01 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "odumy8p2zh"
+        },
+        {
+          "Name": "label",
+          "Value": "images/banner2.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-tCp3XiOuwCKOi44RVnbD/wmZHhD6XemG2KNX47lN3o0="
+        }
+      ]
+    },
+    {
       "Route": "images/car--v1.4tpqlcbr1s.jpg",
       "AssetFile": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\wwwroot\\images\\car--v1.jpg",
       "Selectors": [],
@@ -2244,6 +2471,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-JgM0iyyZ92zhUe+zUqyhqauYNSDEPZK1WWn0N3sc92c="
+        }
+      ]
+    },
+    {
+      "Route": "images/taxi-header.bhxa93fehp.jpg",
+      "AssetFile": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\wwwroot\\images\\taxi-header.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "52730"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ATNTJ2Ot/Gn8/Qqicxah5IftnTrn3o8hKAqDSmum088=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 23 Apr 2025 09:59:15 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "bhxa93fehp"
+        },
+        {
+          "Name": "label",
+          "Value": "images/taxi-header.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-ATNTJ2Ot/Gn8/Qqicxah5IftnTrn3o8hKAqDSmum088="
+        }
+      ]
+    },
+    {
+      "Route": "images/taxi-header.jpg",
+      "AssetFile": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\wwwroot\\images\\taxi-header.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "52730"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ATNTJ2Ot/Gn8/Qqicxah5IftnTrn3o8hKAqDSmum088=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 23 Apr 2025 09:59:15 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-ATNTJ2Ot/Gn8/Qqicxah5IftnTrn3o8hKAqDSmum088="
         }
       ]
     },
@@ -7190,7 +7499,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 19 Apr 2025 13:46:28 GMT"
+          "Value": "Wed, 23 Apr 2025 10:13:04 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -7227,7 +7536,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 19 Apr 2025 13:46:28 GMT"
+          "Value": "Wed, 23 Apr 2025 10:13:04 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -7272,7 +7581,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 19 Apr 2025 13:46:28 GMT"
+          "Value": "Wed, 23 Apr 2025 10:13:04 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -7317,7 +7626,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 19 Apr 2025 13:46:28 GMT"
+          "Value": "Wed, 23 Apr 2025 10:13:04 GMT"
         },
         {
           "Name": "Cache-Control",

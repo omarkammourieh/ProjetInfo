@@ -1,6 +1,35 @@
 ﻿@{
-    ViewData["Title"] = "Privacy Policy";
+    ViewData["Title"] = "Privacy Policy - QuickCab";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h1>@ViewData["Title"]</h1>
 
-<p>Use this page to detail your site's privacy policy.</p>
+@section Styles {
+    <link rel="stylesheet" href="~/css/privacy.css" asp-append-version="true" />
+}
+
+<div class="privacy-hero">
+    <div class="privacy-content">
+        <h1>Privacy Policy</h1>
+        <p>Your privacy is important to us. This page explains how we handle your data with care and transparency.</p>
+    </div>
+</div>
+
+<section class="privacy-details">
+    <div class="container">
+        <h2>Information We Collect</h2>
+        <p>We collect information such as your name, email, phone number, and location for booking and service purposes only.</p>
+
+        <h2>How We Use Your Data</h2>
+        <p>Your data helps us provide you with a seamless ride-hailing experience and improve our services.</p>
+
+        <h2>Data Protection</h2>
+        <p>We implement strict security protocols to safeguard your information from unauthorized access or disclosure.</p>
+
+        <h2>Your Rights</h2>
+        <p>You can request to review, update, or delete your personal data at any time by contacting our support team.</p>
+    </div>
+</section>
+
+<footer class="privacy-footer">
+    <p>&copy; 2025 QuickCab. All rights reserved.</p>
+</footer>

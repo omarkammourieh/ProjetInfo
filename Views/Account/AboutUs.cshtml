@@ -1,52 +1,45 @@
 ﻿@{
     ViewData["Title"] = "About Us - QuickCab";
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>About Us | QuickCab</title>
-    <link rel="stylesheet" href="/css/aboutus.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-</head>
-<body>
-    <!-- Navigation -->
-    <nav class="about-nav">
-        <ul>
-            <li><a href="/" class="nav-link">Home</a></li>
-            <li><a href="/Ride/BookRide" class="nav-link">Book Ride</a></li>
-            <li><a href="/Account/AboutUs" class="nav-link active">About Us</a></li>
-            <li><a href="/Contact" class="nav-link">Contact</a></li>
-        </ul>
-    </nav>
 
-    <!-- Hero Section -->
-    <header class="about-header">
-        <div class="about-hero">
-            <h1>About QuickCab</h1>
-            <p>Your reliable partner in urban mobility, committed to safety, efficiency, and excellence.</p>
-            <a href="/Account/SignUp" class="cta-btn">Sign Up</a>
-        </div>
-    </header>
+@section Styles {
+    <link rel="stylesheet" href="~/css/aboutus.css" asp-append-version="true" />
+}
 
-    <!-- Mission & Vision -->
-    <section class="mission-vision">
-        <div class="mission">
-            <h2>Our Mission</h2>
-            <p>To provide a fast, reliable, and secure taxi service that empowers our customers to travel with ease and comfort.</p>
-        </div>
-        <div class="vision">
-            <h2>Our Vision</h2>
-            <p>To become the leading ride-hailing service in the region through innovation, top-notch service, and a modern fleet.</p>
-        </div>
-    </section>
+<!-- Hero Section -->
+<div class="about-hero">
+    <div class="about-hero-content">
+        <h1>About QuickCab</h1>
+        <p>Your reliable partner in urban mobility — committed to safety, speed, and simplicity.</p>
+        <a href="/Account/SignUp" class="cta-btn">Sign Up</a>
+    </div>
+</div>
 
-    
-    <!-- Footer -->
-    <footer class="about-footer">
-        <p>&copy; 2025 QuickCab. All rights reserved.</p>
-    </footer>
-</body>
-</html>
+<!-- Mission & Vision -->
+<section class="mission-vision">
+    <div>
+        <h2>Our Mission</h2>
+        <p>To provide fast, comfortable, and secure transportation that empowers people to move freely and affordably.</p>
+    </div>
+    <div>
+        <h2>Our Vision</h2>
+        <p>To become the region’s most trusted ride-hailing solution, offering smart technology and a professional driver network.</p>
+    </div>
+</section>
+
+<!-- Features -->
+<section class="about-features">
+    <div class="feature-box">
+        <h3>🛡️ Safety First</h3>
+        <p>All drivers are vetted and rated. You ride with confidence every time.</p>
+    </div>
+    <div class="feature-box">
+        <h3>📱 Smart Experience</h3>
+        <p>Real-time ride tracking, live maps, and seamless mobile access.</p>
+    </div>
+    <div class="feature-box">
+        <h3>🌍 Wide Reach</h3>
+        <p>Serving major cities and towns with expanding coverage zones.</p>
+    </div>
+</section>
