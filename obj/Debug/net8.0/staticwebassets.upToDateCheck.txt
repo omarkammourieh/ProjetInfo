@@ -7,6 +7,7 @@ wwwroot\favicon.ico
 wwwroot\images\banner.jpg
 wwwroot\images\banner2.jpg
 wwwroot\images\car--v1.jpg
+wwwroot\images\istockphoto-1124636717-612x612.jpg
 wwwroot\images\istockphoto-518657226-612x612.jpg
 wwwroot\images\old.jpg
 wwwroot\images\taxi-header.jpg

@@ -3,16 +3,44 @@
   "WorkspaceRootPath": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|c:\\users\\admin.laptop-0fdcflkg\\desktop\\fyp_elioelgerges\\wwwroot\\css\\privacy.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|solutionrelative:wwwroot\\css\\privacy.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+      "AbsoluteMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|c:\\users\\admin.laptop-0fdcflkg\\desktop\\fyp_elioelgerges\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|solutionrelative:views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|c:\\users\\admin.laptop-0fdcflkg\\desktop\\fyp_elioelgerges\\views\\home\\privacy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|solutionrelative:views\\home\\privacy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|c:\\users\\admin.laptop-0fdcflkg\\desktop\\fyp_elioelgerges\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|solutionrelative:views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|c:\\users\\admin.laptop-0fdcflkg\\desktop\\fyp_elioelgerges\\wwwroot\\css\\privacy.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|solutionrelative:wwwroot\\css\\privacy.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|c:\\users\\admin.laptop-0fdcflkg\\desktop\\fyp_elioelgerges\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|solutionrelative:views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|c:\\users\\admin.laptop-0fdcflkg\\desktop\\fyp_elioelgerges\\views\\contact\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|solutionrelative:views\\contact\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|c:\\users\\admin.laptop-0fdcflkg\\desktop\\fyp_elioelgerges\\wwwroot\\css\\signup.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|solutionrelative:wwwroot\\css\\signup.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|c:\\users\\admin.laptop-0fdcflkg\\desktop\\fyp_elioelgerges\\views\\account\\signup.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|solutionrelative:views\\account\\signup.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|c:\\users\\admin.laptop-0fdcflkg\\desktop\\fyp_elioelgerges\\views\\ride\\bookride.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|solutionrelative:views\\ride\\bookride.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|c:\\users\\admin.laptop-0fdcflkg\\desktop\\fyp_elioelgerges\\controllers\\contactcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|solutionrelative:controllers\\contactcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|c:\\users\\admin.laptop-0fdcflkg\\desktop\\fyp_elioelgerges\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|solutionrelative:.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|c:\\users\\admin.laptop-0fdcflkg\\desktop\\fyp_elioelgerges\\wwwroot\\css\\aboutus.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
@@ -27,18 +55,6 @@
       "RelativeMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|solutionrelative:views\\shared\\_validationscriptspartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|c:\\users\\admin.laptop-0fdcflkg\\desktop\\fyp_elioelgerges\\views\\ride\\bookride.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|solutionrelative:views\\ride\\bookride.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|c:\\users\\admin.laptop-0fdcflkg\\desktop\\fyp_elioelgerges\\views\\contact\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|solutionrelative:views\\contact\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|c:\\users\\admin.laptop-0fdcflkg\\desktop\\fyp_elioelgerges\\controllers\\contactcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|solutionrelative:controllers\\contactcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|c:\\users\\admin.laptop-0fdcflkg\\desktop\\fyp_elioelgerges\\models\\contact.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|solutionrelative:models\\contact.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -49,14 +65,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|c:\\users\\admin.laptop-0fdcflkg\\desktop\\fyp_elioelgerges\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|c:\\users\\admin.laptop-0fdcflkg\\desktop\\fyp_elioelgerges\\wwwroot\\css\\signup.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|solutionrelative:wwwroot\\css\\signup.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|c:\\users\\admin.laptop-0fdcflkg\\desktop\\fyp_elioelgerges\\views\\account\\signup.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|solutionrelative:views\\account\\signup.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|c:\\users\\admin.laptop-0fdcflkg\\desktop\\fyp_elioelgerges\\wwwroot\\css\\bookride.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
@@ -82,7 +90,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -90,15 +98,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "privacy.css",
-              "DocumentMoniker": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\wwwroot\\css\\privacy.css",
-              "RelativeDocumentMoniker": "wwwroot\\css\\privacy.css",
-              "ToolTip": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\wwwroot\\css\\privacy.css*",
-              "RelativeToolTip": "wwwroot\\css\\privacy.css*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-04-23T10:24:23.067Z",
+              "DocumentIndex": 3,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-28T16:42:36.488Z",
               "EditorCaption": ""
             },
             {
@@ -107,78 +115,89 @@
               "Title": "Privacy.cshtml",
               "DocumentMoniker": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\Views\\Home\\Privacy.cshtml",
               "RelativeDocumentMoniker": "Views\\Home\\Privacy.cshtml",
-              "ToolTip": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\Views\\Home\\Privacy.cshtml*",
-              "RelativeToolTip": "Views\\Home\\Privacy.cshtml*",
-              "ViewState": "AgIAABUAAAAAAAAAAAAAACMAAAAAAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\Views\\Home\\Privacy.cshtml",
+              "RelativeToolTip": "Views\\Home\\Privacy.cshtml",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAABsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-04-23T10:23:01.918Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "AboutUs.css",
-              "DocumentMoniker": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\wwwroot\\css\\AboutUs.css",
-              "RelativeDocumentMoniker": "wwwroot\\css\\AboutUs.css",
-              "ToolTip": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\wwwroot\\css\\AboutUs.css",
-              "RelativeToolTip": "wwwroot\\css\\AboutUs.css",
-              "ViewState": "AgIAAIcAAAAAAAAAAAAIwJQAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "privacy.css",
+              "DocumentMoniker": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\wwwroot\\css\\privacy.css",
+              "RelativeDocumentMoniker": "wwwroot\\css\\privacy.css",
+              "ToolTip": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\wwwroot\\css\\privacy.css",
+              "RelativeToolTip": "wwwroot\\css\\privacy.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADsAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-04-17T17:18:22.482Z",
+              "WhenOpened": "2025-04-23T10:24:23.067Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "_ValidationScriptsPartial.cshtml",
-              "DocumentMoniker": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
-              "RelativeDocumentMoniker": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
-              "ToolTip": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
-              "RelativeToolTip": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-20T19:03:47.525Z"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+              "Title": "SignUp.css",
+              "DocumentMoniker": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\wwwroot\\css\\SignUp.css",
+              "RelativeDocumentMoniker": "wwwroot\\css\\SignUp.css",
+              "ToolTip": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\wwwroot\\css\\SignUp.css",
+              "RelativeToolTip": "wwwroot\\css\\SignUp.css",
+              "ViewState": "AgIAABMBAAAAAAAAAAAAwB0BAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-04-17T18:12:50.566Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 7,
+              "Title": "BookRide.cshtml",
+              "DocumentMoniker": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\Views\\Ride\\BookRide.cshtml",
+              "RelativeDocumentMoniker": "Views\\Ride\\BookRide.cshtml",
+              "ToolTip": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\Views\\Ride\\BookRide.cshtml",
+              "RelativeToolTip": "Views\\Ride\\BookRide.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-14T18:13:14.172Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "SignUp.cshtml",
+              "DocumentMoniker": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\Views\\Account\\SignUp.cshtml",
+              "RelativeDocumentMoniker": "Views\\Account\\SignUp.cshtml",
+              "ToolTip": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\Views\\Account\\SignUp.cshtml",
+              "RelativeToolTip": "Views\\Account\\SignUp.cshtml",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAAACcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-17T18:10:40.043Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "Views\\Shared\\_Layout.cshtml",
               "ToolTip": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\Views\\Shared\\_Layout.cshtml",
               "RelativeToolTip": "Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-04-20T18:24:57.548Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 4,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\Views\\Contact\\Index.cshtml",
               "RelativeDocumentMoniker": "Views\\Contact\\Index.cshtml",
               "ToolTip": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\Views\\Contact\\Index.cshtml",
               "RelativeToolTip": "Views\\Contact\\Index.cshtml",
-              "ViewState": "AgIAAE4AAAAAAAAAAAAkwGMAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-20T18:24:14.574Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "AboutUs.cshtml",
-              "DocumentMoniker": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\Views\\Account\\AboutUs.cshtml",
-              "RelativeDocumentMoniker": "Views\\Account\\AboutUs.cshtml",
-              "ToolTip": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\Views\\Account\\AboutUs.cshtml",
-              "RelativeToolTip": "Views\\Account\\AboutUs.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-17T17:48:31.448Z",
+              "WhenOpened": "2025-04-20T18:24:14.574Z",
               "EditorCaption": ""
             },
             {
@@ -189,25 +208,66 @@
               "RelativeDocumentMoniker": "Controllers\\ContactController.cs",
               "ToolTip": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\Controllers\\ContactController.cs",
               "RelativeToolTip": "Controllers\\ContactController.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAAAwB8AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAACQAAAAAAAAAAAAAABEAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-20T18:21:38.068Z"
+              "WhenOpened": "2025-04-20T18:21:38.068Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "BookRide.cshtml",
-              "DocumentMoniker": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\Views\\Ride\\BookRide.cshtml",
-              "RelativeDocumentMoniker": "Views\\Ride\\BookRide.cshtml",
-              "ToolTip": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\Views\\Ride\\BookRide.cshtml",
-              "RelativeToolTip": "Views\\Ride\\BookRide.cshtml",
-              "ViewState": "AgIAAPoAAAAAAAAAAAAiwA8BAAAAAAAAAAAAAA==",
+              "DocumentIndex": 9,
+              "Title": ".gitignore",
+              "DocumentMoniker": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\.gitignore",
+              "RelativeDocumentMoniker": ".gitignore",
+              "ToolTip": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\.gitignore",
+              "RelativeToolTip": ".gitignore",
+              "ViewState": "AgIAANcAAAAAAAAAAAAAABoBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-04-23T13:44:36.609Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "AboutUs.css",
+              "DocumentMoniker": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\wwwroot\\css\\AboutUs.css",
+              "RelativeDocumentMoniker": "wwwroot\\css\\AboutUs.css",
+              "ToolTip": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\wwwroot\\css\\AboutUs.css",
+              "RelativeToolTip": "wwwroot\\css\\AboutUs.css",
+              "ViewState": "AgIAAIcAAAAAAAAAAAAIwJQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-04-17T17:18:22.482Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "_ValidationScriptsPartial.cshtml",
+              "DocumentMoniker": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
+              "ToolTip": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
+              "RelativeToolTip": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-14T18:13:14.172Z"
+              "WhenOpened": "2025-04-20T19:03:47.525Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 11,
+              "Title": "AboutUs.cshtml",
+              "DocumentMoniker": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\Views\\Account\\AboutUs.cshtml",
+              "RelativeDocumentMoniker": "Views\\Account\\AboutUs.cshtml",
+              "ToolTip": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\Views\\Account\\AboutUs.cshtml",
+              "RelativeToolTip": "Views\\Account\\AboutUs.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-17T17:48:31.448Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
               "Title": "20250420182004_AddContact.cs",
               "DocumentMoniker": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\Migrations\\20250420182004_AddContact.cs",
               "RelativeDocumentMoniker": "Migrations\\20250420182004_AddContact.cs",
@@ -219,7 +279,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 14,
               "Title": "RideShareDbContext.cs",
               "DocumentMoniker": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\Data\\RideShareDbContext.cs",
               "RelativeDocumentMoniker": "Data\\RideShareDbContext.cs",
@@ -231,7 +291,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 13,
               "Title": "Contact.cs",
               "DocumentMoniker": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\Models\\Contact.cs",
               "RelativeDocumentMoniker": "Models\\Contact.cs",
@@ -243,19 +303,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "SignUp.css",
-              "DocumentMoniker": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\wwwroot\\css\\SignUp.css",
-              "RelativeDocumentMoniker": "wwwroot\\css\\SignUp.css",
-              "ToolTip": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\wwwroot\\css\\SignUp.css",
-              "RelativeToolTip": "wwwroot\\css\\SignUp.css",
-              "ViewState": "AgIAAAgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-04-17T18:12:50.566Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 15,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\appsettings.json",
               "RelativeDocumentMoniker": "appsettings.json",
@@ -267,19 +315,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "SignUp.cshtml",
-              "DocumentMoniker": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\Views\\Account\\SignUp.cshtml",
-              "RelativeDocumentMoniker": "Views\\Account\\SignUp.cshtml",
-              "ToolTip": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\Views\\Account\\SignUp.cshtml",
-              "RelativeToolTip": "Views\\Account\\SignUp.cshtml",
-              "ViewState": "AgIAABgAAAAAAAAAAAAAAEsAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-17T18:10:40.043Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 16,
               "Title": "BookRide.css",
               "DocumentMoniker": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\wwwroot\\css\\BookRide.css",
               "RelativeDocumentMoniker": "wwwroot\\css\\BookRide.css",
@@ -291,7 +327,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 17,
               "Title": "site.css",
               "DocumentMoniker": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\wwwroot\\css\\site.css",
               "RelativeDocumentMoniker": "wwwroot\\css\\site.css",
@@ -303,7 +339,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 18,
               "Title": "RideController.cs",
               "DocumentMoniker": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Desktop\\Fyp_ElioElGerges\\Controllers\\RideController.cs",
               "RelativeDocumentMoniker": "Controllers\\RideController.cs",

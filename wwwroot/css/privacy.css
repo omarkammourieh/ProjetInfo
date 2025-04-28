@@ -47,3 +47,30 @@ body {
     text-align: center;
     padding: 20px;
 }
+
+.privacy-hero {
+    position: relative;
+    height: 300px;
+    background: url('/images/istockphoto-1124636717-612x612.jpg') center/cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #ffffff;
+}
+
+    .privacy-hero::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.4); /* Dark layer over image */
+        z-index: 1;
+    }
+
+    .privacy-hero h1, .privacy-hero p {
+        position: relative;
+        z-index: 2;
+    }
