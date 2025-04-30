@@ -12,7 +12,6 @@ namespace ProjetInfo
     {
         public static void Main(string[] args)
         {
-
             var builder = WebApplication.CreateBuilder(args);
 
             // Define secret key for JWT

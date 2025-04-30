@@ -1,8 +1,6 @@
 ﻿@{
-    
     ViewData["Title"] = "BookRide";
     Layout = "~/Views/Shared/_Layout.cshtml";
-
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -60,7 +58,7 @@
             margin-bottom: 20px;
         }
 
-        input[type="text"], select {
+        input[type="text"] {
             width: 100%;
             padding: 12px;
             font-size: 15px;
@@ -105,6 +103,16 @@
         #ratingSection {
             margin-top: 25px;
         }
+
+            #ratingSection textarea {
+                width: 100%;
+                padding: 12px;
+                font-size: 14px;
+                border-radius: 6px;
+                border: none;
+                margin: 12px 0;
+                box-sizing: border-box;
+            }
     </style>
 </head>
 <body>
@@ -138,7 +146,8 @@
                     <option value="4">⭐⭐⭐⭐</option>
                     <option value="5">⭐⭐⭐⭐⭐</option>
                 </select>
-                <button id="submitRating">Submit Rating</button>
+                <textarea id="driverComment" placeholder="Leave a comment about your ride..." rows="3"></textarea>
+                <button id="submitRating">Submit Rating & Comment</button>
             </div>
         </div>
     </div>
@@ -146,127 +155,140 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
         const map = L.map('map').setView([33.8938, 35.5018], 13);
-
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; OpenStreetMap contributors'
         }).addTo(map);
 
-        let pickupMarker = null;
-        let dropoffMarker = null;
-        let driverMarker = null;
-        let pickupSelected = false;
-        let currentDriverId = null;
+        let pickupMarker = null, dropoffMarker = null, driverMarker = null;
+        let pickupSelected = false, currentDriverId = null;
 
-        map.on('click', function (e) {
+        map.on('click', function(e) {
+            const { lat, lng } = e.latlng;
             if (!pickupSelected) {
-                if (pickupMarker) pickupMarker.remove();
-                pickupMarker = L.marker(e.latlng).addTo(map).bindPopup("Pickup").openPopup();
-                document.getElementById("pickup").value = `${e.latlng.lat},${e.latlng.lng}`;
+                pickupMarker?.remove();
+                pickupMarker = L.marker([lat, lng]).addTo(map)
+                                  .bindPopup("Pickup").openPopup();
+                document.getElementById("pickup").value = `${lat},${lng}`;
                 pickupSelected = true;
             } else {
-                if (dropoffMarker) dropoffMarker.remove();
-                dropoffMarker = L.marker(e.latlng).addTo(map).bindPopup("Drop-off").openPopup();
-                document.getElementById("dropoff").value = `${e.latlng.lat},${e.latlng.lng}`;
+                dropoffMarker?.remove();
+                dropoffMarker = L.marker([lat, lng]).addTo(map)
+                                  .bindPopup("Drop-off").openPopup();
+                document.getElementById("dropoff").value = `${lat},${lng}`;
                 pickupSelected = false;
             }
         });
 
-        document.getElementById("rideForm").addEventListener("submit", function (e) {
+        document.getElementById("rideForm").addEventListener("submit", async function(e) {
             e.preventDefault();
-
-            const pickup = document.getElementById("pickup").value;
-            const dropoff = document.getElementById("dropoff").value;
-            if (!pickup || !dropoff) return alert("Please select both pickup and drop-off.");
-
-            const [pickupLat, pickupLng] = pickup.split(',').map(parseFloat);
-            const [dropLat, dropLng] = dropoff.split(',').map(parseFloat);
+            const pu = document.getElementById("pickup").value;
+            const doff = document.getElementById("dropoff").value;
+            if (!pu || !doff) return alert("Please select both pickup and drop-off.");
 
             document.getElementById("status").innerText = "🚕 Ride Status: Requested";
 
-            fetch("/Ride/BookRide", {
-                method: "POST",
-                headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                body: new URLSearchParams({ pickup, dropoff })
-            })
-            .then(res => res.json())
-            .then(data => {
-                const driver = data.driver;
-                currentDriverId = driver.id;
+            try {
+                const res = await fetch("/Ride/BookRide", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                    body: new URLSearchParams({ pickup: pu, dropoff: doff })
+                });
+                if (!res.ok) {
+                    const err = await res.text();
+                    throw new Error(err || "Booking failed");
+                }
+                const { driver: d } = await res.json();
+                currentDriverId = d.id;
 
                 document.getElementById("driverInfo").innerHTML = `
                     <h3>Your Driver</h3>
-                    <p><strong>Name:</strong> ${driver.name}</p>
-                    <p><strong>Phone:</strong> ${driver.phone}</p>
-                    <p><strong>Vehicle:</strong> ${driver.vehicle}</p>
-                    <p><strong>Plate:</strong> ${driver.plate}</p>
-                    <p><strong>Rating:</strong> ⭐ ${driver.rating}</p>
+                    <p><strong>Name:</strong> ${d.name}</p>
+                    <p><strong>Phone:</strong> ${d.phone}</p>
+                    <p><strong>Vehicle:</strong> ${d.vehicle}</p>
+                    <p><strong>Plate:</strong> ${d.plate}</p>
+                    <p><strong>Rating:</strong> ⭐ ${d.rating}</p>
                 `;
                 document.getElementById("driverInfo").style.display = "block";
 
-                driverMarker = L.marker([pickupLat, pickupLng], {
-                    icon: L.icon({ iconUrl: '/images/car--v1.jpg', iconSize: [30, 30] })
+                let loc = { lat: parseFloat(pu.split(',')[0]), lng: parseFloat(pu.split(',')[1]) };
+                try {
+                    const lr = await fetch(`/Ride/GetDriverLocation?driverId=${d.id}`);
+                    const json = await lr.json();
+                    if (json && typeof json.lat === 'number' && typeof json.lng === 'number') {
+                        loc = json;
+                    }
+                } catch {
+                    console.warn('Could not fetch driver location; using pickup coords');
+                }
+
+                driverMarker?.remove();
+                driverMarker = L.marker([loc.lat, loc.lng], {
+                    icon: L.icon({ iconUrl: '/images/car--v1.jpg', iconSize: [30,30] })
                 }).addTo(map);
 
-                getRouteAndAnimate([pickupLng, pickupLat], [dropLng, dropLat]);
-            });
+                const [dLat, dLng] = doff.split(',').map(parseFloat);
+                await getRouteAndAnimate([loc.lng, loc.lat], [dLng, dLat]);
+            } catch (err) {
+                console.error(err);
+                alert("Booking failed: " + err.message);
+                document.getElementById("status").innerText = "";
+            }
         });
 
-        function getRouteAndAnimate(startCoord, endCoord) {
-            const apiKey = "5b3ce3597851110001cf6248e5f6b5d63671480382283caa6f27cb8c";
-
-            fetch("https://api.openrouteservice.org/v2/directions/driving-car", {
-                method: 'POST',
-                headers: {
-                    'Authorization': apiKey,
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ coordinates: [startCoord, endCoord] })
-            })
-            .then(res => res.json())
-            .then(data => {
-                if (!data.features || !data.features[0]) throw new Error("No route returned.");
-                const path = data.features[0].geometry.coordinates.map(c => [c[1], c[0]]);
+        async function getRouteAndAnimate(start, end) {
+            try {
+                const url = `https://router.project-osrm.org/route/v1/driving/`
+                          + `${start[0]},${start[1]};${end[0]},${end[1]}`
+                          + `?overview=full&geometries=geojson`;
+                const r = await fetch(url);
+                const j = await r.json();
+                const path = j.routes[0].geometry.coordinates.map(c => [c[1], c[0]]);
                 animateDriver(path);
-            })
-            .catch(err => {
-                console.error("Route fetch failed:", err);
-                alert("❌ Route failed to load. Check API key or coordinates.");
-            });
+            } catch {
+                alert("❌ Could not load route.");
+            }
         }
 
         function animateDriver(path) {
-            let index = 0;
-            const interval = setInterval(() => {
-                if (index >= path.length) {
-                    clearInterval(interval);
+            let i = 0;
+            const iv = setInterval(() => {
+                if (i >= path.length) {
+                    clearInterval(iv);
                     document.getElementById("status").innerText = "✅ Ride Status: Completed";
                     document.getElementById("ratingSection").style.display = "block";
                     return;
                 }
-                driverMarker.setLatLng(path[index]);
+                driverMarker.setLatLng(path[i]);
                 document.getElementById("status").innerText = "🚗 Ride Status: On the way";
-                index++;
+                i++;
             }, 200);
         }
 
-        document.getElementById("submitRating").addEventListener("click", function () {
-            const rating = document.getElementById("driverRating").value;
-            if (!rating || !currentDriverId) return alert("Please rate your driver.");
-
-            fetch("/Ride/Rate", {
-                method: "POST",
-                headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                body: new URLSearchParams({
-                    driverId: currentDriverId,
-                    rating,
-                    comment: ""
-                })
-            })
-            .then(res => res.text())
-            .then(() => {
-                alert("Thanks for your rating!");
+        document.getElementById("submitRating").addEventListener("click", async function() {
+            const rating  = document.getElementById("driverRating").value;
+            const comment = document.getElementById("driverComment").value.trim();
+            if (!rating || currentDriverId == null) {
+                return alert("Please select a rating before submitting.");
+            }
+            try {
+                const res = await fetch("/Ride/Rate", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                    body: new URLSearchParams({
+                        driverId: currentDriverId,
+                        rating:   rating,
+                        comment:  comment
+                    })
+                });
+                if (!res.ok) throw new Error("Feedback save failed");
+                alert("Thanks for your feedback!");
                 document.getElementById("ratingSection").style.display = "none";
-            });
+                document.getElementById("driverRating").value  = "";
+                document.getElementById("driverComment").value = "";
+            } catch (err) {
+                console.error(err);
+                alert("❌ Could not submit feedback. Please try again.");
+            }
         });
     </script>
 </body>
