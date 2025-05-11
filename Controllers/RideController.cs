@@ -1,20 +1,33 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProjetInfo.Data;
 using ProjetInfo.Models;
 using System;
 using System.Linq;
+using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
+
 
 namespace ProjetInfo.Controllers
 {
     public class RideController : Controller
     {
         private readonly RideShareDbContext _context;
+        private readonly UserManager<RideController> _userManager;
 
-        public RideController(RideShareDbContext context)
+        public int GetC { get; private set; }
+
+        public RideController(RideShareDbContext context, UserManager<RideController> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
+
+        private int GetCurrentUserId()
+        {
+            return int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+        }
+
 
         // GET: /Ride/BookRide
         [HttpGet]
@@ -52,7 +65,7 @@ namespace ProjetInfo.Controllers
             // Create the ride
             var ride = new Ride
             {
-                UserID = user.ID,
+                UserID = user.id,
                 DriverID = driver.DriverID,
                 PickupLocation = pickup,
                 DropOffLocation = dropoff,
@@ -100,7 +113,7 @@ namespace ProjetInfo.Controllers
         [HttpPost]
         public IActionResult RateDriver(int driverId, int rating)
         {
-            var userId = _context.Users.First().ID; // Replace with session/JWT logic
+            var userId = _context.Users.First().id; // Replace with session/JWT logic
 
             var feedback = new RideFeedback
             {
@@ -126,7 +139,7 @@ namespace ProjetInfo.Controllers
 
             //  Create new feedback entry
             var ride = _context.Rides
-            .Where(r => r.DriverID == driverId && r.UserID == user.ID)
+            .Where(r => r.DriverID == driverId && r.UserID == user.id)
             .OrderByDescending(r => r.StartTime)
             .FirstOrDefault();
 
@@ -135,9 +148,9 @@ namespace ProjetInfo.Controllers
 
             var feedback = new RideFeedback
             {
-                RideID = ride.RideID,  
+                RideID = ride.RideID,
                 DriverID = driverId,
-                UserID = user.ID,
+                UserID = user.id,
                 Rating = rating,
                 Comments = comment ?? ""
             };
@@ -154,87 +167,86 @@ namespace ProjetInfo.Controllers
         }
 
         public IActionResult AvailableRides()
-{
-    var rides = _context.Rides
-                        .Where(r => r.DriverId == null)
-                        .ToList();
-    return View(rides);
-}
-
-[HttpPost]
-public IActionResult ChooseRide(int rideId)
-{
-    var ride = _context.Rides.FirstOrDefault(r => r.RideId == rideId);
-    if (ride != null)
-    {
-        ride.DriverId = GetCurrentUserId(); 
-        _context.SaveChanges();
-    }
-    return RedirectToAction("DriverDashboard");
-}
-
-public IActionResult DriverHistory()
-{
-    var driverId = GetCurrentUserId();
-    var rides = _context.Rides.Where(r => r.DriverId == driverId).ToList();
-    return View(rides);
-}
-
-public IActionResult PassengerHistory()
-{
-    var passengerId = GetCurrentUserId();
-    var rides = _context.Rides.Where(r => r.PassengerId == passengerId).ToList();
-    return View(rides);
-}
-
-[HttpPost]
-public async Task<IActionResult> BookRide(string pickup, string dropoff, string scheduledDateTime)
-{
-    var driver = _context.Drivers.OrderBy(r => Guid.NewGuid()).FirstOrDefault();
-    var user = await _userManager.GetUserAsync(User);
-
-    if (driver == null || user == null)
-        return BadRequest("Driver or user not found");
-
-    DateTime scheduled;
-    if (!DateTime.TryParse(scheduledDateTime, out scheduled))
-        return BadRequest("Invalid datetime");
-
-    var ride = new Ride
-    {
-        Pickup = pickup,
-        Dropoff = dropoff,
-        ScheduledDateTime = scheduled, 
-        DriverId = driver.Id,
-        UserId = user.Id
-    };
-
-    _context.Rides.Add(ride);
-    await _context.SaveChangesAsync();
-
-    return Json(new
-    {
-        driver = new
         {
-            driver.Id,
-            driver.Name,
-            driver.Phone,
-            driver.Vehicle,
-            driver.Plate,
-            driver.Rating
+            var rides = _context.Rides
+                                .Where(r => r.RideID == null)
+                                .ToList();
+            return View(rides);
         }
-    });
-}
 
-public async Task<IActionResult> PassengerHistory()
-{
-    var user = await _userManager.GetUserAsync(User);
-    var rides = _context.Rides
-        .Where(r => r.UserId == user.Id)
-        .OrderByDescending(r => r.ScheduledDateTime)
-        .ToList();
-    return View(rides);
-}
+        [HttpPost]
+        public IActionResult ChooseRide(int rideId)
+        {
+            var ride = _context.Rides.FirstOrDefault(r => r.RideID == rideId);
+            if (ride != null)
+            {
+                ride.DriverID = GetCurrentUserId();
+                _context.SaveChanges();
+            }
+            return RedirectToAction("DriverDashboard");
+        }
 
+        public IActionResult DriverHistory()
+        {
+            var driverId = GetCurrentUserId();
+            var rides = _context.Rides.Where(r => r.DriverID == driverId).ToList();
+            return View(rides);
+        }
+
+        public async Task<IActionResult> PassengerHistory()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null) return RedirectToAction("Login", "Account");
+            
+            var rides = _context.Rides
+                .Where(r => r.UserID == user.GetC)
+                .OrderByDescending(r => r.ScheduledDateTime)
+                .ToList();
+
+            return View(rides);
+        }
+
+            [HttpPost]
+             async Task<IActionResult> BookRide(string pickup, string dropoff, string scheduledDateTime)
+            {
+                var driver = _context.Drivers.OrderBy(r => Guid.NewGuid()).FirstOrDefault();
+                var user = await _userManager.GetUserAsync(User);
+
+                if (driver == null || user == null)
+                    return BadRequest("Driver or user not found");
+
+                DateTime scheduled;
+                if (!DateTime.TryParse(scheduledDateTime, out scheduled))
+                    return BadRequest("Invalid datetime");
+
+                var ride = new Ride
+                {
+                    PickupLocation = pickup,
+                    DropOffLocation = dropoff,
+                    ScheduledDateTime = scheduled,
+                    DriverID = driver.DriverID,
+                    UserID = user.GetCurrentUserId()
+                };
+
+                _context.Rides.Add(ride);
+                await _context.SaveChangesAsync();
+
+                return Json(new
+                {
+                    driver = new
+                    {
+                        driver.DriverID,
+                        driver.Name,
+                        driver.Phone,
+                        driver.Vehicle,
+                        driver.Plate,
+                        driver.Rating
+                    }
+                });
+            }
+
+
+
+        }
     }
-}
+
