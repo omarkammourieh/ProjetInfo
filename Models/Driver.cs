@@ -13,6 +13,7 @@ namespace ProjetInfo.Models
         public bool Availability { get; set; } = true;
         public double? Latitude { get; set; }
         public double? Longitude { get; set; }
+        public DateTime ScheduledDateTime { get; set; }
 
         // Navigation properties
         public virtual User User { get; set; }
