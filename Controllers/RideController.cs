@@ -226,6 +226,15 @@ public async Task<IActionResult> BookRide(string pickup, string dropoff, string 
     });
 }
 
+public async Task<IActionResult> PassengerHistory()
+{
+    var user = await _userManager.GetUserAsync(User);
+    var rides = _context.Rides
+        .Where(r => r.UserId == user.Id)
+        .OrderByDescending(r => r.ScheduledDateTime)
+        .ToList();
+    return View(rides);
+}
 
     }
 }
