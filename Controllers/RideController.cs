@@ -45,6 +45,13 @@ namespace ProjetInfo.Controllers
 
             // Get first vehicle of the driver
             var vehicle = driver.Vehicles.FirstOrDefault();
+            if (driver == null)
+                return Json(new { message = "❌ No driver found." });
+
+            if (driver.Vehicles == null || !driver.Vehicles.Any())
+                return Json(new { message = "❌ No vehicle found for this driver." });
+
+
 
             // Choose user (use actual session logic if needed)
             var user = _context.Users.FirstOrDefault(u => u.Role == "regular");

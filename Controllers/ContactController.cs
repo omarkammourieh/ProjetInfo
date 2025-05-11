@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ProjetInfo.Models;
 using ProjetInfo.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace ProjetInfo.Controllers
 {
@@ -20,17 +21,27 @@ namespace ProjetInfo.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index(Contact contact)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Index([Bind("Name,Email,PhoneNumber,Message")] Contact contact)
         {
+            Console.WriteLine("POST hit"); // DEBUG
+
             if (ModelState.IsValid)
             {
+                contact.SubmittedAt = DateTime.Now;
                 _context.Contacts.Add(contact);
-                _context.SaveChanges();
-                ViewBag.Message = "Your message has been sent!";
-                return View();
+                await _context.SaveChangesAsync();
+
+                ViewBag.Message = "Thank you! Your message has been sent.";
+                ModelState.Clear(); // Reset form
             }
 
-            return View(contact);
+            return View();
         }
+      
+        
+
+
+
     }
 }

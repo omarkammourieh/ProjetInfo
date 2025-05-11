@@ -20,7 +20,6 @@
         min-height: 100vh;
     }
 
-
     .contact-header {
         text-align: center;
         margin-bottom: 30px;
@@ -91,13 +90,6 @@
         font-weight: bold;
     }
 
-    .contact-header h2,
-    .contact-info p {
-        color: white;
-        font-weight: bold;
-        text-shadow: 2px 2px 5px black;
-    }
-
 </style>
 
 <div class="contact-section">
@@ -111,13 +103,18 @@
         <p><i class="fas fa-map-marker-alt"></i> Address: Beirut, Lebanon</p>
     </div>
 
-    <form class="contact-form" method="post">
+    <!-- THIS IS THE FIXED FORM -->
+    <form asp-action="Index" asp-controller="Contact" method="post" class="contact-form">
+        @Html.AntiForgeryToken()
+
         <input asp-for="Name" placeholder="YOUR NAME *" />
         <input asp-for="Email" placeholder="YOUR EMAIL *" />
         <input asp-for="PhoneNumber" placeholder="YOUR PHONE *" />
         <textarea asp-for="Message" placeholder="YOUR MESSAGE *"></textarea>
+
         <button type="submit">SEND MESSAGE</button>
     </form>
+
 
     @if (ViewBag.Message != null)
     {

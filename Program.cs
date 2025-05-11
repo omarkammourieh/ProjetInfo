@@ -23,7 +23,7 @@ namespace ProjetInfo
             builder.Services.AddHttpContextAccessor();
 
             builder.Services.AddDbContext<RideShareDbContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             // Configure JWT authentication
             builder.Services.AddAuthentication(options =>
@@ -115,6 +115,8 @@ namespace ProjetInfo
                     db.SaveChanges();
                 }
             }
+         
+
 
             app.Run();
         }

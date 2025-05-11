@@ -197,8 +197,17 @@
                     const err = await res.text();
                     throw new Error(err || "Booking failed");
                 }
-                const { driver: d } = await res.json();
-                currentDriverId = d.id;
+                        const data = await res.json();
+
+        if (!data.driver) {
+            alert(data.message || "❌ Booking failed: No driver assigned.");
+            document.getElementById("status").innerText = "";
+            return;
+        }
+
+        const d = data.driver;
+        currentDriverId = d.id;
+ 
 
                 document.getElementById("driverInfo").innerHTML = `
                     <h3>Your Driver</h3>
