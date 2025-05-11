@@ -11,6 +11,9 @@
         public DateTime EndTime { get; set; }
         public int? PaymentTransactionID { get; set; }
         public string Status { get; set; }
+        public DateTime RideDateTime { get; set; } 
+        public TimeSpan RideDuration { get; set; }
+        public DateTime ScheduledDateTime { get; set; }
         // Navigation properties
         public User User { get; set; }
         public Driver Driver { get; set; }
