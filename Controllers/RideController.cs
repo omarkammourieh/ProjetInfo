@@ -188,19 +188,44 @@ public IActionResult PassengerHistory()
 }
 
 [HttpPost]
-public IActionResult BookRide(DateTime ScheduledDateTime)
+public async Task<IActionResult> BookRide(string pickup, string dropoff, string scheduledDateTime)
 {
+    var driver = _context.Drivers.OrderBy(r => Guid.NewGuid()).FirstOrDefault();
+    var user = await _userManager.GetUserAsync(User);
+
+    if (driver == null || user == null)
+        return BadRequest("Driver or user not found");
+
+    DateTime scheduled;
+    if (!DateTime.TryParse(scheduledDateTime, out scheduled))
+        return BadRequest("Invalid datetime");
+
     var ride = new Ride
     {
-        PassengerId = GetCurrentUserId(), 
-        ScheduledDateTime = ScheduledDateTime,
+        Pickup = pickup,
+        Dropoff = dropoff,
+        ScheduledDateTime = scheduled, 
+        DriverId = driver.Id,
+        UserId = user.Id
     };
 
     _context.Rides.Add(ride);
-    _context.SaveChanges();
+    await _context.SaveChangesAsync();
 
-    return RedirectToAction("PassengerHistory");
+    return Json(new
+    {
+        driver = new
+        {
+            driver.Id,
+            driver.Name,
+            driver.Phone,
+            driver.Vehicle,
+            driver.Plate,
+            driver.Rating
+        }
+    });
 }
+
 
     }
 }
