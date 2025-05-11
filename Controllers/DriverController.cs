@@ -29,4 +29,35 @@ public class DriverController : Controller
         HttpContext.Session.Clear();
         return RedirectToAction("Login");
     }
+
+    public IActionResult Dashboard()
+{
+    int? driverId = HttpContext.Session.GetInt32("DriverId");
+    if (driverId == null)
+        return RedirectToAction("Login");
+
+    var availableRides = _context.Rides
+        .Where(r => r.DriverId == 0)
+        .OrderBy(r => r.ScheduledDateTime)
+        .ToList();
+
+    return View(availableRides);
+}
+
+[HttpPost]
+public IActionResult AcceptRide(int rideId)
+{
+    int? driverId = HttpContext.Session.GetInt32("DriverId");
+    if (driverId == null) return RedirectToAction("Login");
+
+    var ride = _context.Rides.Find(rideId);
+    if (ride != null)
+    {
+        ride.DriverId = driverId.Value;
+        _context.SaveChanges();
+    }
+
+    return RedirectToAction("Dashboard");
+}
+
 }
