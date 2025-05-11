@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using ProjetInfo.Models;
 using System.Collections.Generic;
 using System.Reflection.Emit;
@@ -24,7 +24,7 @@ namespace ProjetInfo.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>()
-                .HasKey(u => u.ID);
+                .HasKey(u => u.id);
 
             // Vehicle configuration
             modelBuilder.Entity<Vehicle>()
