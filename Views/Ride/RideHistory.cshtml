@@ -1,0 +1,13 @@
+<h2>Your Drive History</h2>
+<table>
+    <tr><th>ID</th><th>Pickup</th><th>Dropoff</th><th>Date/Time</th></tr>
+    @foreach (var ride in Model)
+    {
+        <tr>
+            <td>@ride.Id</td>
+            <td>@ride.Pickup</td>
+            <td>@ride.Dropoff</td>
+            <td>@ride.ScheduledDateTime.ToString("g")</td>
+        </tr>
+    }
+</table>
