@@ -1,4 +1,4 @@
-﻿@{
+@{
     Layout = null;
     ViewData["Title"] = "BookRide";
 }
@@ -24,6 +24,10 @@
             <div class="input-group">
                 <label for="dropoff">Drop-off Location</label>
                 <input type="text" id="dropoff" placeholder="Click on map for drop-off" readonly required />
+            </div>
+            <div class="input-group">
+                <label for="scheduledDateTime">Scheduled Date and Time</label>
+                <input type="datetime-local" id="scheduledDateTime" name="scheduledDateTime" required />
             </div>
             <button type="submit" class="book-btn">Book Ride</button>
         </form>
@@ -83,7 +87,10 @@
 
             const pickup = document.getElementById("pickup").value;
             const dropoff = document.getElementById("dropoff").value;
-            if (!pickup || !dropoff) return alert("Please select both pickup and drop-off.");
+            const scheduledDateTime = document.getElementById("scheduledDateTime").value;
+
+            if (!pickup || !dropoff || !scheduledDateTime)
+                return alert("Please complete all fields before booking.");
 
             const [pickupLat, pickupLng] = pickup.split(',').map(parseFloat);
             const [dropLat, dropLng] = dropoff.split(',').map(parseFloat);
@@ -93,7 +100,7 @@
             fetch("/Ride/BookRide", {
                 method: "POST",
                 headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                body: new URLSearchParams({ pickup, dropoff })
+                body: new URLSearchParams({ pickup, dropoff, scheduledDateTime })
             })
             .then(res => res.json())
             .then(data => {
@@ -186,3 +193,4 @@
     </script>
 </body>
 </html>
+
