@@ -152,5 +152,55 @@ namespace ProjetInfo.Controllers
         {
             return View();
         }
+
+        public IActionResult AvailableRides()
+{
+    var rides = _context.Rides
+                        .Where(r => r.DriverId == null)
+                        .ToList();
+    return View(rides);
+}
+
+[HttpPost]
+public IActionResult ChooseRide(int rideId)
+{
+    var ride = _context.Rides.FirstOrDefault(r => r.RideId == rideId);
+    if (ride != null)
+    {
+        ride.DriverId = GetCurrentUserId(); 
+        _context.SaveChanges();
+    }
+    return RedirectToAction("DriverDashboard");
+}
+
+public IActionResult DriverHistory()
+{
+    var driverId = GetCurrentUserId();
+    var rides = _context.Rides.Where(r => r.DriverId == driverId).ToList();
+    return View(rides);
+}
+
+public IActionResult PassengerHistory()
+{
+    var passengerId = GetCurrentUserId();
+    var rides = _context.Rides.Where(r => r.PassengerId == passengerId).ToList();
+    return View(rides);
+}
+
+[HttpPost]
+public IActionResult BookRide(DateTime ScheduledDateTime)
+{
+    var ride = new Ride
+    {
+        PassengerId = GetCurrentUserId(), 
+        ScheduledDateTime = ScheduledDateTime,
+    };
+
+    _context.Rides.Add(ride);
+    _context.SaveChanges();
+
+    return RedirectToAction("PassengerHistory");
+}
+
     }
 }
