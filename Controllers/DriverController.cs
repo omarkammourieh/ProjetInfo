@@ -60,4 +60,18 @@ public IActionResult AcceptRide(int rideId)
     return RedirectToAction("Dashboard");
 }
 
+public IActionResult RideHistory()
+{
+    int? driverId = HttpContext.Session.GetInt32("DriverId");
+    if (driverId == null) return RedirectToAction("Login");
+
+    var rides = _context.Rides
+        .Where(r => r.DriverId == driverId)
+        .OrderByDescending(r => r.ScheduledDateTime)
+        .ToList();
+
+    return View(rides);
+}
+
+
 }
