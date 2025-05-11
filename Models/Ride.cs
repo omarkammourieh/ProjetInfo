@@ -1,10 +1,11 @@
-﻿namespace ProjetInfo.Models
+namespace ProjetInfo.Models
 {
     public class Ride
     {
         public int RideID { get; set; }
         public int UserID { get; set; }
         public int DriverID { get; set; }
+        public string PassengerID { get; set; }
         public string PickupLocation { get; set; } // Added this property
         public string DropOffLocation { get; set; }
         public DateTime StartTime { get; set; }
