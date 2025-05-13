@@ -157,25 +157,36 @@ public IActionResult SignUp(string FullName, string Email, string PhoneNumber, s
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
         [HttpGet]
+        [HttpGet]
         public IActionResult Profile()
         {
             var email = User.FindFirst(ClaimTypes.Email)?.Value;
             var role = User.FindFirst(ClaimTypes.Role)?.Value;
 
-            if (string.IsNullOrEmpty(email) || role?.ToLower() != "passenger")
+            if (string.IsNullOrEmpty(email))
                 return RedirectToAction("SignUp");
 
             var user = _context.Users.FirstOrDefault(u => u.Email == email);
             if (user == null) return NotFound();
 
-            // Get rides for user
-            var rides = _context.Rides
-                .Where(r => r.UserID == user.ID)
-                .ToList();
+            List<Ride> rides;
+
+            if (role == "driver")
+            {
+                var driver = _context.Drivers.FirstOrDefault(d => d.UserID == user.ID);
+                if (driver == null) return NotFound();
+
+                rides = _context.Rides.Where(r => r.DriverID == driver.DriverID).ToList();
+            }
+            else
+            {
+                rides = _context.Rides.Where(r => r.UserID == user.ID).ToList();
+            }
 
             ViewBag.Rides = rides;
             return View(user);
         }
+
         [HttpPost]
         public IActionResult Profile(User updatedUser)
         {
@@ -196,6 +207,8 @@ public IActionResult SignUp(string FullName, string Email, string PhoneNumber, s
 
             return View(user);
         }
+        
+        [HttpPost]
         [HttpPost]
         public IActionResult ChangePassword(string CurrentPassword, string NewPassword)
         {
@@ -205,18 +218,40 @@ public IActionResult SignUp(string FullName, string Email, string PhoneNumber, s
             if (user == null || user.Password != CurrentPassword)
             {
                 ViewData["Error"] = "Current password is incorrect.";
-                return RedirectToAction("Profile");
+                return View("Profile", user);
             }
 
             user.Password = NewPassword;
             _context.SaveChanges();
 
-            ViewData["Success"] = "Password changed successfully.";
-            var rides = _context.Rides.Where(r => r.UserID == user.ID).ToList();
+            ViewData["Success"] = "Password changed successfully!";
+
+            // Load rides again to display them in the view
+            List<Ride> rides;
+            var role = User.FindFirst(ClaimTypes.Role)?.Value;
+
+            if (role == "driver")
+            {
+                var driver = _context.Drivers.FirstOrDefault(d => d.UserID == user.ID);
+                rides = _context.Rides.Where(r => r.DriverID == driver.DriverID).ToList();
+            }
+            else
+            {
+                rides = _context.Rides.Where(r => r.UserID == user.ID).ToList();
+            }
+
             ViewBag.Rides = rides;
 
-            return RedirectToAction("Profile");
+            return View("Profile", user);
         }
+
+        [HttpPost]
+        public IActionResult Logout()
+        {
+            Response.Cookies.Delete("jwt"); // just removes the JWT token
+            return RedirectToAction("SignUp", "Account");
+        }
+
 
 
         public IActionResult AboutUs()

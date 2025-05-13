@@ -17,8 +17,16 @@
                 <li><a asp-controller="Ride" asp-action="BookRide" class="@(ViewContext.RouteData.Values["controller"]?.ToString() == "Ride" ? "active" : "")">Book Ride</a></li>
                 <li><a asp-controller="Account" asp-action="AboutUs" class="@(ViewContext.RouteData.Values["action"]?.ToString() == "AboutUs" ? "active" : "")">About Us</a></li>
                 <li><a asp-controller="Contact" asp-action="Index" class="@(ViewContext.RouteData.Values["controller"]?.ToString() == "Contact" ? "active" : "")">Contact</a></li>
-                <li><a asp-controller="Account" asp-action="SignUp" class="signup-btn">Sign Up</a></li>
                 <li><a asp-controller="Account" asp-action="Profile" class="nav-link">Profile</a></li>
+                @using System.Security.Claims
+
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    <li>
+                        <a asp-controller="Account" asp-action="SignUp" class="signup-btn">Sign Up</a>
+                    </li>
+                }
+
 
 
             </ul>

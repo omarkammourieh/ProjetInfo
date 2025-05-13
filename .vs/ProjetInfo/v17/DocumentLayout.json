@@ -3,16 +3,28 @@
   "WorkspaceRootPath": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\source\\repos\\ProjetInfo\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|c:\\users\\admin.laptop-0fdcflkg\\source\\repos\\projetinfo\\views\\ride\\bookride.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|solutionrelative:views\\ride\\bookride.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|c:\\users\\admin.laptop-0fdcflkg\\source\\repos\\projetinfo\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|solutionrelative:controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|c:\\users\\admin.laptop-0fdcflkg\\source\\repos\\projetinfo\\views\\account\\profile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|solutionrelative:views\\account\\profile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|c:\\users\\admin.laptop-0fdcflkg\\source\\repos\\projetinfo\\views\\account\\signup.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|solutionrelative:views\\account\\signup.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|c:\\users\\admin.laptop-0fdcflkg\\source\\repos\\projetinfo\\wwwroot\\css\\profile.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
       "RelativeMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|solutionrelative:wwwroot\\css\\profile.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|c:\\users\\admin.laptop-0fdcflkg\\source\\repos\\projetinfo\\views\\account\\profile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|solutionrelative:views\\account\\profile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|c:\\users\\admin.laptop-0fdcflkg\\source\\repos\\projetinfo\\wwwroot\\css\\signup.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|solutionrelative:wwwroot\\css\\signup.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|c:\\users\\admin.laptop-0fdcflkg\\source\\repos\\projetinfo\\views\\ride\\bookride.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|solutionrelative:views\\ride\\bookride.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|c:\\users\\admin.laptop-0fdcflkg\\source\\repos\\projetinfo\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -23,16 +35,8 @@
       "RelativeMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|c:\\users\\admin.laptop-0fdcflkg\\source\\repos\\projetinfo\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|solutionrelative:controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|c:\\users\\admin.laptop-0fdcflkg\\source\\repos\\projetinfo\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|c:\\users\\admin.laptop-0fdcflkg\\source\\repos\\projetinfo\\views\\account\\signup.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|solutionrelative:views\\account\\signup.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|c:\\users\\admin.laptop-0fdcflkg\\source\\repos\\projetinfo\\models\\driver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -110,46 +114,72 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Profile.css",
-              "DocumentMoniker": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\source\\repos\\ProjetInfo\\wwwroot\\css\\Profile.css",
-              "RelativeDocumentMoniker": "wwwroot\\css\\Profile.css",
-              "ToolTip": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\source\\repos\\ProjetInfo\\wwwroot\\css\\Profile.css",
-              "RelativeToolTip": "wwwroot\\css\\Profile.css",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAPAAAAAAAAAA==",
+              "DocumentIndex": 4,
+              "Title": "SignUp.css",
+              "DocumentMoniker": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\source\\repos\\ProjetInfo\\wwwroot\\css\\SignUp.css",
+              "RelativeDocumentMoniker": "wwwroot\\css\\SignUp.css",
+              "ToolTip": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\source\\repos\\ProjetInfo\\wwwroot\\css\\SignUp.css",
+              "RelativeToolTip": "wwwroot\\css\\SignUp.css",
+              "ViewState": "AgIAAA4BAAAAAAAAAAAcwCMBAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-05-11T22:47:55.261Z",
+              "WhenOpened": "2025-05-13T21:27:22.2Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
+              "Title": "BookRide.cshtml",
+              "DocumentMoniker": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\source\\repos\\ProjetInfo\\Views\\Ride\\BookRide.cshtml",
+              "RelativeDocumentMoniker": "Views\\Ride\\BookRide.cshtml",
+              "ToolTip": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\source\\repos\\ProjetInfo\\Views\\Ride\\BookRide.cshtml",
+              "RelativeToolTip": "Views\\Ride\\BookRide.cshtml",
+              "ViewState": "AgIAAAABAAAAAAAAAAAmwCYBAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-10T12:46:32.037Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\source\\repos\\ProjetInfo\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "Views\\Shared\\_Layout.cshtml",
               "ToolTip": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\source\\repos\\ProjetInfo\\Views\\Shared\\_Layout.cshtml",
               "RelativeToolTip": "Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-05-11T19:08:47.414Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
+              "Title": "Profile.css",
+              "DocumentMoniker": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\source\\repos\\ProjetInfo\\wwwroot\\css\\Profile.css",
+              "RelativeDocumentMoniker": "wwwroot\\css\\Profile.css",
+              "ToolTip": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\source\\repos\\ProjetInfo\\wwwroot\\css\\Profile.css",
+              "RelativeToolTip": "wwwroot\\css\\Profile.css",
+              "ViewState": "AgIAAFgAAAAAAAAAAAAAAGUAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-05-11T22:47:55.261Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "Profile.cshtml",
               "DocumentMoniker": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\source\\repos\\ProjetInfo\\Views\\Account\\Profile.cshtml",
               "RelativeDocumentMoniker": "Views\\Account\\Profile.cshtml",
               "ToolTip": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\source\\repos\\ProjetInfo\\Views\\Account\\Profile.cshtml",
               "RelativeToolTip": "Views\\Account\\Profile.cshtml",
-              "ViewState": "AgIAAEAAAAAAAAAAAAAmwE8AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAACYAAAAAAAAAAAAowFgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-05-11T19:08:10.002Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "Driver.cs",
               "DocumentMoniker": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\source\\repos\\ProjetInfo\\Models\\Driver.cs",
               "RelativeDocumentMoniker": "Models\\Driver.cs",
@@ -162,46 +192,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 0,
               "Title": "AccountController.cs",
               "DocumentMoniker": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\source\\repos\\ProjetInfo\\Controllers\\AccountController.cs",
               "RelativeDocumentMoniker": "Controllers\\AccountController.cs",
               "ToolTip": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\source\\repos\\ProjetInfo\\Controllers\\AccountController.cs",
               "RelativeToolTip": "Controllers\\AccountController.cs",
-              "ViewState": "AgIAAGYAAAAAAAAAAAAqwIAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAOIAAAAAAAAAAAAgwPYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-11T18:08:15.114Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 2,
               "Title": "SignUp.cshtml",
               "DocumentMoniker": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\source\\repos\\ProjetInfo\\Views\\Account\\SignUp.cshtml",
               "RelativeDocumentMoniker": "Views\\Account\\SignUp.cshtml",
               "ToolTip": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\source\\repos\\ProjetInfo\\Views\\Account\\SignUp.cshtml",
               "RelativeToolTip": "Views\\Account\\SignUp.cshtml",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAkwHUAAABFAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAIIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-05-11T18:01:05.588Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "BookRide.cshtml",
-              "DocumentMoniker": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\source\\repos\\ProjetInfo\\Views\\Ride\\BookRide.cshtml",
-              "RelativeDocumentMoniker": "Views\\Ride\\BookRide.cshtml",
-              "ToolTip": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\source\\repos\\ProjetInfo\\Views\\Ride\\BookRide.cshtml*",
-              "RelativeToolTip": "Views\\Ride\\BookRide.cshtml*",
-              "ViewState": "AgIAAAIBAAAAAAAAAAAkwAwBAAAPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-10T12:46:32.037Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 18,
               "Title": "20250510163141_AddContactTableFix.cs",
               "DocumentMoniker": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\source\\repos\\ProjetInfo\\Migrations\\20250510163141_AddContactTableFix.cs",
               "RelativeDocumentMoniker": "Migrations\\20250510163141_AddContactTableFix.cs",
@@ -213,7 +230,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\source\\repos\\ProjetInfo\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
@@ -226,7 +243,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\source\\repos\\ProjetInfo\\Views\\Contact\\Index.cshtml",
               "RelativeDocumentMoniker": "Views\\Contact\\Index.cshtml",
@@ -238,7 +255,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\source\\repos\\ProjetInfo\\appsettings.json",
               "RelativeDocumentMoniker": "appsettings.json",
@@ -251,7 +268,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "User.cs",
               "DocumentMoniker": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\source\\repos\\ProjetInfo\\Models\\User.cs",
               "RelativeDocumentMoniker": "Models\\User.cs",
@@ -264,7 +281,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "20250510164302_CreateContactTable.cs",
               "DocumentMoniker": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\source\\repos\\ProjetInfo\\Migrations\\20250510164302_CreateContactTable.cs",
               "RelativeDocumentMoniker": "Migrations\\20250510164302_CreateContactTable.cs",
@@ -276,7 +293,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "RideShareDbContext.cs",
               "DocumentMoniker": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\source\\repos\\ProjetInfo\\Data\\RideShareDbContext.cs",
               "RelativeDocumentMoniker": "Data\\RideShareDbContext.cs",
@@ -289,7 +306,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "Contact.cs",
               "DocumentMoniker": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\source\\repos\\ProjetInfo\\Models\\Contact.cs",
               "RelativeDocumentMoniker": "Models\\Contact.cs",
@@ -301,7 +318,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "ContactController.cs",
               "DocumentMoniker": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\source\\repos\\ProjetInfo\\Controllers\\ContactController.cs",
               "RelativeDocumentMoniker": "Controllers\\ContactController.cs",
@@ -314,7 +331,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 19,
               "Title": "site.js",
               "DocumentMoniker": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\source\\repos\\ProjetInfo\\wwwroot\\js\\site.js",
               "RelativeDocumentMoniker": "wwwroot\\js\\site.js",
@@ -326,7 +343,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 16,
               "Title": "PaymentTransaction.cs",
               "DocumentMoniker": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\source\\repos\\ProjetInfo\\Models\\PaymentTransaction.cs",
               "RelativeDocumentMoniker": "Models\\PaymentTransaction.cs",
@@ -338,7 +355,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 17,
               "Title": "20250510163630_FixAmountDecimal.cs",
               "DocumentMoniker": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\source\\repos\\ProjetInfo\\Migrations\\20250510163630_FixAmountDecimal.cs",
               "RelativeDocumentMoniker": "Migrations\\20250510163630_FixAmountDecimal.cs",
@@ -350,7 +367,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 20,
               "Title": "RideController.cs",
               "DocumentMoniker": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\source\\repos\\ProjetInfo\\Controllers\\RideController.cs",
               "RelativeDocumentMoniker": "Controllers\\RideController.cs",
@@ -362,7 +379,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 21,
               "Title": "20250510114448_AddDecimalPrecisionFix.cs",
               "DocumentMoniker": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\source\\repos\\ProjetInfo\\Migrations\\20250510114448_AddDecimalPrecisionFix.cs",
               "RelativeDocumentMoniker": "Migrations\\20250510114448_AddDecimalPrecisionFix.cs",
@@ -374,7 +391,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 22,
               "Title": "20250510114416_SpecifyDecimalPrecision.cs",
               "DocumentMoniker": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\source\\repos\\ProjetInfo\\Migrations\\20250510114416_SpecifyDecimalPrecision.cs",
               "RelativeDocumentMoniker": "Migrations\\20250510114416_SpecifyDecimalPrecision.cs",
@@ -386,7 +403,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 23,
               "Title": "launchSettings.json",
               "DocumentMoniker": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\source\\repos\\ProjetInfo\\Properties\\launchSettings.json",
               "RelativeDocumentMoniker": "Properties\\launchSettings.json",

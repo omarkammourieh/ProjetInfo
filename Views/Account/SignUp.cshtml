@@ -78,6 +78,10 @@
             </div>
         </div>
     </div>
+    @if (TempData["Success"] != null)
+    {
+        <div id="signup-success" data-message="@TempData["Success"]"></div>
+    }
 
     <script>
         let switchCtn = document.querySelector("#switch-cnt");
@@ -124,6 +128,7 @@
                 driverFields.style.display = "none";
             }
         });
+
     </script>
 </body>
 </html>
