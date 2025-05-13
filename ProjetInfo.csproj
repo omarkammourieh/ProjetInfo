@@ -14,11 +14,11 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.7" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="wwwroot\images\banner.jpg" />
-    <None Include="wwwroot\images\istockphoto-518657226-612x612.jpg" />
     <None Include="wwwroot\images\old.jpg" />
   </ItemGroup>
 

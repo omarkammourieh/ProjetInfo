@@ -1,15 +1,15 @@
 wwwroot\css\AboutUs.css
 wwwroot\css\BookRide.css
 wwwroot\css\privacy.css
+wwwroot\css\Profile.css
 wwwroot\css\SignUp.css
 wwwroot\css\site.css
 wwwroot\favicon.ico
 wwwroot\images\banner.jpg
 wwwroot\images\banner2.jpg
 wwwroot\images\car--v1.jpg
-wwwroot\images\istockphoto-1124636717-612x612.jpg
-wwwroot\images\istockphoto-518657226-612x612.jpg
 wwwroot\images\old.jpg
+wwwroot\images\qzLMo3.jpg
 wwwroot\images\taxi-header.jpg
 wwwroot\images\white-dots-world-map-vector.jpg
 wwwroot\js\SignIn.js

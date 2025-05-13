@@ -52,9 +52,9 @@ public IActionResult SignUp(string FullName, string Email, string PhoneNumber, s
         _context.Users.Add(user);
         _context.SaveChanges();
 
-        if (Role == "driver")
-        {
-            var driver = new Driver
+           if (Role?.ToLower() == "driver")
+                {
+                    var driver = new Driver
             {
                 UserID = user.ID,
                 LicenseNumber = LicenseNumber ?? "UNKNOWN",
@@ -100,21 +100,25 @@ public IActionResult SignUp(string FullName, string Email, string PhoneNumber, s
             try
             {
                 if (string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(Password))
-                {
                     return StatusCode(400, "Email or password is missing.");
-                }
 
                 var user = _context.Users.FirstOrDefault(u => u.Email == Email);
 
                 if (user == null || user.Password != Password)
-                {
                     return StatusCode(401, "Invalid login.");
-                }
 
-                // Optional: generate token, store it in session if needed
+                // ✅ Generate JWT token
                 var token = GenerateJwtToken(user);
 
-                // ✅ Redirect to booking page
+                // ✅ Store token in a cookie so Razor can read it
+                HttpContext.Response.Cookies.Append("jwt", token, new CookieOptions
+                {
+                    HttpOnly = true,
+                    Secure = true,
+                    SameSite = SameSiteMode.Strict,
+                    Expires = DateTimeOffset.UtcNow.AddHours(2)
+                });
+
                 return RedirectToAction("BookRide", "Ride");
             }
             catch (Exception ex)
@@ -122,6 +126,7 @@ public IActionResult SignUp(string FullName, string Email, string PhoneNumber, s
                 return StatusCode(500, $"🔥 Exception: {ex.Message}");
             }
         }
+
 
         // JWT-protected Dashboard
         [HttpGet]
@@ -151,6 +156,69 @@ public IActionResult SignUp(string FullName, string Email, string PhoneNumber, s
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
+        [HttpGet]
+        public IActionResult Profile()
+        {
+            var email = User.FindFirst(ClaimTypes.Email)?.Value;
+            var role = User.FindFirst(ClaimTypes.Role)?.Value;
+
+            if (string.IsNullOrEmpty(email) || role?.ToLower() != "passenger")
+                return RedirectToAction("SignUp");
+
+            var user = _context.Users.FirstOrDefault(u => u.Email == email);
+            if (user == null) return NotFound();
+
+            // Get rides for user
+            var rides = _context.Rides
+                .Where(r => r.UserID == user.ID)
+                .ToList();
+
+            ViewBag.Rides = rides;
+            return View(user);
+        }
+        [HttpPost]
+        public IActionResult Profile(User updatedUser)
+        {
+            var email = User.FindFirst(ClaimTypes.Email)?.Value;
+            var user = _context.Users.FirstOrDefault(u => u.Email == email);
+
+            if (user == null) return NotFound();
+
+            user.FullName = updatedUser.FullName;
+            user.Email = updatedUser.Email;
+            user.PhoneNumber = updatedUser.PhoneNumber;
+            _context.SaveChanges();
+
+            ViewData["Success"] = "Profile updated successfully!";
+
+            var rides = _context.Rides.Where(r => r.UserID == user.ID).ToList();
+            ViewBag.Rides = rides;
+
+            return View(user);
+        }
+        [HttpPost]
+        public IActionResult ChangePassword(string CurrentPassword, string NewPassword)
+        {
+            var email = User.FindFirst(ClaimTypes.Email)?.Value;
+            var user = _context.Users.FirstOrDefault(u => u.Email == email);
+
+            if (user == null || user.Password != CurrentPassword)
+            {
+                ViewData["Error"] = "Current password is incorrect.";
+                return RedirectToAction("Profile");
+            }
+
+            user.Password = NewPassword;
+            _context.SaveChanges();
+
+            ViewData["Success"] = "Password changed successfully.";
+            var rides = _context.Rides.Where(r => r.UserID == user.ID).ToList();
+            ViewBag.Rides = rides;
+
+            return RedirectToAction("Profile");
+        }
+
+
         public IActionResult AboutUs()
         {
             return View();

@@ -5,7 +5,7 @@ using System.Reflection.Emit;
 
 namespace ProjetInfo.Data
 {
-    // RideShareDbContext.cs
+
     public class RideShareDbContext : DbContext
     {
         public RideShareDbContext(DbContextOptions<RideShareDbContext> options)

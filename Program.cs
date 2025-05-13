@@ -4,7 +4,6 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using ProjetInfo.Data;
 using ProjetInfo.Models;
-using System;
 
 namespace ProjetInfo
 {
@@ -12,13 +11,12 @@ namespace ProjetInfo
     {
         public static void Main(string[] args)
         {
-
             var builder = WebApplication.CreateBuilder(args);
 
-            // Define secret key for JWT
-            var key = "this_is_a_very_secret_key_123"; // TODO: Move to appsettings.json in production
+            // Secret JWT key (you can move this to appsettings.json later)
+            var key = "this_is_a_very_secure_and_long_jwt_key_123456";
 
-            // Add services
+            // Add services to container
             builder.Services.AddControllersWithViews();
             builder.Services.AddSession();
             builder.Services.AddHttpContextAccessor();
@@ -26,7 +24,7 @@ namespace ProjetInfo
             builder.Services.AddDbContext<RideShareDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-            // Configure JWT authentication
+            // ✅ Configure JWT Authentication (BEFORE builder.Build())
             builder.Services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -41,6 +39,19 @@ namespace ProjetInfo
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key))
+                };
+
+                // ✅ Tell ASP.NET to read token from cookie
+                options.Events = new JwtBearerEvents
+                {
+                    OnMessageReceived = context =>
+                    {
+                        if (context.Request.Cookies.ContainsKey("jwt"))
+                        {
+                            context.Token = context.Request.Cookies["jwt"];
+                        }
+                        return Task.CompletedTask;
+                    }
                 };
             });
 
@@ -60,33 +71,17 @@ namespace ProjetInfo
 
             app.UseRouting();
 
-            // Add these in the correct order
-            app.UseAuthentication();  // First authentication
-            app.UseAuthorization();   // Then authorization
+            app.UseAuthentication(); // 👈 must come before authorization
+            app.UseAuthorization();
+
             app.UseSession();
 
             // Route
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=Account}/{action=SignUp}/{id?}");
 
-            using (var scope = app.Services.CreateScope())
-            {
-                var dbContext = scope.ServiceProvider.GetRequiredService<RideShareDbContext>();
-
-                // Uncomment to seed user
-                // dbContext.Users.Add(new User
-                // {
-                //     FullName = "test",
-                //     Email = "test1@example.com",
-                //     Password = "1234",
-                //     PhoneNumber = "123",
-                //     Role = "regular",
-                // });
-
-                // dbContext.SaveChanges();
-            }
-
+            // ✅ OPTIONAL: Seed test driver if none exist
             using (var scope = app.Services.CreateScope())
             {
                 var db = scope.ServiceProvider.GetRequiredService<RideShareDbContext>();

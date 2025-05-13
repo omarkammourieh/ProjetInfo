@@ -1,0 +1,97 @@
+﻿body {
+    font-family: 'Segoe UI', sans-serif;
+    background: url('/images/qzLMo3.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #222;
+    padding: 40px 0;
+}
+.profile-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.profile-card {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 800px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+h2, h3 {
+    margin-bottom: 20px;
+    color: #222;
+}
+
+label {
+    font-weight: 600;
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    transition: border 0.3s ease;
+}
+
+    input:focus {
+        outline: none;
+        border-color: #ffc107;
+    }
+
+.btn-yellow {
+    background-color: #ffc107;
+    color: #000;
+    font-weight: bold;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: background-color 0.3s ease;
+}
+
+    .btn-yellow:hover {
+        background-color: #e0a800;
+    }
+
+.alert {
+    padding: 12px 20px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+    .alert.success {
+        background-color: #d4edda;
+        color: #155724;
+    }
+
+    .alert.error {
+        background-color: #f8d7da;
+        color: #721c24;
+    }
+
+.ride-history table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.ride-history th, .ride-history td {
+    text-align: left;
+    padding: 14px 16px;
+    border-bottom: 1px solid #eee;
+}
+
+.ride-history th {
+    background-color: #fff9c4;
+}
