@@ -9,6 +9,10 @@
       "PackagePath": "staticwebassets\\css\\AboutUs.css"
     },
     {
+      "Id": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Source\\Repos\\ProjetInfo\\wwwroot\\css\\AvailableRides.css",
+      "PackagePath": "staticwebassets\\css\\AvailableRides.css"
+    },
+    {
       "Id": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Source\\Repos\\ProjetInfo\\wwwroot\\css\\BookRide.css",
       "PackagePath": "staticwebassets\\css\\BookRide.css"
     },
@@ -47,6 +51,10 @@
     {
       "Id": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Source\\Repos\\ProjetInfo\\wwwroot\\images\\old.jpg",
       "PackagePath": "staticwebassets\\images\\old.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Source\\Repos\\ProjetInfo\\wwwroot\\images\\privacy.jpg",
+      "PackagePath": "staticwebassets\\images\\privacy.jpg"
     },
     {
       "Id": "C:\\Users\\Admin.LAPTOP-0FDCFLKG\\Source\\Repos\\ProjetInfo\\wwwroot\\images\\qzLMo3.jpg",

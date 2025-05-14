@@ -2,6 +2,10 @@
     ViewData["Title"] = "Welcome - Taxi Service";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@using System.Security.Claims
+@{
+    var role = User.FindFirst(ClaimTypes.Role)?.Value;
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,7 +25,10 @@
         <div class="hero-content">
             <h1>Welcome to QuickCab</h1>
             <p>Your reliable and fast taxi service — anywhere, anytime.</p>
-            <a href="/Ride/BookRide" class="cta-btn">Book a Ride</a>
+            @if (role == "passenger")
+            {
+                <a href="/Ride/BookRide" class="cta-button">Book a Ride</a>
+            }
         </div>
     </section>
 

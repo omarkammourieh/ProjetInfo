@@ -51,7 +51,7 @@ body {
 .privacy-hero {
     position: relative;
     height: 300px;
-    background: url('/images/istockphoto-1124636717-612x612.jpg') center/cover no-repeat;
+    background: url('/images/privacy.jpg') center/cover no-repeat;
     display: flex;
     justify-content: center;
     align-items: center;

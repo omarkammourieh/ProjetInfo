@@ -14,7 +14,19 @@
         <nav class="navbar">
             <ul class="nav-links">
                 <li><a asp-controller="Home" asp-action="Index" class="@(ViewContext.RouteData.Values["controller"]?.ToString() == "Home" ? "active" : "")">Home</a></li>
-                <li><a asp-controller="Ride" asp-action="BookRide" class="@(ViewContext.RouteData.Values["controller"]?.ToString() == "Ride" ? "active" : "")">Book Ride</a></li>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    var role = User.FindFirst(System.Security.Claims.ClaimTypes.Role)?.Value;
+
+                    if (role == "passenger")
+                    {
+                        <li><a asp-controller="Ride" asp-action="BookRide">Book Ride</a></li>
+                    }
+                    else if (role == "driver")
+                    {
+                        <li><a asp-controller="Ride" asp-action="AvailableRides">Available Rides</a></li>
+                    }
+                }
                 <li><a asp-controller="Account" asp-action="AboutUs" class="@(ViewContext.RouteData.Values["action"]?.ToString() == "AboutUs" ? "active" : "")">About Us</a></li>
                 <li><a asp-controller="Contact" asp-action="Index" class="@(ViewContext.RouteData.Values["controller"]?.ToString() == "Contact" ? "active" : "")">Contact</a></li>
                 <li><a asp-controller="Account" asp-action="Profile" class="nav-link">Profile</a></li>

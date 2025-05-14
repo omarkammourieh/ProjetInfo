@@ -168,14 +168,14 @@
                 pickupMarker?.remove();
                 pickupMarker = L.marker([lat, lng]).addTo(map)
                                   .bindPopup("Pickup").openPopup();
-                document.getElementById("pickup").value = ${lat},${lng};
-                pickupSelected = true;
+        document.getElementById("pickup").value = `${lat},${lng}`;
+                        pickupSelected = true;
             } else {
                 dropoffMarker?.remove();
                 dropoffMarker = L.marker([lat, lng]).addTo(map)
                                   .bindPopup("Drop-off").openPopup();
-                document.getElementById("dropoff").value = ${lat},${lng};
-                pickupSelected = false;
+        document.getElementById("dropoff").value = `${lat},${lng}`;
+                        pickupSelected = false;
             }
         });
 
@@ -197,23 +197,27 @@
                     const err = await res.text();
                     throw new Error(err || "Booking failed");
                 }
-                const { driver: d } = await res.json();
-                currentDriverId = d.id;
+        const resJson = await res.json();
+        const d = resJson.driver;
 
-                document.getElementById("driverInfo").innerHTML = `
-                    <h3>Your Driver</h3>
+        if (!d) {
+            throw new Error("No driver assigned. Try again later.");
+        }
+                        currentDriverId = d.id;
+
+                document.getElementById("driverInfo").innerHTML =
+                    `<h3>Your Driver</h3>
                     <p><strong>Name:</strong> ${d.name}</p>
                     <p><strong>Phone:</strong> ${d.phone}</p>
                     <p><strong>Vehicle:</strong> ${d.vehicle}</p>
                     <p><strong>Plate:</strong> ${d.plate}</p>
-                    <p><strong>Rating:</strong> ⭐ ${d.rating}</p>
-                `;
+                    <p><strong>Rating:</strong> ⭐ ${d.rating}</p>`;
                 document.getElementById("driverInfo").style.display = "block";
 
                 let loc = { lat: parseFloat(pu.split(',')[0]), lng: parseFloat(pu.split(',')[1]) };
                 try {
-                    const lr = await fetch(/Ride/GetDriverLocation?driverId=${d.id});
-                    const json = await lr.json();
+        const lr = await fetch(`/Ride/GetDriverLocation?driverId=${d.id}`);
+                            const json = await lr.json();
                     if (json && typeof json.lat === 'number' && typeof json.lng === 'number') {
                         loc = json;
                     }
@@ -237,10 +241,8 @@
 
         async function getRouteAndAnimate(start, end) {
             try {
-                const url = https://router.project-osrm.org/route/v1/driving/
-                          + ${start[0]},${start[1]};${end[0]},${end[1]}
-                          + ?overview=full&geometries=geojson;
-                const r = await fetch(url);
+        const url = `https://router.project-osrm.org/route/v1/driving/${start[0]},${start[1]};${end[0]},${end[1]}?overview=full&geometries=geojson`;
+                        const r = await fetch(url);
                 const j = await r.json();
                 const path = j.routes[0].geometry.coordinates.map(c => [c[1], c[0]]);
                 animateDriver(path);
@@ -291,5 +293,6 @@
             }
         });
     </script>
+
 </body>
 </html>

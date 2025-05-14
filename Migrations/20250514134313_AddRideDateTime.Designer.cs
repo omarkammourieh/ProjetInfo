@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjetInfo.Data;
 
@@ -11,9 +12,11 @@ using ProjetInfo.Data;
 namespace ProjetInfo.Migrations
 {
     [DbContext(typeof(RideShareDbContext))]
-    partial class RideShareDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250514134313_AddRideDateTime")]
+    partial class AddRideDateTime
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,7 +54,7 @@ namespace ProjetInfo.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Contacts", (string)null);
+                    b.ToTable("Contacts");
                 });
 
             modelBuilder.Entity("ProjetInfo.Models.Driver", b =>
@@ -82,7 +85,7 @@ namespace ProjetInfo.Migrations
 
                     b.HasIndex("UserID");
 
-                    b.ToTable("Drivers", (string)null);
+                    b.ToTable("Drivers");
                 });
 
             modelBuilder.Entity("ProjetInfo.Models.PaymentTransaction", b =>
@@ -110,7 +113,7 @@ namespace ProjetInfo.Migrations
 
                     b.HasIndex("UserID");
 
-                    b.ToTable("PaymentTransactions", (string)null);
+                    b.ToTable("PaymentTransactions");
                 });
 
             modelBuilder.Entity("ProjetInfo.Models.Ride", b =>
@@ -159,7 +162,7 @@ namespace ProjetInfo.Migrations
 
                     b.HasIndex("UserID");
 
-                    b.ToTable("Rides", (string)null);
+                    b.ToTable("Rides");
                 });
 
             modelBuilder.Entity("ProjetInfo.Models.RideFeedback", b =>
@@ -193,7 +196,7 @@ namespace ProjetInfo.Migrations
 
                     b.HasIndex("UserID");
 
-                    b.ToTable("RideFeedbacks", (string)null);
+                    b.ToTable("RideFeedbacks");
                 });
 
             modelBuilder.Entity("ProjetInfo.Models.User", b =>
@@ -234,7 +237,7 @@ namespace ProjetInfo.Migrations
                     b.HasIndex("Email")
                         .IsUnique();
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("ProjetInfo.Models.UserPreferences", b =>
@@ -261,7 +264,7 @@ namespace ProjetInfo.Migrations
                     b.HasIndex("UserID")
                         .IsUnique();
 
-                    b.ToTable("UserPreferences", (string)null);
+                    b.ToTable("UserPreferences");
                 });
 
             modelBuilder.Entity("ProjetInfo.Models.Vehicle", b =>
@@ -301,7 +304,7 @@ namespace ProjetInfo.Migrations
                     b.HasIndex("PlateNumber")
                         .IsUnique();
 
-                    b.ToTable("Vehicles", (string)null);
+                    b.ToTable("Vehicles");
                 });
 
             modelBuilder.Entity("ProjetInfo.Models.Driver", b =>

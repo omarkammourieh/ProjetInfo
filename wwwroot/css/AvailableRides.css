@@ -1,0 +1,74 @@
+﻿body {
+    background: linear-gradient(to right, #000000, #1b1b1b);
+    font-family: 'Segoe UI', sans-serif;
+    color: #fff;
+}
+
+.available-rides-wrapper {
+    max-width: 95%;
+    margin: 50px auto;
+    padding: 30px;
+    background: #1a1a1a;
+    border-radius: 12px;
+    box-shadow: 0 0 12px rgba(255, 223, 0, 0.2);
+}
+
+    .available-rides-wrapper h2 {
+        text-align: center;
+        color: #f1c40f;
+        margin-bottom: 25px;
+    }
+
+.ride-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #252525;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+    .ride-table th, .ride-table td {
+        padding: 14px;
+        text-align: center;
+        border-bottom: 1px solid #333;
+        font-size: 15px;
+    }
+
+    .ride-table th {
+        background-color: #101010;
+        color: #f1c40f;
+        text-transform: uppercase;
+    }
+
+    .ride-table tr:hover {
+        background-color: #2f2f2f;
+    }
+
+.accept-btn {
+    background-color: #f1c40f;
+    color: #000;
+    padding: 7px 14px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+    .accept-btn:hover {
+        background-color: #ffd700;
+    }
+footer {
+    background: #000;
+    color: #999;
+    padding: 15px 0;
+    text-align: center;
+    font-size: 14px;
+    margin-top: auto;
+    border-top: 1px solid #222;
+}
+
+    footer a {
+        color: #f1c40f;
+        text-decoration: none;
+    }

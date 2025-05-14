@@ -119,7 +119,7 @@ public IActionResult SignUp(string FullName, string Email, string PhoneNumber, s
                     Expires = DateTimeOffset.UtcNow.AddHours(2)
                 });
 
-                return RedirectToAction("BookRide", "Ride");
+                return RedirectToAction("Index", "Home");
             }
             catch (Exception ex)
             {

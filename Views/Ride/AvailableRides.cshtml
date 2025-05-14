@@ -1,0 +1,46 @@
+﻿@model List<ProjetInfo.Models.Ride>
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/AvailableRides.css" />
+}
+
+<div class="available-rides-wrapper">
+    <h2>Available Rides</h2>
+
+    @if (!Model.Any())
+    {
+        <p style="text-align:center; font-size:16px; color:#ccc;">No rides available at the moment.</p>
+    }
+    else
+    {
+        <table class="ride-table">
+            <thead>
+                <tr>
+                    <th>Passenger</th>
+                    <th>Pickup</th>
+                    <th>Drop-off</th>
+                    <th>Date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var ride in Model)
+                {
+                    <tr>
+                        <td>@ride.User?.FullName</td>
+                        <td>@ride.PickupLocation</td>
+                        <td>@ride.DropOffLocation</td>
+                        <td>@ride.RideDateTime.ToString("g")</td>
+                        <td>
+                            <form asp-action="AcceptRide" method="post">
+                                <input type="hidden" name="rideId" value="@ride.RideID" />
+                                <button type="submit" class="accept-btn">Accept</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
+
