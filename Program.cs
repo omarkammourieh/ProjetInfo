@@ -13,6 +13,8 @@ namespace ProjetInfo
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            builder.Services.AddSignalR();
+
             // Secret JWT key (you can move this to appsettings.json later)
             var key = "this_is_a_very_secure_and_long_jwt_key_123456";
 
@@ -58,6 +60,8 @@ namespace ProjetInfo
             builder.Services.AddAuthorization();
 
             var app = builder.Build();
+
+            app.MapHub<RideHub>("/rideHub");
 
             // Middleware
             if (!app.Environment.IsDevelopment())

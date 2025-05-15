@@ -1,102 +1,108 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 using ProjetInfo.Data;
 using ProjetInfo.Models;
 using System;
 using System.Linq;
 using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace ProjetInfo.Controllers
 {
     public class RideController : Controller
     {
         private readonly RideShareDbContext _context;
+        private readonly IHubContext<RideHub> _hubContext;
 
-        public RideController(RideShareDbContext context)
+        public RideController(RideShareDbContext context, IHubContext<RideHub> hubContext)
         {
             _context = context;
+            _hubContext = hubContext;
         }
 
-        // GET: /Ride/BookRide
         [HttpGet]
         public IActionResult BookRide()
         {
             return View();
         }
 
-        // POST: /Ride/BookRide
         [HttpPost]
-        [HttpPost]
-        public IActionResult BookRide(string pickup, string dropoff)
+        public IActionResult BookRide(string pickup, string dropoff, DateTime? scheduledDateTime)
         {
             var email = User.FindFirst(ClaimTypes.Email)?.Value;
             var user = _context.Users.FirstOrDefault(u => u.Email == email);
             if (user == null) return Unauthorized();
 
-            // Create the ride without assigning a driver yet
-            // 1. Find an available driver
-            var availableDriver = _context.Drivers
-                .Include(d => d.User)
-                .Include(d => d.Vehicles)
-                .Where(d => d.Availability == true)
-                .FirstOrDefault();
+            bool isScheduled = scheduledDateTime.HasValue && scheduledDateTime.Value > DateTime.Now;
 
-            if (availableDriver == null)
-            {
-                return Json(new { message = "❌ No drivers available.", driver = (object)null });
-            }
-
-            // 2. Create the ride
             var ride = new Ride
             {
                 UserID = user.ID,
-                DriverID = availableDriver.DriverID,
                 PickupLocation = pickup,
                 DropOffLocation = dropoff,
                 RideDateTime = DateTime.Now,
-                Status = "Booked"
+                ScheduledDateTime = scheduledDateTime,
+                Status = "Pending"
             };
 
             _context.Rides.Add(ride);
             _context.SaveChanges();
 
-            // 3. Get driver's vehicle info
-            var vehicle = availableDriver.Vehicles.FirstOrDefault();
-
-            // 4. Optional: calculate average rating
-            var ratings = _context.RideFeedbacks
-                .Where(f => f.DriverID == availableDriver.DriverID)
-                .Select(f => f.Rating)
-                .ToList();
-
-            double avgRating = ratings.Any() ? Math.Round(ratings.Average(), 1) : 0;
-
-            // 5. Return JSON
             return Json(new
             {
-                message = "✅ Ride booked!",
-                driver = new
-                {
-                    id = availableDriver.DriverID,
-                    name = availableDriver.User.FullName,
-                    phone = availableDriver.User.PhoneNumber,
-                    rating = avgRating,
-                    vehicle = vehicle != null ? $"{vehicle.Brand} {vehicle.Model}" : "N/A",
-                    plate = vehicle?.PlateNumber ?? "N/A"
-                }
+                rideId = ride.RideID,
+                message = isScheduled
+                    ? "✅ Ride scheduled! A driver can accept your ride from the available rides list."
+                    : "✅ Ride booked! A driver can accept your ride from the available rides list.",
+                driver = (object)null
             });
-            // Save ride
-            _context.Rides.Add(ride);
-
-            // ⏬ Mark driver as unavailable
-            availableDriver.Availability = false;
-
-            // ⏬ Save both ride and driver update
-            _context.SaveChanges();
-
-
         }
 
+        [HttpPost]
+        public IActionResult AssignDriversToScheduledRides()
+        {
+            var now = DateTime.Now;
+            var scheduledRides = _context.Rides
+                .Where(r => r.Status == "Pending" && r.ScheduledDateTime <= now && r.DriverID == null)
+                .ToList();
+
+            foreach (var ride in scheduledRides)
+            {
+                var availableDriver = _context.Drivers
+                    .Include(d => d.User)
+                    .Include(d => d.Vehicles)
+                    .Where(d => d.Availability == true)
+                    .FirstOrDefault();
+
+                if (availableDriver != null)
+                {
+                    ride.DriverID = availableDriver.DriverID;
+                    ride.Status = "Accepted";
+                    availableDriver.Availability = false;
+                }
+            }
+
+            _context.SaveChanges();
+            return Ok("Drivers assigned to scheduled rides.");
+        }
+
+        [HttpGet]
+        public IActionResult GetAvailableDrivers()
+        {
+            var drivers = _context.Drivers
+                .Where(d => d.Availability == true && d.Latitude != null && d.Longitude != null)
+                .Select(d => new
+                {
+                    id = d.DriverID,
+                    name = d.User.FullName,
+                    lat = d.Latitude,
+                    lng = d.Longitude
+                })
+                .ToList();
+
+            return Json(drivers);
+        }
 
         [HttpGet]
         public IActionResult GetDriverLocation(int driverId)
@@ -106,7 +112,6 @@ namespace ProjetInfo.Controllers
 
             return Json(new { lat = driver.Latitude, lng = driver.Longitude });
         }
-
 
         [HttpPost]
         public IActionResult RateDriver(int driverId, int rating)
@@ -131,13 +136,11 @@ namespace ProjetInfo.Controllers
         [HttpPost]
         public IActionResult Rate(int driverId, int rating, string comment)
         {
-            // ✅ Get the logged-in user using claims
-            var email = User.FindFirst(ClaimTypes.Email)?.Value;
-            var user = _context.Users.FirstOrDefault(u => u.Email == email);
+            // TEMP: Use the first user for testing if not authenticated
+            var user = _context.Users.FirstOrDefault();
             if (user == null)
                 return BadRequest("User not found.");
 
-            // ✅ Find the correct ride to attach feedback
             var ride = _context.Rides
                 .Where(r => r.DriverID == driverId && r.UserID == user.ID)
                 .OrderByDescending(r => r.StartTime)
@@ -158,25 +161,41 @@ namespace ProjetInfo.Controllers
             _context.RideFeedbacks.Add(feedback);
             _context.SaveChanges();
 
-            return Ok("Thanks for your feedback!");
+            // ... return driver info as before ...
+            return Ok(new { success = true });
         }
+
+
+
+        // In RideController.cs
 
         [HttpGet]
         public IActionResult AvailableRides()
         {
-            var rides = _context.Rides
-     .Include(r => r.User)
-     .Where(r => r.DriverID == null && r.Status == "Pending")
-     .ToList();
-
-
-            return View(rides);
+            return View(); // returns the Razor view
         }
 
+        [HttpGet]
+        public IActionResult GetAvailableRides()
+        {
+            var rides = _context.Rides
+                .Include(r => r.User)
+                .Where(r => r.DriverID == null && r.Status == "Pending")
+                .Select(r => new
+                {
+                    rideID = r.RideID,
+                    pickupLocation = r.PickupLocation,
+                    dropOffLocation = r.DropOffLocation,
+                    rideDateTime = r.RideDateTime
+                })
+                .ToList();
+
+            return Json(rides);
+        }
+
+
         [HttpPost]
-        [HttpPost]
-        [HttpPost]
-        public IActionResult AcceptRide(int rideId)
+        public async Task<IActionResult> AcceptRide(int rideId)
         {
             var email = User.FindFirst(ClaimTypes.Email)?.Value;
             var user = _context.Users.FirstOrDefault(u => u.Email == email);
@@ -189,12 +208,60 @@ namespace ProjetInfo.Controllers
             if (ride == null || ride.Status != "Pending") return NotFound();
 
             ride.DriverID = driver.DriverID;
-            ride.Status = "Accepted";
+            ride.Status = "InProgress";
+            ride.StartTime = DateTime.Now;
+            driver.Availability = false;
+
+            // --- FIX: Set driver's location to pickup location ---
+            // Parse pickup location as "lat,lng"
+            if (!string.IsNullOrEmpty(ride.PickupLocation) && ride.PickupLocation.Contains(","))
+            {
+                var parts = ride.PickupLocation.Split(',');
+                if (parts.Length == 2 &&
+                    double.TryParse(parts[0], System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out double lat) &&
+                    double.TryParse(parts[1], System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out double lng))
+                {
+                    driver.Latitude = lat;
+                    driver.Longitude = lng;
+                }
+            }
+            // -----------------------------------------------------
+
             _context.SaveChanges();
 
-            return RedirectToAction("AvailableRides");
+            // SignalR: notify all clients in this ride group
+            await _hubContext.Clients.Group($"ride-{rideId}").SendAsync("ReceiveRideStatus", "InProgress");
+
+            return Ok();
         }
 
+
+        [HttpGet]
+        public IActionResult GetRideStatus(int rideId)
+        {
+            var ride = _context.Rides
+                .Include(r => r.Driver)
+                .ThenInclude(d => d.User)
+                .FirstOrDefault(r => r.RideID == rideId);
+
+            if (ride == null || ride.Driver == null)
+                return Json(new { status = ride?.Status ?? "Unknown" });
+
+            var driver = ride.Driver;
+            var user = driver.User;
+
+            return Json(new
+            {
+                status = ride.Status,
+                driver = new
+                {
+                    id = driver.DriverID,
+                    name = user.FullName,
+                    lat = driver.Latitude,   // Make sure these exist in your model
+                    lng = driver.Longitude   // Make sure these exist in your model
+                }
+            });
+        }
 
 
         public IActionResult AboutUs()

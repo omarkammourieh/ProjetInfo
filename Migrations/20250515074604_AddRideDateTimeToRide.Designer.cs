@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjetInfo.Data;
 
@@ -11,9 +12,11 @@ using ProjetInfo.Data;
 namespace ProjetInfo.Migrations
 {
     [DbContext(typeof(RideShareDbContext))]
-    partial class RideShareDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250515074604_AddRideDateTimeToRide")]
+    partial class AddRideDateTimeToRide
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -139,9 +142,6 @@ namespace ProjetInfo.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("RideDateTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("ScheduledDateTime")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("StartTime")

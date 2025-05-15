@@ -8,10 +8,9 @@
     <meta charset="UTF-8">
     <title>Book a Ride</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.0/signalr.min.js"></script>
     <style>
         html, body {
             margin: 0;
@@ -37,7 +36,7 @@
             border-radius: 10px;
             max-width: 900px;
             width: 100%;
-            box-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 12px rgba(255,255,255,0.2);
         }
 
         h1 {
@@ -58,13 +57,29 @@
             margin-bottom: 20px;
         }
 
-        input[type="text"] {
+        input[type="text"], input[type="datetime-local"] {
             width: 100%;
             padding: 12px;
             font-size: 15px;
             border-radius: 6px;
             border: none;
         }
+
+        .find-btn {
+            margin-top: 5px;
+            margin-bottom: 5px;
+            background: #444;
+            color: #FFD700;
+            border: none;
+            border-radius: 6px;
+            padding: 7px 14px;
+            cursor: pointer;
+        }
+
+            .find-btn:hover {
+                background: #FFD700;
+                color: #222;
+            }
 
         .book-btn, #submitRating {
             background-color: #FFD700;
@@ -92,16 +107,39 @@
             font-size: 18px;
         }
 
+        #rideIdInfo {
+            margin-top: 20px;
+            background: #28a745;
+            color: #fff;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: bold;
+            display: none;
+        }
+
+        #fareInfo {
+            margin-top: 20px;
+            background: #222;
+            color: #FFD700;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 18px;
+            text-align: center;
+            display: none;
+        }
+
         #driverInfo {
             margin-top: 20px;
             background-color: rgba(255,255,255,0.9);
             color: black;
             padding: 15px;
             border-radius: 8px;
+            display: none;
         }
 
         #ratingSection {
             margin-top: 25px;
+            display: none;
         }
 
             #ratingSection textarea {
@@ -113,30 +151,78 @@
                 margin: 12px 0;
                 box-sizing: border-box;
             }
+
+        #confirmModal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 999;
+            background: rgba(0,0,0,0.6);
+            align-items: center;
+            justify-content: center;
+        }
+
+            #confirmModal .modal-content {
+                background: #222;
+                padding: 32px 24px;
+                border-radius: 12px;
+                max-width: 350px;
+                width: 90%;
+                color: #FFD700;
+                text-align: center;
+                box-shadow: 0 0 20px #000;
+            }
+
+            #confirmModal button {
+                font-weight: bold;
+                padding: 10px 24px;
+                border: none;
+                border-radius: 6px;
+                cursor: pointer;
+            }
+
+        #confirmYes {
+            background: #FFD700;
+            color: #222;
+            margin-right: 10px;
+        }
+
+        #confirmNo {
+            background: #444;
+            color: #FFD700;
+        }
     </style>
 </head>
 <body>
     <div class="ride-background">
         <div class="ride-container">
             <h1>Book Your Ride</h1>
-
             <form id="rideForm">
                 <div class="input-group">
                     <label for="pickup">Pickup Location</label>
-                    <input type="text" id="pickup" placeholder="Click on map for pickup" readonly required />
+                    <input type="text" id="pickup" placeholder="Type or click on map" required />
+                    <button type="button" id="findPickup" class="find-btn">Find on Map</button>
                 </div>
                 <div class="input-group">
                     <label for="dropoff">Drop-off Location</label>
-                    <input type="text" id="dropoff" placeholder="Click on map for drop-off" readonly required />
+                    <input type="text" id="dropoff" placeholder="Type or click on map" required />
+                    <button type="button" id="findDropoff" class="find-btn">Find on Map</button>
+                </div>
+                <div class="input-group">
+                    <label for="scheduledDateTime">Schedule Ride For (optional)</label>
+                    <input type="datetime-local" id="scheduledDateTime" name="scheduledDateTime" />
                 </div>
                 <button type="submit" class="book-btn">Book Ride</button>
             </form>
-
             <div id="map"></div>
             <div id="status" class="ride-status"></div>
-            <div id="driverInfo" style="display: none;"></div>
-
-            <div id="ratingSection" style="display: none;">
+            <div id="rideIdInfo"></div>
+            <div id="fareInfo"></div>
+            <div id="driverInfo"></div>
+            <div id="ratingSection">
                 <h3>Rate Your Driver</h3>
                 <select id="driverRating">
                     <option value="">Select stars</option>
@@ -151,148 +237,292 @@
             </div>
         </div>
     </div>
-
+    <div id="confirmModal">
+        <div class="modal-content">
+            <h2 style="color:#FFD700;margin-bottom:18px;">Confirm Your Ride</h2>
+            <div id="confirmDetails" style="color:#fff;font-size:16px;margin-bottom:18px;"></div>
+            <button id="confirmYes">Confirm</button>
+            <button id="confirmNo">Cancel</button>
+        </div>
+    </div>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
         const map = L.map('map').setView([33.8938, 35.5018], 13);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; OpenStreetMap contributors'
-        }).addTo(map);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; OpenStreetMap contributors' }).addTo(map);
 
-        let pickupMarker = null, dropoffMarker = null, driverMarker = null;
-        let pickupSelected = false, currentDriverId = null;
+        let pickupMarker = null, dropoffMarker = null, driverMarker = null, routeLine = null;
+        let pickupSelected = false, currentDriverId = null, currentRideId = null;
+        let driverMarkers = [];
+        let signalRConnection = null;
+        let animationInterval = null;
 
-        map.on('click', function(e) {
+        // Geocode using Nominatim
+        async function geocode(address) {
+            const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`;
+            const res = await fetch(url, { headers: { 'Accept-Language': 'en' } });
+            const data = await res.json();
+            if (data && data.length > 0) return { lat: parseFloat(data[0].lat), lng: parseFloat(data[0].lon) };
+            return null;
+        }
+        async function reverseGeocode(lat, lng) {
+            const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`;
+            const res = await fetch(url, { headers: { 'Accept-Language': 'en' } });
+            const data = await res.json();
+            return data.display_name || `${lat},${lng}`;
+        }
+
+        document.getElementById("findPickup").addEventListener("click", async function() {
+            const address = document.getElementById("pickup").value;
+            if (!address) return alert("Enter a pickup address.");
+            const loc = await geocode(address);
+            if (!loc) return alert("Location not found.");
+            pickupMarker?.remove();
+            pickupMarker = L.marker([loc.lat, loc.lng]).addTo(map).bindPopup("Pickup").openPopup();
+            map.setView([loc.lat, loc.lng], 15);
+            document.getElementById("pickup").value = address;
+            pickupMarker.coords = { lat: loc.lat, lng: loc.lng };
+            pickupSelected = true;
+        });
+        document.getElementById("findDropoff").addEventListener("click", async function() {
+            const address = document.getElementById("dropoff").value;
+            if (!address) return alert("Enter a drop-off address.");
+            const loc = await geocode(address);
+            if (!loc) return alert("Location not found.");
+            dropoffMarker?.remove();
+            dropoffMarker = L.marker([loc.lat, loc.lng]).addTo(map).bindPopup("Drop-off").openPopup();
+            map.setView([loc.lat, loc.lng], 15);
+            document.getElementById("dropoff").value = address;
+            dropoffMarker.coords = { lat: loc.lat, lng: loc.lng };
+            pickupSelected = false;
+        });
+
+        // Show all available drivers on the map
+        async function showAvailableDrivers() {
+            driverMarkers.forEach(m => map.removeLayer(m));
+            driverMarkers = [];
+            const res = await fetch('/Ride/GetAvailableDrivers');
+            const drivers = await res.json();
+            drivers.forEach(driver => {
+                const marker = L.marker([driver.lat, driver.lng], {
+                    icon: L.icon({ iconUrl: '/images/car--v1.jpg', iconSize: [30, 30] })
+                }).addTo(map).bindPopup(`Driver: ${driver.name}`);
+                driverMarkers.push(marker);
+            });
+        }
+        showAvailableDrivers();
+
+        map.on('click', async function(e) {
             const { lat, lng } = e.latlng;
+            const address = await reverseGeocode(lat, lng);
             if (!pickupSelected) {
                 pickupMarker?.remove();
-                pickupMarker = L.marker([lat, lng]).addTo(map)
-                                  .bindPopup("Pickup").openPopup();
-        document.getElementById("pickup").value = `${lat},${lng}`;
-                        pickupSelected = true;
+                pickupMarker = L.marker([lat, lng]).addTo(map).bindPopup("Pickup").openPopup();
+                document.getElementById("pickup").value = address;
+                pickupMarker.coords = { lat, lng };
+                pickupSelected = true;
             } else {
                 dropoffMarker?.remove();
-                dropoffMarker = L.marker([lat, lng]).addTo(map)
-                                  .bindPopup("Drop-off").openPopup();
-        document.getElementById("dropoff").value = `${lat},${lng}`;
-                        pickupSelected = false;
+                dropoffMarker = L.marker([lat, lng]).addTo(map).bindPopup("Drop-off").openPopup();
+                document.getElementById("dropoff").value = address;
+                dropoffMarker.coords = { lat, lng };
+                pickupSelected = false;
             }
         });
 
+        function showConfirmModal(pu, doff, fare, distanceKm, onConfirm) {
+            document.getElementById("confirmDetails").innerHTML =
+                `<div style="margin-bottom:10px;">
+                    <strong>Pickup:</strong><br/><span style="color:#FFD700">${pu}</span>
+                </div>
+                <div style="margin-bottom:10px;">
+                    <strong>Drop-off:</strong><br/><span style="color:#FFD700">${doff}</span>
+                </div>
+                <div style="margin-bottom:10px;">
+                    <strong>Estimated Fare:</strong> <span style="color:#FFD700">$${fare.toFixed(2)}</span>
+                    <br/><span style="color:#aaa;font-size:13px;">(${distanceKm.toFixed(2)} km)</span>
+                </div>`;
+            const modal = document.getElementById("confirmModal");
+            modal.style.display = "flex";
+            document.getElementById("confirmYes").onclick = function() { modal.style.display = "none"; onConfirm(); };
+            document.getElementById("confirmNo").onclick = function() { modal.style.display = "none"; };
+        }
+
         document.getElementById("rideForm").addEventListener("submit", async function(e) {
             e.preventDefault();
-            const pu = document.getElementById("pickup").value;
-            const doff = document.getElementById("dropoff").value;
-            if (!pu || !doff) return alert("Please select both pickup and drop-off.");
+            let pu = document.getElementById("pickup").value;
+            let doff = document.getElementById("dropoff").value;
+            const scheduled = document.getElementById("scheduledDateTime").value;
+            let puCoords = pu, doffCoords = doff;
+            if (!/^-?\d+(\.\d+)?,-?\d+(\.\d+)?$/.test(pu)) {
+                const loc = await geocode(pu);
+                if (!loc) return alert("Pickup address not found.");
+                puCoords = `${loc.lat},${loc.lng}`;
+            }
+            if (!/^-?\d+(\.\d+)?,-?\d+(\.\d+)?$/.test(doff)) {
+                const loc = await geocode(doff);
+                if (!loc) return alert("Drop-off address not found.");
+                doffCoords = `${loc.lat},${loc.lng}`;
+            }
+            let isScheduled = false;
+            if (scheduled) {
+                const scheduledDate = new Date(scheduled);
+                const now = new Date();
+                if (scheduledDate > now) isScheduled = true;
+            }
+            try {
+                const url = `https://router.project-osrm.org/route/v1/driving/${puCoords.split(',')[1]},${puCoords.split(',')[0]};${doffCoords.split(',')[1]},${doffCoords.split(',')[0]}?overview=full&geometries=geojson`;
+                const r = await fetch(url);
+                const j = await r.json();
+                if (!j.routes || !j.routes[0]) throw new Error("No route found.");
+                const distanceMeters = j.routes[0].distance;
+                const distanceKm = distanceMeters / 1000;
+                const baseFare = 2.5, perKm = 1.2;
+                const fare = baseFare + (distanceKm * perKm);
+                showConfirmModal(pu, doff, fare, distanceKm, async function() {
+                    await actuallyBookRide(puCoords, doffCoords, scheduled, isScheduled);
+                });
+            } catch (err) {
+                alert("Could not calculate route/fare for confirmation.");
+            }
+        });
 
+        async function actuallyBookRide(pu, doff, scheduled, isScheduled) {
             document.getElementById("status").innerText = "🚕 Ride Status: Requested";
-
+            document.getElementById("rideIdInfo").style.display = "none";
+            if (routeLine) { map.removeLayer(routeLine); routeLine = null; }
+            document.getElementById("fareInfo").style.display = "none";
             try {
                 const res = await fetch("/Ride/BookRide", {
                     method: "POST",
                     headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                    body: new URLSearchParams({ pickup: pu, dropoff: doff })
+                    body: new URLSearchParams({ pickup: pu, dropoff: doff, scheduledDateTime: scheduled })
                 });
-                if (!res.ok) {
-                    const err = await res.text();
-                    throw new Error(err || "Booking failed");
+                if (!res.ok) throw new Error(await res.text() || "Booking failed");
+                const resJson = await res.json();
+                currentRideId = resJson.rideId;
+                startSignalR(currentRideId);
+                driverMarkers.forEach(m => map.removeLayer(m));
+                driverMarkers = [];
+                if (resJson.rideId) {
+                    document.getElementById("rideIdInfo").innerHTML = `<strong>Your Ride ID:</strong> ${resJson.rideId}`;
+                    document.getElementById("rideIdInfo").style.display = "block";
+                } else {
+                    document.getElementById("rideIdInfo").style.display = "none";
                 }
-        const resJson = await res.json();
-        const d = resJson.driver;
-
-        if (!d) {
-            throw new Error("No driver assigned. Try again later.");
-        }
-                        currentDriverId = d.id;
-
-                document.getElementById("driverInfo").innerHTML =
-                    `<h3>Your Driver</h3>
-                    <p><strong>Name:</strong> ${d.name}</p>
-                    <p><strong>Phone:</strong> ${d.phone}</p>
-                    <p><strong>Vehicle:</strong> ${d.vehicle}</p>
-                    <p><strong>Plate:</strong> ${d.plate}</p>
-                    <p><strong>Rating:</strong> ⭐ ${d.rating}</p>`;
-                document.getElementById("driverInfo").style.display = "block";
-
-                let loc = { lat: parseFloat(pu.split(',')[0]), lng: parseFloat(pu.split(',')[1]) };
-                try {
-        const lr = await fetch(`/Ride/GetDriverLocation?driverId=${d.id}`);
-                            const json = await lr.json();
-                    if (json && typeof json.lat === 'number' && typeof json.lng === 'number') {
-                        loc = json;
-                    }
-                } catch {
-                    console.warn('Could not fetch driver location; using pickup coords');
-                }
-
-                driverMarker?.remove();
-                driverMarker = L.marker([loc.lat, loc.lng], {
-                    icon: L.icon({ iconUrl: '/images/car--v1.jpg', iconSize: [30,30] })
-                }).addTo(map);
-
-                const [dLat, dLng] = doff.split(',').map(parseFloat);
-                await getRouteAndAnimate([loc.lng, loc.lat], [dLng, dLat]);
+                document.getElementById("driverInfo").style.display = "none";
+                document.getElementById("fareInfo").style.display = "none";
+                document.getElementById("status").innerText = resJson.message || "🚕 Ride Status: Requested";
             } catch (err) {
-                console.error(err);
                 alert("Booking failed: " + err.message);
                 document.getElementById("status").innerText = "";
             }
-        });
+        }
 
-        async function getRouteAndAnimate(start, end) {
+        function startSignalR(rideId) {
+            if (signalRConnection) return;
+            signalRConnection = new signalR.HubConnectionBuilder().withUrl("/rideHub").build();
+            signalRConnection.on("ReceiveRideStatus", function (status) {
+                document.getElementById('status').innerText = `🚕 Ride Status: ${status}`;
+                if (status === "InProgress") {
+                    fetchDriverInfo();
+                }
+            });
+            signalRConnection.start().then(() => {
+                signalRConnection.invoke("JoinRideGroup", rideId);
+            });
+        }
+
+        async function fetchDriverInfo() {
+            if (!currentRideId) return;
+            const res = await fetch(`/Ride/GetRideStatus?rideId=${currentRideId}`);
+            if (!res.ok) return;
+            const data = await res.json();
+            if (data.driver) {
+                document.getElementById("driverInfo").style.display = "block";
+            document.getElementById("driverInfo").innerHTML = `
+                <h3>Your Driver</h3>
+                <p><strong>Name:</strong> ${data.driver.name}</p>
+                <p><strong>Phone:</strong> ${data.driver.phone ?? 'N/A'}</p>
+                <p><strong>Vehicle:</strong> ${data.driver.vehicle ?? 'N/A'}</p>
+                <p><strong>Plate:</strong> ${data.driver.plate ?? 'N/A'}</p>
+                <p><strong>Rating:</strong> ⭐ ${data.driver.rating ?? 'N/A'}</p>
+            `;
+
+                currentDriverId = data.driver.id || data.driver.driverId;
+
+                // Animate the route from driver to dropoff
+                let dropoff = document.getElementById("dropoff").value;
+                let dropoffCoords = dropoff;
+                if (!/^-?\d+(\.\d+)?,-?\d+(\.\d+)?$/.test(dropoff)) {
+                    const loc = await geocode(dropoff);
+                    if (!loc) return;
+                    dropoffCoords = `${loc.lat},${loc.lng}`;
+                }
+                const [dLat, dLng] = dropoffCoords.split(',').map(parseFloat);
+                await animateDriverToDropoff(data.driver.lat, data.driver.lng, dLat, dLng);
+            }
+        }
+
+        async function animateDriverToDropoff(startLat, startLng, endLat, endLng) {
             try {
-        const url = `https://router.project-osrm.org/route/v1/driving/${start[0]},${start[1]};${end[0]},${end[1]}?overview=full&geometries=geojson`;
-                        const r = await fetch(url);
+                const url = `https://router.project-osrm.org/route/v1/driving/${startLng},${startLat};${endLng},${endLat}?overview=full&geometries=geojson`;
+                const r = await fetch(url);
                 const j = await r.json();
+                if (!j.routes || !j.routes[0]) return;
                 const path = j.routes[0].geometry.coordinates.map(c => [c[1], c[0]]);
-                animateDriver(path);
+
+                if (window.routeLine) {
+                    map.removeLayer(window.routeLine);
+                }
+                window.routeLine = L.polyline(path, { color: 'blue', weight: 5, opacity: 0.7 }).addTo(map);
+
+                if (!driverMarker) {
+                    driverMarker = L.marker([startLat, startLng], {
+                        icon: L.icon({ iconUrl: '/images/car--v1.jpg', iconSize: [30, 30] })
+                    }).addTo(map);
+                } else {
+                    driverMarker.setLatLng([startLat, startLng]);
+                }
+                map.setView([startLat, startLng], 14);
+
+                if (animationInterval) clearInterval(animationInterval);
+
+                let i = 0;
+                animationInterval = setInterval(() => {
+                    if (i >= path.length) {
+                        clearInterval(animationInterval);
+                        document.getElementById("status").innerText = "✅ Ride Status: Completed";
+                        document.getElementById("ratingSection").style.display = "block";
+                        return;
+                    }
+                    driverMarker.setLatLng(path[i]);
+                    document.getElementById("status").innerText = "🚗 Ride Status: On the way";
+                    i++;
+                }, 200);
             } catch {
                 alert("❌ Could not load route.");
             }
         }
 
-        function animateDriver(path) {
-            let i = 0;
-            const iv = setInterval(() => {
-                if (i >= path.length) {
-                    clearInterval(iv);
-                    document.getElementById("status").innerText = "✅ Ride Status: Completed";
-                    document.getElementById("ratingSection").style.display = "block";
-                    return;
-                }
-                driverMarker.setLatLng(path[i]);
-                document.getElementById("status").innerText = "🚗 Ride Status: On the way";
-                i++;
-            }, 200);
-        }
+                 document.getElementById("submitRating").addEventListener("click", function () {
+            const rating = document.getElementById("driverRating").value;
+            if (!rating || !currentDriverId) return alert("Please rate your driver.");
 
-        document.getElementById("submitRating").addEventListener("click", async function() {
-            const rating  = document.getElementById("driverRating").value;
-            const comment = document.getElementById("driverComment").value.trim();
-            if (!rating || currentDriverId == null) {
-                return alert("Please select a rating before submitting.");
-            }
-            try {
-                const res = await fetch("/Ride/Rate", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                    body: new URLSearchParams({
-                        driverId: currentDriverId,
-                        rating:   rating,
-                        comment:  comment
-                    })
-                });
-                if (!res.ok) throw new Error("Feedback save failed");
-                alert("Thanks for your feedback!");
+            fetch("/Ride/Rate", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: new URLSearchParams({
+                    driverId: currentDriverId,
+                    rating,
+                    comment: ""
+                })
+            })
+            .then(res => res.text())
+            .then(() => {
+                alert("Thanks for your rating!");
                 document.getElementById("ratingSection").style.display = "none";
-                document.getElementById("driverRating").value  = "";
-                document.getElementById("driverComment").value = "";
-            } catch (err) {
-                console.error(err);
-                alert("❌ Could not submit feedback. Please try again.");
-            }
+            });
         });
     </script>
-
 </body>
 </html>
