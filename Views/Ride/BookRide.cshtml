@@ -5,12 +5,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Book a Ride</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <title>@ViewData["Title"]</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Fonts & Leaflet CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <!-- SignalR -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.0/signalr.min.js"></script>
+
     <style>
         html, body {
             margin: 0;
@@ -31,7 +36,7 @@
         }
 
         .ride-container {
-            background-color: rgba(0, 0, 0, 0.75);
+            background-color: rgba(0,0,0,0.75);
             padding: 30px;
             border-radius: 10px;
             max-width: 900px;
@@ -200,6 +205,7 @@
     <div class="ride-background">
         <div class="ride-container">
             <h1>Book Your Ride</h1>
+
             <form id="rideForm">
                 <div class="input-group">
                     <label for="pickup">Pickup Location</label>
@@ -217,11 +223,13 @@
                 </div>
                 <button type="submit" class="book-btn">Book Ride</button>
             </form>
+
             <div id="map"></div>
-            <div id="status" class="ride-status"></div>
+            <div id="status"></div>
             <div id="rideIdInfo"></div>
             <div id="fareInfo"></div>
             <div id="driverInfo"></div>
+
             <div id="ratingSection">
                 <h3>Rate Your Driver</h3>
                 <select id="driverRating">
@@ -232,106 +240,114 @@
                     <option value="4">⭐⭐⭐⭐</option>
                     <option value="5">⭐⭐⭐⭐⭐</option>
                 </select>
-                <textarea id="driverComment" placeholder="Leave a comment about your ride..." rows="3"></textarea>
+                <textarea id="driverComment" placeholder="Leave a comment..." rows="3"></textarea>
                 <button id="submitRating">Submit Rating & Comment</button>
             </div>
         </div>
     </div>
+
     <div id="confirmModal">
         <div class="modal-content">
-            <h2 style="color:#FFD700;margin-bottom:18px;">Confirm Your Ride</h2>
+            <h2 style="color:#FFD700; margin-bottom:18px;">Confirm Your Ride</h2>
             <div id="confirmDetails" style="color:#fff;font-size:16px;margin-bottom:18px;"></div>
             <button id="confirmYes">Confirm</button>
             <button id="confirmNo">Cancel</button>
         </div>
     </div>
+
+    <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
+        // Map & markers
         const map = L.map('map').setView([33.8938, 35.5018], 13);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; OpenStreetMap contributors' }).addTo(map);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
 
         let pickupMarker = null, dropoffMarker = null, driverMarker = null, routeLine = null;
-        let pickupSelected = false, currentDriverId = null, currentRideId = null;
-        let driverMarkers = [];
-        let signalRConnection = null;
-        let animationInterval = null;
+        let pickupSelected = false, currentRideId = null, currentDriverId = null;
+        let signalRConnection = null, animationInterval = null, driverMarkers = [];
 
-        // Geocode using Nominatim
+        // Geocode / reverse-geocode
         async function geocode(address) {
-            const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`;
-            const res = await fetch(url, { headers: { 'Accept-Language': 'en' } });
+            const res = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`, {
+                headers: { 'Accept-Language': 'en' }
+            });
             const data = await res.json();
-            if (data && data.length > 0) return { lat: parseFloat(data[0].lat), lng: parseFloat(data[0].lon) };
-            return null;
+            return data[0] ? { lat: +data[0].lat, lng: +data[0].lon } : null;
         }
         async function reverseGeocode(lat, lng) {
-            const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`;
-            const res = await fetch(url, { headers: { 'Accept-Language': 'en' } });
+            const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`, {
+                headers: { 'Accept-Language': 'en' }
+            });
             const data = await res.json();
             return data.display_name || `${lat},${lng}`;
         }
 
-        document.getElementById("findPickup").addEventListener("click", async function() {
-            const address = document.getElementById("pickup").value;
-            if (!address) return alert("Enter a pickup address.");
-            const loc = await geocode(address);
+        // Find pickup/dropoff by address
+        document.getElementById("findPickup").addEventListener("click", async () => {
+            const addr = document.getElementById("pickup").value.trim();
+            if (!addr) return alert("Enter a pickup address.");
+            const loc = await geocode(addr);
             if (!loc) return alert("Location not found.");
             pickupMarker?.remove();
             pickupMarker = L.marker([loc.lat, loc.lng]).addTo(map).bindPopup("Pickup").openPopup();
             map.setView([loc.lat, loc.lng], 15);
-            document.getElementById("pickup").value = address;
-            pickupMarker.coords = { lat: loc.lat, lng: loc.lng };
+            document.getElementById("pickup").value = addr;
+            pickupMarker.coords = loc;
             pickupSelected = true;
         });
-        document.getElementById("findDropoff").addEventListener("click", async function() {
-            const address = document.getElementById("dropoff").value;
-            if (!address) return alert("Enter a drop-off address.");
-            const loc = await geocode(address);
+        document.getElementById("findDropoff").addEventListener("click", async () => {
+            const addr = document.getElementById("dropoff").value.trim();
+            if (!addr) return alert("Enter a drop-off address.");
+            const loc = await geocode(addr);
             if (!loc) return alert("Location not found.");
             dropoffMarker?.remove();
             dropoffMarker = L.marker([loc.lat, loc.lng]).addTo(map).bindPopup("Drop-off").openPopup();
             map.setView([loc.lat, loc.lng], 15);
-            document.getElementById("dropoff").value = address;
-            dropoffMarker.coords = { lat: loc.lat, lng: loc.lng };
+            document.getElementById("dropoff").value = addr;
+            dropoffMarker.coords = loc;
             pickupSelected = false;
         });
 
-        // Show all available drivers on the map
+        // Show available drivers on load
         async function showAvailableDrivers() {
             driverMarkers.forEach(m => map.removeLayer(m));
             driverMarkers = [];
             const res = await fetch('/Ride/GetAvailableDrivers');
             const drivers = await res.json();
-            drivers.forEach(driver => {
-                const marker = L.marker([driver.lat, driver.lng], {
-                    icon: L.icon({ iconUrl: '/images/car--v1.jpg', iconSize: [30, 30] })
-                }).addTo(map).bindPopup(`Driver: ${driver.name}`);
-                driverMarkers.push(marker);
+            drivers.forEach(d => {
+                const m = L.marker([d.lat, d.lng], {
+                    icon: L.icon({ iconUrl: '/images/car--v1.jpg', iconSize: [30,30] })
+                }).addTo(map).bindPopup(`Driver: ${d.name}`);
+                driverMarkers.push(m);
             });
         }
         showAvailableDrivers();
 
-        map.on('click', async function(e) {
+        // Click map to set pickup/dropoff
+        map.on('click', async e => {
             const { lat, lng } = e.latlng;
-            const address = await reverseGeocode(lat, lng);
+            const addr = await reverseGeocode(lat, lng);
             if (!pickupSelected) {
                 pickupMarker?.remove();
                 pickupMarker = L.marker([lat, lng]).addTo(map).bindPopup("Pickup").openPopup();
-                document.getElementById("pickup").value = address;
+                document.getElementById("pickup").value = addr;
                 pickupMarker.coords = { lat, lng };
                 pickupSelected = true;
             } else {
                 dropoffMarker?.remove();
                 dropoffMarker = L.marker([lat, lng]).addTo(map).bindPopup("Drop-off").openPopup();
-                document.getElementById("dropoff").value = address;
+                document.getElementById("dropoff").value = addr;
                 dropoffMarker.coords = { lat, lng };
                 pickupSelected = false;
             }
         });
 
-        function showConfirmModal(pu, doff, fare, distanceKm, onConfirm) {
-            document.getElementById("confirmDetails").innerHTML =
-                `<div style="margin-bottom:10px;">
+        // Confirmation modal helper
+        function showConfirmModal(pu, doff, fare, dist, onConfirm) {
+            document.getElementById("confirmDetails").innerHTML = `
+                <div style="margin-bottom:10px;">
                     <strong>Pickup:</strong><br/><span style="color:#FFD700">${pu}</span>
                 </div>
                 <div style="margin-bottom:10px;">
@@ -339,58 +355,62 @@
                 </div>
                 <div style="margin-bottom:10px;">
                     <strong>Estimated Fare:</strong> <span style="color:#FFD700">$${fare.toFixed(2)}</span>
-                    <br/><span style="color:#aaa;font-size:13px;">(${distanceKm.toFixed(2)} km)</span>
+                    <br/><span style="color:#aaa;font-size:13px;">(${dist.toFixed(2)} km)</span>
                 </div>`;
             const modal = document.getElementById("confirmModal");
             modal.style.display = "flex";
-            document.getElementById("confirmYes").onclick = function() { modal.style.display = "none"; onConfirm(); };
-            document.getElementById("confirmNo").onclick = function() { modal.style.display = "none"; };
+            document.getElementById("confirmYes").onclick = () => { modal.style.display = "none"; onConfirm(); };
+            document.getElementById("confirmNo").onclick  = () => { modal.style.display = "none"; };
         }
 
-        document.getElementById("rideForm").addEventListener("submit", async function(e) {
+        // Handle form submit → calculate fare → show modal
+        document.getElementById("rideForm").addEventListener("submit", async e => {
             e.preventDefault();
-            let pu = document.getElementById("pickup").value;
-            let doff = document.getElementById("dropoff").value;
+            let pu = document.getElementById("pickup").value.trim();
+            let doff = document.getElementById("dropoff").value.trim();
             const scheduled = document.getElementById("scheduledDateTime").value;
-            let puCoords = pu, doffCoords = doff;
+
+            // Ensure lat,lng
             if (!/^-?\d+(\.\d+)?,-?\d+(\.\d+)?$/.test(pu)) {
                 const loc = await geocode(pu);
-                if (!loc) return alert("Pickup address not found.");
-                puCoords = `${loc.lat},${loc.lng}`;
+                if (!loc) return alert("Pickup not found");
+                pu = `${loc.lat},${loc.lng}`;
             }
             if (!/^-?\d+(\.\d+)?,-?\d+(\.\d+)?$/.test(doff)) {
                 const loc = await geocode(doff);
-                if (!loc) return alert("Drop-off address not found.");
-                doffCoords = `${loc.lat},${loc.lng}`;
+                if (!loc) return alert("Drop-off not found");
+                doff = `${loc.lat},${loc.lng}`;
             }
-            let isScheduled = false;
-            if (scheduled) {
-                const scheduledDate = new Date(scheduled);
-                const now = new Date();
-                if (scheduledDate > now) isScheduled = true;
-            }
+
+            // OSRM route/fare
             try {
-                const url = `https://router.project-osrm.org/route/v1/driving/${puCoords.split(',')[1]},${puCoords.split(',')[0]};${doffCoords.split(',')[1]},${doffCoords.split(',')[0]}?overview=full&geometries=geojson`;
+                const [plat, plng] = pu.split(',').map(Number);
+                const [dlat, dlng] = doff.split(',').map(Number);
+                const url = `https://router.project-osrm.org/route/v1/driving/${plng},${plat};${dlng},${dlat}?overview=full&geometries=geojson`;
                 const r = await fetch(url);
                 const j = await r.json();
-                if (!j.routes || !j.routes[0]) throw new Error("No route found.");
-                const distanceMeters = j.routes[0].distance;
-                const distanceKm = distanceMeters / 1000;
-                const baseFare = 2.5, perKm = 1.2;
-                const fare = baseFare + (distanceKm * perKm);
-                showConfirmModal(pu, doff, fare, distanceKm, async function() {
-                    await actuallyBookRide(puCoords, doffCoords, scheduled, isScheduled);
-                });
-            } catch (err) {
-                alert("Could not calculate route/fare for confirmation.");
+                if (!j.routes?.[0]) throw new Error();
+                const distKm = j.routes[0].distance / 1000;
+                const fare = 2.5 + distKm * 1.2;
+
+                showConfirmModal(
+                    document.getElementById("pickup").value,
+                    document.getElementById("dropoff").value,
+                    fare, distKm,
+                    () => actuallyBookRide(pu, doff, scheduled)
+                );
+            } catch {
+                alert("Could not calculate route/fare.");
             }
         });
 
-        async function actuallyBookRide(pu, doff, scheduled, isScheduled) {
+        // Call backend to book ride
+        async function actuallyBookRide(pu, doff, scheduled) {
             document.getElementById("status").innerText = "🚕 Ride Status: Requested";
             document.getElementById("rideIdInfo").style.display = "none";
-            if (routeLine) { map.removeLayer(routeLine); routeLine = null; }
             document.getElementById("fareInfo").style.display = "none";
+            if (routeLine) { map.removeLayer(routeLine); routeLine = null; }
+
             try {
                 const res = await fetch("/Ride/BookRide", {
                     method: "POST",
@@ -398,87 +418,96 @@
                     body: new URLSearchParams({ pickup: pu, dropoff: doff, scheduledDateTime: scheduled })
                 });
                 if (!res.ok) throw new Error(await res.text() || "Booking failed");
-                const resJson = await res.json();
-                currentRideId = resJson.rideId;
+                const js = await res.json();
+                currentRideId = js.rideId;
                 startSignalR(currentRideId);
                 driverMarkers.forEach(m => map.removeLayer(m));
                 driverMarkers = [];
-                if (resJson.rideId) {
-                    document.getElementById("rideIdInfo").innerHTML = `<strong>Your Ride ID:</strong> ${resJson.rideId}`;
+
+                if (js.rideId) {
+                    document.getElementById("rideIdInfo").innerHTML = `<strong>Your Ride ID:</strong> ${js.rideId}`;
                     document.getElementById("rideIdInfo").style.display = "block";
-                } else {
-                    document.getElementById("rideIdInfo").style.display = "none";
                 }
-                document.getElementById("driverInfo").style.display = "none";
-                document.getElementById("fareInfo").style.display = "none";
-                document.getElementById("status").innerText = resJson.message || "🚕 Ride Status: Requested";
+                document.getElementById("status").innerText = js.message || "🚕 Ride Status: Requested";
             } catch (err) {
                 alert("Booking failed: " + err.message);
                 document.getElementById("status").innerText = "";
             }
         }
 
+        // SignalR setup
         function startSignalR(rideId) {
             if (signalRConnection) return;
-            signalRConnection = new signalR.HubConnectionBuilder().withUrl("/rideHub").build();
-            signalRConnection.on("ReceiveRideStatus", function (status) {
-                document.getElementById('status').innerText = `🚕 Ride Status: ${status}`;
+            signalRConnection = new signalR.HubConnectionBuilder()
+                .withUrl("/rideHub")
+                .build();
+
+            signalRConnection.on("ReceiveRideStatus", status => {
+                document.getElementById("status").innerText = `🚕 Ride Status: ${status}`;
                 if (status === "InProgress") {
                     fetchDriverInfo();
                 }
             });
-            signalRConnection.start().then(() => {
-                signalRConnection.invoke("JoinRideGroup", rideId);
-            });
+
+            signalRConnection.start()
+                .then(() => signalRConnection.invoke("JoinRideGroup", rideId));
         }
 
+        // Fetch & render driver info (brand/model & plate)
         async function fetchDriverInfo() {
             if (!currentRideId) return;
             const res = await fetch(`/Ride/GetRideStatus?rideId=${currentRideId}`);
             if (!res.ok) return;
-            const data = await res.json();
-            if (data.driver) {
-                document.getElementById("driverInfo").style.display = "block";
-            document.getElementById("driverInfo").innerHTML = `
+            const { driver } = await res.json();
+            if (!driver) return;
+
+            const info = document.getElementById("driverInfo");
+            info.style.display = "block";
+
+            const brand = driver.brand      || '';
+            const model = driver.model      || '';
+            const plate = driver.plateNumber|| driver.plate|| 'N/A';
+            const vehicleDisplay = (brand || model) ? `${brand} ${model}`.trim() : 'N/A';
+            const rating = driver.averageRating || driver.rating || '–';
+
+            info.innerHTML = `
                 <h3>Your Driver</h3>
-                <p><strong>Name:</strong> ${data.driver.name}</p>
-                <p><strong>Phone:</strong> ${data.driver.phone ?? 'N/A'}</p>
-                <p><strong>Vehicle:</strong> ${data.driver.vehicle ?? 'N/A'}</p>
-                <p><strong>Plate:</strong> ${data.driver.plate ?? 'N/A'}</p>
-                <p><strong>Rating:</strong> ⭐ ${data.driver.rating ?? 'N/A'}</p>
+                <p><strong>Name:</strong> ${driver.name}</p>
+                <p><strong>Phone:</strong> ${driver.phone}</p>
+                <p><strong>Vehicle Model:</strong> ${vehicleDisplay}</p>
+                <p><strong>Plate Number:</strong> ${plate}</p>
+                <p><strong>Average Rating:</strong> ⭐ ${rating}</p>
             `;
 
-                currentDriverId = data.driver.id || data.driver.driverId;
+            currentDriverId = driver.id || driver.driverId;
 
-                // Animate the route from driver to dropoff
-                let dropoff = document.getElementById("dropoff").value;
-                let dropoffCoords = dropoff;
-                if (!/^-?\d+(\.\d+)?,-?\d+(\.\d+)?$/.test(dropoff)) {
-                    const loc = await geocode(dropoff);
-                    if (!loc) return;
-                    dropoffCoords = `${loc.lat},${loc.lng}`;
-                }
-                const [dLat, dLng] = dropoffCoords.split(',').map(parseFloat);
-                await animateDriverToDropoff(data.driver.lat, data.driver.lng, dLat, dLng);
+            // animate driver
+            const dropoffVal = document.getElementById("dropoff").value;
+            let dropoffCoords = dropoffVal;
+            if (!/^-?\d+(\.\d+)?,-?\d+(\.\d+)?$/.test(dropoffVal)) {
+                const loc = await geocode(dropoffVal);
+                if (!loc) return;
+                dropoffCoords = `${loc.lat},${loc.lng}`;
             }
+            const [dLat, dLng] = dropoffCoords.split(',').map(Number);
+            await animateDriverToDropoff(driver.lat, driver.lng, dLat, dLng);
         }
 
+        // Animate driver moving along path
         async function animateDriverToDropoff(startLat, startLng, endLat, endLng) {
             try {
                 const url = `https://router.project-osrm.org/route/v1/driving/${startLng},${startLat};${endLng},${endLat}?overview=full&geometries=geojson`;
                 const r = await fetch(url);
                 const j = await r.json();
-                if (!j.routes || !j.routes[0]) return;
+                if (!j.routes?.[0]) return;
                 const path = j.routes[0].geometry.coordinates.map(c => [c[1], c[0]]);
 
-                if (window.routeLine) {
-                    map.removeLayer(window.routeLine);
-                }
-                window.routeLine = L.polyline(path, { color: 'blue', weight: 5, opacity: 0.7 }).addTo(map);
+                if (routeLine) map.removeLayer(routeLine);
+                routeLine = L.polyline(path, { color: 'blue', weight: 5, opacity: 0.7 }).addTo(map);
 
                 if (!driverMarker) {
                     driverMarker = L.marker([startLat, startLng], {
-                        icon: L.icon({ iconUrl: '/images/car--v1.jpg', iconSize: [30, 30] })
+                        icon: L.icon({ iconUrl: '/images/car--v1.jpg', iconSize: [30,30] })
                     }).addTo(map);
                 } else {
                     driverMarker.setLatLng([startLat, startLng]);
@@ -486,7 +515,6 @@
                 map.setView([startLat, startLng], 14);
 
                 if (animationInterval) clearInterval(animationInterval);
-
                 let i = 0;
                 animationInterval = setInterval(() => {
                     if (i >= path.length) {
@@ -504,20 +532,17 @@
             }
         }
 
-                 document.getElementById("submitRating").addEventListener("click", function () {
-            const rating = document.getElementById("driverRating").value;
+        // Submit rating & comment
+        document.getElementById("submitRating").addEventListener("click", () => {
+            const rating  = document.getElementById("driverRating").value;
+            const comment = document.getElementById("driverComment").value;
             if (!rating || !currentDriverId) return alert("Please rate your driver.");
 
             fetch("/Ride/Rate", {
                 method: "POST",
                 headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                body: new URLSearchParams({
-                    driverId: currentDriverId,
-                    rating,
-                    comment: ""
-                })
+                body: new URLSearchParams({ driverId: currentDriverId, rating, comment })
             })
-            .then(res => res.text())
             .then(() => {
                 alert("Thanks for your rating!");
                 document.getElementById("ratingSection").style.display = "none";

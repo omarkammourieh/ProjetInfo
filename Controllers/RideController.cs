@@ -136,7 +136,6 @@ namespace ProjetInfo.Controllers
         [HttpPost]
         public IActionResult Rate(int driverId, int rating, string comment)
         {
-            // TEMP: Use the first user for testing if not authenticated
             var user = _context.Users.FirstOrDefault();
             if (user == null)
                 return BadRequest("User not found.");
@@ -161,18 +160,16 @@ namespace ProjetInfo.Controllers
             _context.RideFeedbacks.Add(feedback);
             _context.SaveChanges();
 
-            // ... return driver info as before ...
             return Ok(new { success = true });
         }
 
 
 
-        // In RideController.cs
 
         [HttpGet]
         public IActionResult AvailableRides()
         {
-            return View(); // returns the Razor view
+            return View();
         }
 
         [HttpGet]
@@ -225,7 +222,6 @@ namespace ProjetInfo.Controllers
                     driver.Longitude = lng;
                 }
             }
-            // -----------------------------------------------------
 
             _context.SaveChanges();
 
@@ -241,7 +237,9 @@ namespace ProjetInfo.Controllers
         {
             var ride = _context.Rides
                 .Include(r => r.Driver)
-                .ThenInclude(d => d.User)
+                    .ThenInclude(d => d.User)
+                .Include(r => r.Driver)
+                    .ThenInclude(d => d.Vehicles)
                 .FirstOrDefault(r => r.RideID == rideId);
 
             if (ride == null || ride.Driver == null)
@@ -249,6 +247,14 @@ namespace ProjetInfo.Controllers
 
             var driver = ride.Driver;
             var user = driver.User;
+            var vehicle = driver.Vehicles?.FirstOrDefault();
+
+            // Calculate average rating
+            var rating = _context.RideFeedbacks
+                .Where(f => f.DriverID == driver.DriverID)
+                .Select(f => (double?)f.Rating)
+                .DefaultIfEmpty()
+                .Average();
 
             return Json(new
             {
@@ -256,13 +262,16 @@ namespace ProjetInfo.Controllers
                 driver = new
                 {
                     id = driver.DriverID,
-                    name = user.FullName,
-                    lat = driver.Latitude,   // Make sure these exist in your model
-                    lng = driver.Longitude   // Make sure these exist in your model
+                    name = user?.FullName ?? "",
+                    phone = user?.PhoneNumber ?? "",
+                    carModel = vehicle != null ? $"{vehicle.Brand} {vehicle.Model}" : "",
+                    plate = vehicle?.PlateNumber ?? "",
+                    rating = rating.HasValue ? Math.Round(rating.Value, 2) : (double?)null,
+                    lat = driver.Latitude,
+                    lng = driver.Longitude
                 }
             });
         }
-
 
         public IActionResult AboutUs()
         {

@@ -919,7 +919,6 @@ C:\Users\DELL\ProjetInfo\obj\Debug\net8.0\staticwebassets\msbuild.build.ProjetIn
 C:\Users\DELL\ProjetInfo\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.ProjetInfo.props
 C:\Users\DELL\ProjetInfo\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.ProjetInfo.props
 C:\Users\DELL\ProjetInfo\obj\Debug\net8.0\staticwebassets.pack.json
-C:\Users\DELL\ProjetInfo\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 C:\Users\DELL\ProjetInfo\obj\Debug\net8.0\ProjetInfo.csproj.Up2Date
 C:\Users\DELL\ProjetInfo\obj\Debug\net8.0\ProjetInfo.dll
 C:\Users\DELL\ProjetInfo\obj\Debug\net8.0\refint\ProjetInfo.dll
@@ -930,3 +929,4 @@ C:\Users\DELL\ProjetInfo\bin\Debug\net8.0\Microsoft.Extensions.Diagnostics.Abstr
 C:\Users\DELL\ProjetInfo\bin\Debug\net8.0\Microsoft.Extensions.Hosting.Abstractions.dll
 C:\Users\DELL\ProjetInfo\bin\Debug\net8.0\Microsoft.Extensions.ObjectPool.dll
 C:\Users\DELL\ProjetInfo\bin\Debug\net8.0\System.Net.WebSockets.WebSocketProtocol.dll
+C:\Users\DELL\ProjetInfo\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

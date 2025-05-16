@@ -3,6 +3,18 @@
   "WorkspaceRootPath": "C:\\Users\\DELL\\ProjetInfo\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|c:\\users\\dell\\projetinfo\\views\\account\\signup.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|solutionrelative:views\\account\\signup.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|c:\\users\\dell\\projetinfo\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|c:\\users\\dell\\projetinfo\\controllers\\ridecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|solutionrelative:controllers\\ridecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|c:\\users\\dell\\projetinfo\\views\\ride\\bookride.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|solutionrelative:views\\ride\\bookride.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
@@ -11,16 +23,8 @@
       "RelativeMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|solutionrelative:views\\ride\\availablerides.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|c:\\users\\dell\\projetinfo\\controllers\\ridecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|solutionrelative:controllers\\ridecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|c:\\users\\dell\\projetinfo\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|c:\\users\\dell\\projetinfo\\hubs\\ridehub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|solutionrelative:hubs\\ridehub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|c:\\users\\dell\\projetinfo\\models\\vehicle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|solutionrelative:models\\vehicle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|c:\\users\\dell\\projetinfo\\models\\ride.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -29,6 +33,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|c:\\users\\dell\\projetinfo\\migrations\\20250515075214_addscheduleddatetimetoride.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|solutionrelative:migrations\\20250515075214_addscheduleddatetimetoride.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|c:\\users\\dell\\projetinfo\\hubs\\ridehub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FD4CFF33-E5A8-4D11-80A8-8F7B3E0D5A14}|ProjetInfo.csproj|solutionrelative:hubs\\ridehub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,7 +46,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -50,20 +58,45 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
+              "Title": "SignUp.cshtml",
+              "DocumentMoniker": "C:\\Users\\DELL\\ProjetInfo\\Views\\Account\\SignUp.cshtml",
+              "RelativeDocumentMoniker": "Views\\Account\\SignUp.cshtml",
+              "ToolTip": "C:\\Users\\DELL\\ProjetInfo\\Views\\Account\\SignUp.cshtml",
+              "RelativeToolTip": "Views\\Account\\SignUp.cshtml",
+              "ViewState": "AgIAACYAAAAAAAAAAAAcwDcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-16T08:40:44.359Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Vehicle.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\ProjetInfo\\Models\\Vehicle.cs",
+              "RelativeDocumentMoniker": "Models\\Vehicle.cs",
+              "ToolTip": "C:\\Users\\DELL\\ProjetInfo\\Models\\Vehicle.cs",
+              "RelativeToolTip": "Models\\Vehicle.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAYwBoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-16T06:57:35.81Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\DELL\\ProjetInfo\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "C:\\Users\\DELL\\ProjetInfo\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAQwAgAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-15T17:34:47.816Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 8,
               "Title": "RideHub.cs",
               "DocumentMoniker": "C:\\Users\\DELL\\ProjetInfo\\Hubs\\RideHub.cs",
               "RelativeDocumentMoniker": "Hubs\\RideHub.cs",
@@ -71,18 +104,17 @@
               "RelativeToolTip": "Hubs\\RideHub.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-15T17:34:27.466Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-15T17:34:27.466Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "AvailableRides.cshtml",
               "DocumentMoniker": "C:\\Users\\DELL\\ProjetInfo\\Views\\Ride\\AvailableRides.cshtml",
               "RelativeDocumentMoniker": "Views\\Ride\\AvailableRides.cshtml",
               "ToolTip": "C:\\Users\\DELL\\ProjetInfo\\Views\\Ride\\AvailableRides.cshtml",
               "RelativeToolTip": "Views\\Ride\\AvailableRides.cshtml",
-              "ViewState": "AgIAAGMAAAAAAAAAAAAYwIYAAAAHAAAAAAAAAA==",
+              "ViewState": "AgIAAGMAAAAAAAAAAAAuwIYAAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-05-15T17:30:04.2Z",
               "EditorCaption": ""
@@ -95,27 +127,27 @@
               "RelativeDocumentMoniker": "Controllers\\RideController.cs",
               "ToolTip": "C:\\Users\\DELL\\ProjetInfo\\Controllers\\RideController.cs",
               "RelativeToolTip": "Controllers\\RideController.cs",
-              "ViewState": "AgIAAMgAAAAAAAAAAAAEwPEAAAAlAAAAAAAAAA==",
+              "ViewState": "AgIAAHAAAAAAAAAAAAAgwHwAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-15T07:56:01.387Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "BookRide.cshtml",
               "DocumentMoniker": "C:\\Users\\DELL\\ProjetInfo\\Views\\Ride\\BookRide.cshtml",
               "RelativeDocumentMoniker": "Views\\Ride\\BookRide.cshtml",
-              "ToolTip": "C:\\Users\\DELL\\ProjetInfo\\Views\\Ride\\BookRide.cshtml*",
-              "RelativeToolTip": "Views\\Ride\\BookRide.cshtml*",
-              "ViewState": "AgIAAPEBAAAAAAAAAAAAAAwCAAALAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\DELL\\ProjetInfo\\Views\\Ride\\BookRide.cshtml",
+              "RelativeToolTip": "Views\\Ride\\BookRide.cshtml",
+              "ViewState": "AgIAAAYCAAAAAAAAAAAuwBECAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-05-15T07:53:20.317Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "20250515075214_AddScheduledDateTimeToRide.cs",
               "DocumentMoniker": "C:\\Users\\DELL\\ProjetInfo\\Migrations\\20250515075214_AddScheduledDateTimeToRide.cs",
               "RelativeDocumentMoniker": "Migrations\\20250515075214_AddScheduledDateTimeToRide.cs",
@@ -127,7 +159,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "Ride.cs",
               "DocumentMoniker": "C:\\Users\\DELL\\ProjetInfo\\Models\\Ride.cs",
               "RelativeDocumentMoniker": "Models\\Ride.cs",
