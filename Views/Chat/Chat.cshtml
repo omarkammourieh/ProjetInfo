@@ -1,0 +1,158 @@
+﻿@model ProjetInfo.Models.User 
+
+@{
+    ViewData["Title"] = "Live Chat";
+}
+<link rel="stylesheet" href="~/css/chat.css" />
+
+
+<style>
+    .chat-container {
+        max-width: 800px;
+        margin: 30px auto;
+        background: #f8f9fa;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        font-family: Arial, sans-serif;
+    }
+
+    .chat-header {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        text-align: center;
+        color: #343a40;
+    }
+
+    .message-box {
+        height: 400px;
+        overflow-y: auto;
+        border: 1px solid #dee2e6;
+        padding: 15px;
+        background: white;
+        margin-bottom: 15px;
+        border-radius: 8px;
+    }
+
+    .message {
+        margin-bottom: 12px;
+        padding: 10px 15px;
+        border-radius: 20px;
+        max-width: 70%;
+        clear: both;
+    }
+
+    .sent {
+        background-color: #007bff;
+        color: white;
+        float: right;
+        text-align: right;
+    }
+
+    .received {
+        background-color: #007bff;
+        float: left;
+        text-align: left;
+    }
+
+    .input-group {
+        display: flex;
+        gap: 10px;
+    }
+
+    .input-group input {
+        flex: 1;
+        padding: 10px;
+        border-radius: 20px;
+        border: 1px solid #ced4da;
+    }
+
+    .input-group button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 20px;
+        background-color: #28a745;
+        color: white;
+        cursor: pointer;
+    }
+
+    .input-group button:hover {
+        background-color: #218838;
+    }
+</style>
+
+<div class="chat-container">
+    <div class="chat-header">
+        Live Chat
+    </div>
+
+    <div class="message-box" id="messagesList">
+        <!-- Les messages seront ajoutés ici via SignalR -->
+    </div>
+
+    <div class="input-group">
+        <input type="text" id="userInput" placeholder="Your Name" />
+        <input type="text" id="messageInput" placeholder="Type your message" />
+        <button id="sendButton">Send</button>
+    </div>
+</div>
+
+<!-- SignalR Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
+<script>
+    const connection = new signalR.HubConnectionBuilder()
+        .withUrl(window.location.origin + "/chatHub")
+        .build();
+
+    // Receive and display messages
+    connection.on("ReceiveMessage", function (user, message) {
+        const messagesList = document.getElementById("messagesList");
+
+        const div = document.createElement("div");
+        div.className = `message received`; // simple for now
+
+        const strong = document.createElement("strong");
+        strong.textContent = user + ": ";
+
+        const span = document.createElement("span");
+        span.textContent = message;
+
+        div.appendChild(strong);
+        div.appendChild(span);
+
+        messagesList.appendChild(div);
+
+        // Scroll to latest message
+        messagesList.scrollTop = messagesList.scrollHeight;
+    });
+
+    // Start the connection
+    connection.start().then(() => {
+        console.log("SignalR Connected.");
+        document.getElementById("sendButton").disabled = false;
+    }).catch(err => console.error("SignalR connection error:", err.toString()));
+
+    // Send a message
+    document.getElementById("sendButton").addEventListener("click", function (event) {
+        const user = document.getElementById("userInput").value.trim();
+        const message = document.getElementById("messageInput").value.trim();
+
+        if (user && message) {
+            connection.invoke("SendMessage", user, message)
+                .then(() => console.log("Message sent successfully"))
+                .catch(err => console.error("Send Error:", err.toString()));
+
+            document.getElementById("messageInput").value = "";
+        } else {
+            alert("Both name and message are required.");
+        }
+
+        event.preventDefault();
+    });
+    const isCurrentUser = user === document.getElementById("userInput").value.trim();
+    div.className = `message ${isCurrentUser ? "sent" : "received"}`;
+
+</script>
+

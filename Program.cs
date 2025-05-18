@@ -4,13 +4,16 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using ProjetInfo.Data;
 using ProjetInfo.Models;
+using ProjetInfo.Hubs;
 
 namespace ProjetInfo
 {
     public class Program
     {
+
         public static void Main(string[] args)
         {
+
             var builder = WebApplication.CreateBuilder(args);
 
             builder.Services.AddSignalR();
@@ -115,8 +118,21 @@ namespace ProjetInfo
                     db.SaveChanges();
                 }
             }
+            app.UseRouting();
+            app.UseAuthentication();
+            app.UseAuthorization();
+            app.UseSession();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapHub<ChatHub>("/chatHub");
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Chat}/{action=Chat}/{id?}");
+            });
 
             app.Run();
+        
         }
     }
 }

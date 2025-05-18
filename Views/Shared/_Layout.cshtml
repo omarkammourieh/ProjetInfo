@@ -31,7 +31,9 @@
                 <li><a asp-controller="Contact" asp-action="Index" class="@(ViewContext.RouteData.Values["controller"]?.ToString() == "Contact" ? "active" : "")">Contact</a></li>
                 <li><a asp-controller="Account" asp-action="Profile" class="nav-link">Profile</a></li>
                 @using System.Security.Claims
-
+                <li class="nav-item">
+                <li><a asp-controller="Chat" asp-action="Chat">Chat</a></li>
+                </li>
                 @if (!User.Identity.IsAuthenticated)
                 {
                     <li>
